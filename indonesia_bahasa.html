@@ -21,28 +21,93 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.6}
-header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100}
-.hi{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:14px 0}
-.logo{font-size:18px;font-weight:600;color:var(--text);white-space:nowrap;display:flex;align-items:center;gap:8px}
-.sw{flex:1;position:relative}
-.sw svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
-#search{width:100%;height:38px;padding:0 12px 0 38px;border:1px solid var(--border2);border-radius:var(--rs);font-family:inherit;font-size:13px;background:var(--surface2);color:var(--text);outline:none;transition:border-color .15s,background .15s}
+
+/* ── Header ── */
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:200;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.hi{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:12px 0}
+.logo{font-size:17px;font-weight:600;color:var(--text);white-space:nowrap;display:flex;align-items:center;gap:8px}
+.logo-flag{font-size:22px}
+.sw{flex:1;position:relative;max-width:340px}
+.sw svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
+#search{width:100%;height:36px;padding:0 11px 0 34px;border:1px solid var(--border2);border-radius:var(--rs);font-family:inherit;font-size:13px;background:var(--surface2);color:var(--text);outline:none;transition:border-color .15s,background .15s}
 #search:focus{border-color:var(--accent);background:#fff}
-main{max-width:980px;margin:0 auto;padding:24px}
-.tb{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+
+/* ── Category bar ── */
+.cat-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px}
+.cat-inner{max-width:980px;margin:0 auto;padding:10px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cat-search-wrap{position:relative;flex:0 0 210px}
+.cat-search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
+#cat-search{width:100%;height:32px;padding:0 10px 0 30px;border:1px solid var(--border2);border-radius:var(--rs);font-family:inherit;font-size:12px;background:var(--surface2);color:var(--text);outline:none;transition:border-color .15s}
+#cat-search:focus{border-color:var(--accent);background:#fff}
+#cat-drop{position:absolute;top:36px;left:0;right:0;background:var(--surface);border:1px solid var(--border2);border-radius:var(--rs);z-index:300;box-shadow:0 4px 12px rgba(0,0,0,.1);display:none;max-height:260px;overflow-y:auto}
+.cd-item{padding:8px 12px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:8px;transition:background .1s}
+.cd-item:hover,.cd-item.active{background:var(--accent-bg);color:var(--accent-text)}
+.cd-cnt{font-size:11px;color:var(--text3);margin-left:auto;font-family:'IBM Plex Mono',monospace}
+.cat-chips{display:flex;gap:5px;flex-wrap:wrap;flex:1}
+.chip{height:28px;padding:0 11px;font-family:inherit;font-size:11.5px;font-weight:500;border:1px solid var(--border2);border-radius:20px;background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.chip:hover{background:var(--surface2)}
+.chip.active{background:var(--accent-bg);border-color:var(--accent);color:var(--accent-text);font-weight:600}
+.chip-count{font-size:10px;opacity:.7;font-family:'IBM Plex Mono',monospace}
+
+main{max-width:980px;margin:0 auto;padding:20px 24px}
+
+/* ── Toolbar ── */
+.tb{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
 .fg{display:flex;gap:4px;flex-wrap:wrap}
-.fb{height:30px;padding:0 12px;font-family:inherit;font-size:12px;font-weight:500;border:1px solid var(--border2);border-radius:20px;background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
+.fb{height:28px;padding:0 11px;font-family:inherit;font-size:12px;font-weight:500;border:1px solid var(--border2);border-radius:20px;background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
 .fb:hover{background:var(--surface2)}
 .fb.active{background:var(--accent-bg);border-color:var(--accent);color:var(--accent-text);font-weight:600}
-.cbs{display:flex;gap:6px;margin-left:auto}
-.cb{height:30px;padding:0 12px;font-family:inherit;font-size:12px;border:1px solid var(--border2);border-radius:var(--rs);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.cbs{display:flex;gap:5px;margin-left:auto}
+.cb{height:28px;padding:0 11px;font-family:inherit;font-size:12px;border:1px solid var(--border2);border-radius:var(--rs);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:4px;white-space:nowrap}
 .cb:hover{background:var(--surface2)}
 .cb svg{width:13px;height:13px}
-.stats{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--text3);margin-bottom:20px;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs)}
+
+/* ── Stats bar ── */
+.stats{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--text3);margin-bottom:18px;padding:9px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);align-items:center}
 .sv{font-weight:600;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px}
+.sv.clickable{cursor:pointer;border-bottom:1px dashed var(--accent);color:var(--accent-text);text-decoration:none}
+.sv.clickable:hover{opacity:.75}
+.atag{display:inline-flex;align-items:center;gap:5px;background:var(--accent-bg);color:var(--accent-text);font-size:11px;font-weight:600;padding:2px 8px 2px 10px;border-radius:20px}
+.atag button{background:none;border:none;cursor:pointer;color:var(--accent-text);font-size:14px;line-height:1;padding:0;margin-left:1px;opacity:.6}
+.atag button:hover{opacity:1}
+
+/* ── 전체표현 모달 ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:400;display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.modal-overlay.hidden{display:none}
+.modal{background:var(--surface);border-radius:var(--r);width:100%;max-width:900px;box-shadow:0 8px 32px rgba(0,0,0,.18);overflow:hidden}
+.modal-head{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:10}
+.modal-title{font-size:15px;font-weight:600;flex:1}
+.modal-sub{font-size:12px;color:var(--text3)}
+.modal-close{width:30px;height:30px;border:none;background:var(--surface2);border-radius:6px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text2)}
+.modal-close:hover{background:var(--border2)}
+.modal-toolbar{display:flex;gap:8px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.modal-search-wrap{position:relative;flex:1;min-width:160px}
+.modal-search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
+#modal-search{width:100%;height:34px;padding:0 10px 0 32px;border:1px solid var(--border2);border-radius:var(--rs);font-family:inherit;font-size:13px;background:var(--surface2);color:var(--text);outline:none}
+#modal-search:focus{border-color:var(--accent);background:#fff}
+.modal-filter-btns{display:flex;gap:4px;flex-wrap:wrap}
+.mfb{height:28px;padding:0 10px;font-family:inherit;font-size:11.5px;font-weight:500;border:1px solid var(--border2);border-radius:20px;background:var(--surface);color:var(--text2);cursor:pointer;white-space:nowrap;transition:all .15s}
+.mfb:hover{background:var(--surface2)}
+.mfb.active{background:var(--accent-bg);border-color:var(--accent);color:var(--accent-text);font-weight:600}
+.modal-sort{height:28px;padding:0 8px;font-family:inherit;font-size:12px;border:1px solid var(--border2);border-radius:var(--rs);background:var(--surface);color:var(--text2);cursor:pointer;outline:none}
+.modal-body{overflow-y:auto;max-height:60vh}
+.modal-table{width:100%;border-collapse:collapse}
+.modal-table thead th{padding:8px 14px;font-size:11px;font-weight:600;color:var(--text3);text-align:left;background:var(--surface2);border-bottom:1px solid var(--border);letter-spacing:.05em;text-transform:uppercase;position:sticky;top:0}
+.modal-table tbody tr{border-bottom:1px solid var(--border);transition:background .1s;cursor:pointer}
+.modal-table tbody tr:last-child{border-bottom:none}
+.modal-table tbody tr:hover{background:var(--surface2)}
+.modal-table td{padding:8px 14px;font-size:12.5px;vertical-align:middle}
+.td-indo{font-family:'IBM Plex Mono',monospace;font-weight:500;color:#1a3560;font-size:12px}
+.td-pron{color:var(--pron);font-size:12px;background:var(--pron-bg)}
+.td-cat{font-size:11px;color:var(--text3)}
+.td-lang .lp{font-size:10px;font-weight:700;padding:2px 6px;border-radius:20px;white-space:nowrap}
+.modal-empty{padding:32px;text-align:center;color:var(--text3);font-size:13px}
+.modal-count{font-size:12px;color:var(--text3);padding:8px 20px;border-top:1px solid var(--border);text-align:right}
+
+/* ── Group cards ── */
 .gc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:8px;transition:box-shadow .15s}
 .gc:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.gh{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;user-select:none;transition:background .12s}
+.gh{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;user-select:none;transition:background .12s}
 .gh:hover{background:var(--surface2)}
 .ge{font-size:18px;flex-shrink:0;width:26px;text-align:center}
 .gt{font-size:14px;font-weight:600;color:var(--text);flex:1}
@@ -53,7 +118,7 @@ main{max-width:980px;margin:0 auto;padding:24px}
 .gbody.open{display:block}
 .ch{display:grid;grid-template-columns:1fr 0.6fr 0.9fr 68px;background:var(--surface2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .ch span{padding:6px 12px;font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.05em;text-transform:uppercase}
-.sl{padding:5px 14px;font-size:11px;font-weight:600;color:var(--text3);background:var(--surface2);border-bottom:1px solid var(--border);letter-spacing:.02em}
+.sl{padding:5px 14px;font-size:11px;font-weight:600;color:var(--text3);background:var(--surface2);border-bottom:1px solid var(--border)}
 .ir{display:grid;grid-template-columns:1fr 0.6fr 0.9fr 68px;border-bottom:1px solid var(--border);transition:background .1s}
 .ir:last-child{border-bottom:none}
 .ir:hover .cell{background:#fafaf8}
@@ -69,29 +134,52 @@ main{max-width:980px;margin:0 auto;padding:24px}
 mark{background:#ffe58a;border-radius:2px;padding:0 1px}
 .empty{padding:48px 24px;text-align:center;color:var(--text3);font-size:14px}
 footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-top:1px solid var(--border);margin-top:32px}
+
 @media(max-width:640px){
-  header{padding:0 12px}main{padding:16px 12px}.hi{gap:10px;padding:10px 0}
-  .logo span:last-child{display:none}
+  header{padding:0 12px}.hi{gap:10px;padding:10px 0}.logo span:last-child{display:none}
+  .cat-bar{padding:0 12px}.cat-chips{display:none}
+  main{padding:16px 12px}
   .ch{grid-template-columns:1fr 1fr}.ch span:nth-child(2),.ch span:last-child{display:none}
   .ir{grid-template-columns:1fr 1fr}.cell.pr,.cell.lc{display:none}
   .cbs{display:none}
+  .modal-overlay{padding:0}.modal{border-radius:0;min-height:100vh}
+  .modal-body{max-height:none}
 }
 </style>
 </head>
 <body>
+
+<!-- Header -->
 <header>
   <div class="hi">
-    <div class="logo"><span>🇮🇩</span><span>인도네시아어 회화 사전</span></div>
+    <div class="logo">
+      <span class="logo-flag">🇮🇩</span>
+      <span>인도네시아어 회화 사전</span>
+    </div>
     <div class="sw">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="search" placeholder="인도네시아어, 발음, 해석 검색..." oninput="render()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="search" placeholder="단어·발음·해석 검색..." oninput="render()">
     </div>
   </div>
 </header>
+
+<!-- Category bar -->
+<div class="cat-bar">
+  <div class="cat-inner">
+    <div class="cat-search-wrap">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M6 12h12M9 18h6"/></svg>
+      <input type="text" id="cat-search" placeholder="카테고리 검색..." oninput="onCatSearch()" onfocus="showCatDrop()" onblur="hideCatDrop()">
+      <div id="cat-drop"></div>
+    </div>
+    <div class="cat-chips" id="cat-chips"></div>
+  </div>
+</div>
+
+<!-- Main -->
 <main>
   <div class="tb">
     <div class="fg">
-      <button class="fb active" onclick="setLang(this,'all')">전체</button>
+      <button class="fb active" onclick="setLang(this,'all')">전체 언어</button>
       <button class="fb" onclick="setLang(this,'id')">인도네시아어만</button>
       <button class="fb" onclick="setLang(this,'mix')">혼합</button>
     </div>
@@ -104,8 +192,54 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
   <div id="groups"></div>
 </main>
 <footer>인도네시아 일상 회화 기록 · 한글 발음 포함 · 318개 표현</footer>
+
+<!-- 전체 표현 모달 -->
+<div class="modal-overlay hidden" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">🇮🇩 전체 표현 목록</div>
+        <div class="modal-sub" id="modal-sub">318개 표현</div>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-toolbar">
+      <div class="modal-search-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="modal-search" placeholder="표현·발음·해석·카테고리 검색..." oninput="renderModal()">
+      </div>
+      <div class="modal-filter-btns">
+        <button class="mfb active" onclick="setModalLang(this,'all')">전체</button>
+        <button class="mfb" onclick="setModalLang(this,'id')">인도네시아어만</button>
+        <button class="mfb" onclick="setModalLang(this,'mix')">혼합</button>
+      </div>
+      <select class="modal-sort" id="modal-sort" onchange="renderModal()">
+        <option value="default">기본 순서</option>
+        <option value="alpha">가나다 순 (해석)</option>
+        <option value="cat">카테고리 순</option>
+      </select>
+    </div>
+    <div class="modal-body">
+      <table class="modal-table">
+        <thead>
+          <tr>
+            <th style="width:28%">인도네시아어</th>
+            <th style="width:20%">한글 발음</th>
+            <th style="width:28%">해석</th>
+            <th style="width:16%">카테고리</th>
+            <th style="width:8%">언어</th>
+          </tr>
+        </thead>
+        <tbody id="modal-tbody"></tbody>
+      </table>
+      <div id="modal-empty" class="modal-empty" style="display:none">검색 결과가 없습니다.</div>
+    </div>
+    <div class="modal-count" id="modal-count"></div>
+  </div>
+</div>
+
 <script>
-const P={"Tunggu = Tunggu sebentar = Tunggu ya.": "뚱구 / 뚱구 스븐따르 / 뚱구 야", "tunggu ya, wating please": "뚱구 야", "Harap kembali jam 3 sore hari ini.": "하랍 끔발리 잠 띠가 소레 하리 이니", "Kita akan kembali jam 5 sore": "끼따 아깐 끔발리 잠 리마 소레", "Harap Anda akan kembali jam 5 sore hari ini": "하랍 안다 아깐 끔발리 잠 리마 소레 하리 이니", "Dari jam 10 pagi hingga jam 5 sore.": "다리 잠 스뿔루 빠기 힝가 잠 리마 소레", "berapa lama?": "브라빠 라마", "mulai jam 5 sore": "물라이 잠 리마 소레", "hingga jam 6 sore": "힝가 잠 으남 소레", "Mulai jam 2": "물라이 잠 두아", "jam dua tidak sama dua jam": "잠 두아 띠닥 사마 두아 잠", "jam berapa? 몇시?": "잠 브라빠", "santai aja": "산따이 아자", "nggak masalah kok, santai aja, makasih juga ya": "응각 마살라 꼭, 산따이 아자, 마까시 주가 야", "silakan = please": "실라깐", "aku senang = I'm happy": "아꾸 스낭", "Saya baik baik saja": "사야 바익 바익 사자", "saya bagus 난 괜찮아": "사야 바구스", "Bisakah saya? 내가 할 수 있을까?": "비사까 사야", "Saya mengerti. I Understand": "사야 멍으르띠", "Mau bisa baru 나는 뭔가 새로운 것을 하고 싶다": "마우 비사 바루", "Aku mengerti": "아꾸 멍으르띠", "Cinta. love": "찐따", "Bermain. 놀다 Aku bosan 심심해": "브르마인 / 아꾸 보산", "ya iya": "야 이야", "baik. good, baik-baik. fine": "바익 / 바익-바익", "begitu ya. i see": "브기뚜 야", "Saya juga. me too": "사야 주가", "kamu bisa. sama. boleh dirimu. you can": "까무 비사", "baiklah. sama begituuu. okay": "바익라", "Rindu. miss": "린두", "Aku sudah": "아꾸 수다", "Sudah tahu. 이미알고있다": "수다 따우", "Bisakah Boleh bisa 할수있다": "비사까 / 볼레 / 비사", "Apa itu mungkin? 가능합니까?": "아빠 이뚜 뭉낀", "Apakah Anda(kamu) memahami?": "아빠까 안다 므마하미", "Kamu baik.": "까무 바익", "Saya tidak tahu.": "사야 띠닥 따우", "Baiklah.": "바익라", "baiklah.": "바익라", "bisa할수있다": "비사", "Aku tahu, i know": "아꾸 따우", "Aku tidak tahu, i dont know": "아꾸 띠닥 따우", "Ada yang salah.": "아다 양 살라", "Jadi. sama. begitu": "자디", "Apakah kamu sibuk? sama. sibuk kan": "아빠까 까무 시북", "sedang apa ya? 지금 뭐해?": "스당 아빠 야", "Suka wanita 여자를 좋아한다.": "수까 와니따", "Tolong Bicara 말씀해주세요.": "똘롱 비짜라", "Bicara pelan 천천히 말하세요": "비짜라 쁠란", "ingin 싶다. 원한다.": "잉인", "Tidak apa apa its ok. no problom": "띠닥 아빠 아빠", "tidak apa apa / tak apa apa / tak papa": "띠닥 아빠 아빠 / 딱 빠빠", "sedang minum ? drinking?": "스당 미눔", "Aku sedang menonton drama korea": "아꾸 스당 므논똔 드라마 꼬레아", "Terus katanya.": "뜨루스 까따냐", "Bisikan": "비시깐", "apa kabar.": "아빠 까바르", "apa kabarmu.": "아빠 까바르무", "apa kabarmu hari ini.": "아빠 까바르무 하리 이니", "Bukan(orang indonesia), Tidak(makan), Belum(belum tiba), Jangan(merokok di sini)": "부깐 / 띠닥 / 블룸 / 장안", "kirim vs. menerima": "끼림 vs. 므느리마", "mulai vs. akhir": "물라이 vs. 아히르", "Panas vs. Dingin": "빠나스 vs. 딩인", "begitu 그래서 ya 알겠어요": "브기뚜 / 야", "harus 해야 하다.": "하루스", "harus. bisa. 해야 하다. 할 수 있다": "하루스 / 비사", "Kematin 죽음": "끄마띤 (kematian)", "Apa artinya? What does it mean?": "아빠 아르띠냐", "Kapan? 언제?(When?)": "까빤", "Di mana? 어디? (Where?)": "디 마나", "Bagaimana? (how?)": "바가이마나", "siapa ini? 누구야? (Who is this?)": "시아빠 이니", "Mengapa? 왜 ?(Why?)": "믕아빠", "Sungguh? 정말?(Really?)": "숭구", "Apa? 뭐라고?(What?)": "아빠", "apa ini 이건 뭐야?(What is This?)": "아빠 이니", "sangat": "상앗", "mau": "마우", "sengat": "스앗", "juga": "주가", "sedang. currency": "스당", "Ada(There is), ya": "아다", "jika. sama. kalau. if": "지까 / 깔라우", "sedikit": "스디낏", "cari": "짜리", "apa .... what": "아빠", "ada ... 있다": "아다", "Aku,kamu.": "아꾸 / 까무", "enggak = tidak. sama.": "응각 = 띠닥", "belum": "블룸", "atau": "아따우", "Namun 하지만": "나문", "..se puluh": "스 뿔루 (~십)", "se belas": "스 블라스 (11)", "dua belas": "두아 블라스 (12)", "tiga belas": "띠가 블라스 (13)", "empat belas": "음빳 블라스 (14)", "lima belas": "리마 블라스 (15)", "enam belas": "으남 블라스 (16)", "tujuh belas": "뚜주 블라스 (17)", "delapan belas": "들라빤 블라스 (18)", "sembilan belas": "슴빌란 블라스 (19)", "dua puluh": "두아 뿔루 (20)", "tiga puluh": "띠가 뿔루 (30)", "empat puluh": "음빳 뿔루 (40)", "lima puluh": "리마 뿔루 (50)", "enam puluh": "으남 뿔루 (60)", "tujuh puluh": "뚜주 뿔루 (70)", "delapan puluh": "들라빤 뿔루 (80)", "sembilan puluh": "슴빌란 뿔루 (90)", "seratus": "스라뚜스 (100)", "Mari belajar": "마리 블라자르", "saya butuh latihan 연습이 필요해.": "사야 부뚜 라띠한", "인도네시아어에서 요일을 알아보죠.": "(한국어 메모)", "cepat-cepat": "쯔빳-쯔빳", "pelan-pelan": "쁠란-쁠란", "Suda sampai 도착했어요(sampai 명사)": "수다 삼빠이", "Suda tiba 이미 도착하다": "수다 띠바", "Baru tiba 방금 도착하다": "바루 띠바", "Saya harus sekarang berangkat": "사야 하루스 스까랑 브랑깟", "kamu mau ke mana?": "까무 마우 끄 마나", "Macet sekali": "마쩻 스깔리", "macet = traffic jam": "마쩻", "Seberapa jauh itu? 얼마나 멀어?": "스브라빠 자우 이뚜", "Berjalan kaki. On foot": "브르잘란 까끼", "Itu di sana. it's over there": "이뚜 디 사나", "kurangi kecepatan 속도를 줄이다": "꾸랑이 끄쯔빠딴", "Naik": "나익", "turun, lereng": "뚜룬", "keluar": "끌루아르", "jauh long": "자우", "dekat. short": "드깟", "Lurus": "루루스", "lereng = naik": "르렝 = 나익", "Pergi ke mana kita hari ini?": "뻐르기 끄 마나 끼따 하리 이니", "Aku baru mau pulang": "아꾸 바루 마우 뿔랑", "Ayo pergi.": "아요 뻐르기", "Kamu ada di mana? 어디세요?": "까무 아다 디 마나", "Pernahkah Anda melihat hal seperti ini di dalam mobil?": "뻐르나까 안다 믈리핫 할 스뻐르띠 이니 디 달람 모빌", "Cepat-cepat.": "쯔빳-쯔빳", "Boleh mau bantuan?": "볼레 마우 반뚜안", "Sampai jumpa lusa, besok": "삼빠이 줌빠 루사, 브속", "Terima kasih kembali": "뜨리마 까시 끔발리", "lama tak jumpa 오랫만이네요.": "라마 딱 줌빠", "Banyak terima kasih 대단히 고맙습니다.": "바냑 뜨리마 까시", "tolong banyak bantu saya 많이 도와주세요.": "똘롱 바냑 반뚜 사야", "tolong aku. help me": "똘롱 아꾸", "selamat tinggal. good bye": "슬라맛 띵갈", "bantu 도움": "반뚜", "sama sama. you're welcome": "사마 사마", "Saya pergi dulu": "사야 뻐르기 둘루", "Kamu duluan.": "까무 둘루안", "Nama saya Joe.": "나마 사야 조", "Selamat tingal.": "슬라맛 띵갈", "Aku akan pergi.": "아꾸 아깐 뻐르기", "Siapa namamu.": "시아빠 나마무", "Selamat pergi.": "슬라맛 뻐르기", "Terima kasih atas usaha Anda": "뜨리마 까시 아따스 우사하 안다", "kamu ayo duluan saja 그냥 너 먼저 가": "까무 아요 둘루안 사자", "terima kasih banyak": "뜨리마 까시 바냑", "makasih": "마까시", "Terima kasih atas bantuannya.": "뜨리마 까시 아따스 반뚜안냐", "Boleh minta bantuan?": "볼레 민따 반뚜안", "Ada yang bisa saya bantu?": "아다 양 비사 사야 반뚜", "sebelum kamu pergi": "스블룸 까무 뻐르기", "minggu lalu": "밍구 랄루", "minggu lalu/ini/depan": "밍구 랄루/이니/드빤", "akan libur": "아깐 리부르", "akan berlibur": "아깐 브를리부르", "Kapan kamu akan berlibur?": "까빤 까무 아깐 브를리부르", "Akhir pekan ini 이번 주말": "아히르 뻐깐 이니", "Akhir pekan lalu": "아히르 뻐깐 랄루", "Akhir pekan depan": "아히르 뻐깐 드빤", "Minggu ini 이번주": "밍구 이니", "Minggu depan 다음주": "밍구 드빤", "Minggu lalu 지난주": "밍구 랄루", "libur. liburan": "리부르 / 리부란", "Belum ada janji. 아직 약속이 없다.": "블룸 아다 잔지", "Mari kita pergi besok jam 10": "마리 끼따 뻐르기 브속 잠 스뿔루", "kemarin, hari ini, besok, lusa": "끄마린, 하리 이니, 브속, 루사", "월요일 hari senin": "하리 스닌", "화요일 hari selasa": "하리 슬라사", "수요일 hari rabu": "하리 라부", "목요일 hari kamis": "하리 까미스", "금요일 hari jumat": "하리 주맛", "토요일 hari sabtu": "하리 삽뚜", "일요일 hari minggu": "하리 밍구", "Kadang-kadang hari itu 그날 언젠간": "까당-까당 하리 이뚜", "Kadang-kadang 때때로": "까당-까당", "hari itu 그날": "하리 이뚜", "kaldu": "깔두", "kuah": "꾸아", "Telur rebus matang": "뜰루르 르부스 마땅", "Telur Setengah matang. Egg Half-baked 계란반숙": "뜰루르 스뜽아 마땅", "Selalu setengah matang": "슬랄루 스뜽아 마땅", "Tolong dua bagi 두개로 나누어 주세요": "똘롱 두아 바기", "Tidak asin": "띠닥 아신", "Saya minum sedikit saat makan malam.": "사야 미눔 스디낏 사앗 마깐 말람", "Untuk dibawa": "운뚝 디바와", "Untuk di sini": "운뚝 디 시니", "Telur goreng 계란후라이": "뜰루르 고렝", "Ini ada supnya 이거 국물이 있다고? (Is this soup)": "이니 아다 숩냐", "sumpit 젖가락": "숨삣", "Tolong bagi menjadi dua = Tolong bagi dua": "똘롱 바기 믄자디 두아", "Sudah makan? udah makan?": "수다 마깐", "Saya lapar": "사야 라빠르", "Saya kenyang": "사야 끄냥", "saya kenyang": "사야 끄냥", "Hanya makan bersama ya 그냥 같이 먹어": "하냐 마깐 브르사마 야", "Satu kaki ayam, satu sayap": "사뚜 까끼 아얌, 사뚜 사얍", "Saya bisa makan sekarang": "사야 비사 마깐 스까랑", "susah di cari kecil(besar)": "수사 디 짜리", "Yang Termurah": "양 뜨르무라", "Yang Termahal": "양 뜨르마할", "berapa harga?": "브라빠 하르가", "Sangat mahal. very expensive": "상앗 마할", "Sangat murah.": "상앗 무라", "Mahal": "마할", "Tarifnya sama 800rb": "따리프냐 사마 들라빤 라뚜스 리부", "Diskon ongkos kirim 배송비할인": "디스콘 옹꼬스 끼림", "Toko Roti": "또꼬 로띠", "Orang kaya, Orang miskin": "오랑 까야, 오랑 미스낀", "suaminya yang baru": "수아미냐 양 바루", "istrinya": "이스뜨리냐", "seorang gadis = wanita": "스오랑 가디스 = 와니따", "Dengan siapa? 누구하고? who with?": "든간 시아빠", "guru. teacher": "구루", "tuan. mister. 아저씨": "뚜안", "Siapa orang ini?": "시아빠 오랑 이니", "Siapa? 누가요?": "시아빠", "Berapa orang. how many people": "브라빠 오랑", "Kita.": "끼따", "mba mas pak.": "음바 마스 빡", "Berangkat dari Ascort Hotell 10:10": "브랑깟 다리 아스콧 호텔 스뿔루 르빠 스뿔루", "Tempat istirahat": "뜸빳 이스띠라핫", "reservasi": "레세르바시", "Besok aku bantu reservasi. 내일 예약 도와줄께": "브속 아꾸 반뚜 레세르바시", "Letaknya di lobi.": "르딱냐 디 로비", "Tolong saya asbak": "똘롱 사야 아스박", "Itu ada di ascott": "이뚜 아다 디 아스콧", "Handuk basah 물수건": "한둑 바사", "selamat Lebaran~": "슬라맛 르바란", "Selamat bersenang-senang = have a good time": "슬라맛 브르스낭-스낭", "slmt. sama selamat": "슬라맛", "selamat jular": "슬라맛 줄라르", "Memiliki Hari yang baik. have a good day": "므밀리끼 하리 양 바익", "semoga harimu menyenangkan 좋은 하루 되세요": "스모가 하리무 므녀낭깐", "Semoga harimu menyenangkang.": "스모가 하리무 므녀낭깐", "Saya sekarang berada di kantor": "사야 스까랑 브라다 디 깐또르", "Saya sudah di kantor. Sy sdh di kantor": "사야 수다 디 깐또르", "Ya. Aku pergi bekerja. I go to work": "야. 아꾸 뻐르기 브끄르자", "Iya Selamat bekerja. yes good job": "이야 슬라맛 브끄르자", "Melanjutkan. continue": "믈란주뜨깐", "Kartu bisnis": "까르뚜 비스니스", "Berwisata": "브르위사따", "pulang di korea": "뿔랑 디 꼬레아", "pulang pergi": "뿔랑 뻐르기", "Berangkat vs. Tiba": "브랑깟 vs. 띠바", "Berangkat / Tiba 09.30": "브랑깟 / 띠바 잠 스믈란 르빠 띠가 뿔루", "Berangkat jam 9": "브랑깟 잠 스믈란", "kuat sekali": "꾸앗 스깔리", "Semangat": "스망앗", "semangat untuk hari ini.": "스망앗 운뚝 하리 이니", "Kerja bagus 잘했어": "끄르자 바구스", "pintar 똑똑하다. 영리하다": "삔따르", "rumah / ruang": "루마 / 루앙", "Selesai mandi": "슬레사이 만디", "Aku di rumah": "아꾸 디 루마", "Tutup saja. Just close it. 그냥 닫으세요": "뚜뚭 사자", "Di mana rumahmu": "디 마나 루마무", "Aku sangat lelah hari ini. I'm very tired today": "아꾸 상앗 를라 하리 이니", "Hari ini aku sangat capek": "하리 이니 아꾸 상앗 짜뻭", "Saya lelar 피곤해요": "사야 를라", "Sangat sulit. very difficult": "상앗 술릿", "takut": "따꿋", "Hujan baru saja mulai turun 방금 비가 내리기 시작했어요": "후잔 바루 사자 물라이 뚜룬", "hari ini sangat panas": "하리 이니 상앗 빠나스", "Sepertinya akan turun hujan": "스뻐르띠냐 아깐 뚜룬 후잔", "hujan.": "후잔", "Panas sekali 엄청 덥네": "빠나스 스깔리", "Hari ini sangat panas": "하리 이니 상앗 빠나스", "mohon. please": "모혼", "silakan 제발": "실라깐", "Maaf, saya terlambat.": "마압, 사야 뜨를람밧", "semoga 바라건대": "스모가", "putra dan putri": "뿌뜨라 단 뿌뜨리", "dengan putra": "든간 뿌뜨라", "ayah ibu anak laki-laki anak perempuan": "아야 이부 아낙 라끼-라끼 아낙 쁘름뿌안", "saya mau kopi. sama. saya ingin kopi": "사야 마우 꼬삐", "mau kopi?": "마우 꼬삐", "Boleh isi ulang?": "볼레 이시 울랑", "Saya mau pijat tubuh": "사야 마우 삐잣 뚜부", "Saya mau pijat kaki.": "사야 마우 삐잣 까끼", "Ketika datang ke klub golf Garding Raya?": "끄띠까 다땅 끄 끌럽 골프 가딩 라야", "sama. Kapan masuk ke golf club Garding Raya?": "까빤 마숙 끄 골프 끌럽 가딩 라야", "Selamat tidur.": "슬라맛 띠두르", "Kamu sudah tidur? 자고 있어?": "까무 수다 띠두르", "tolong kirim SMS atau Email": "똘롱 끼림 에스엠에스 아따우 이메일", "saya kirimkan segera. I will send it soon": "사야 끼림깐 스게라", "Boleh merokok di sini?": "볼레 므로꼭 디 시니", "ASBAK.": "아스박", "jangan tanya. usah (ber)tanya. Do not ASK.": "장안 따냐", "Sakit": "사낏", "sial. 18": "시알", "kostum.": "꼬스뚬", "Berapa meter": "브라빠 메떠르", "Selamat sore.": "슬라맛 소레", "putih atau merah.": "뿌띠 아따우 므라", "pendakian": "뻔다끼안"};
+const P={"Tunggu = Tunggu sebentar = Tunggu ya.": "뚱구 / 뚱구 스븐따르 / 뚱구 야", "tunggu ya, wating please": "뚱구 야", "Harap kembali jam 3 sore hari ini.": "하랍 끔발리 잠 띠가 소레 하리 이니", "Kita akan kembali jam 5 sore": "끼따 아깐 끔발리 잠 리마 소레", "Harap Anda akan kembali jam 5 sore hari ini": "하랍 안다 아깐 끔발리 잠 리마 소레 하리 이니", "Dari jam 10 pagi hingga jam 5 sore.": "다리 잠 스뿔루 빠기 힝가 잠 리마 소레", "berapa lama?": "브라빠 라마", "mulai jam 5 sore": "물라이 잠 리마 소레", "hingga jam 6 sore": "힝가 잠 으남 소레", "Mulai jam 2": "물라이 잠 두아", "jam dua tidak sama dua jam": "잠 두아 띠닥 사마 두아 잠", "jam berapa? 몇시?": "잠 브라빠", "santai aja": "산따이 아자", "nggak masalah kok, santai aja, makasih juga ya": "응각 마살라 꼭, 산따이 아자, 마까시 주가 야", "silakan = please": "실라깐", "aku senang = I'm happy": "아꾸 스낭", "Saya baik baik saja": "사야 바익 바익 사자", "saya bagus 난 괜찮아": "사야 바구스", "Bisakah saya? 내가 할 수 있을까?": "비사까 사야", "Saya mengerti. I Understand": "사야 멍으르띠", "Mau bisa baru 나는 뭔가 새로운 것을 하고 싶다": "마우 비사 바루", "Aku mengerti": "아꾸 멍으르띠", "Cinta. love": "찐따", "Bermain. 놀다 Aku bosan 심심해": "브르마인 / 아꾸 보산", "ya iya": "야 이야", "baik. good, baik-baik. fine": "바익 / 바익-바익", "begitu ya. i see": "브기뚜 야", "Saya juga. me too": "사야 주가", "kamu bisa. sama. boleh dirimu. you can": "까무 비사", "baiklah. sama begituuu. okay": "바익라", "Rindu. miss": "린두", "Aku sudah": "아꾸 수다", "Sudah tahu. 이미알고있다": "수다 따우", "Bisakah Boleh bisa 할수있다": "비사까 / 볼레 / 비사", "Apa itu mungkin? 가능합니까?": "아빠 이뚜 뭉낀", "Apakah Anda(kamu) memahami?": "아빠까 안다 므마하미", "Kamu baik.": "까무 바익", "Saya tidak tahu.": "사야 띠닥 따우", "Baiklah.": "바익라", "baiklah.": "바익라", "bisa할수있다": "비사", "Aku tahu, i know": "아꾸 따우", "Aku tidak tahu, i dont know": "아꾸 띠닥 따우", "Ada yang salah.": "아다 양 살라", "Jadi. sama. begitu": "자디", "Apakah kamu sibuk? sama. sibuk kan": "아빠까 까무 시북", "sedang apa ya? 지금 뭐해?": "스당 아빠 야", "Suka wanita 여자를 좋아한다.": "수까 와니따", "Tolong Bicara 말씀해주세요.": "똘롱 비짜라", "Bicara pelan 천천히 말하세요": "비짜라 쁠란", "ingin 싶다. 원한다.": "잉인", "Tidak apa apa its ok. no problom": "띠닥 아빠 아빠", "tidak apa apa / tak apa apa / tak papa": "띠닥 아빠 아빠 / 딱 빠빠", "sedang minum ? drinking?": "스당 미눔", "Aku sedang menonton drama korea": "아꾸 스당 므논똔 드라마 꼬레아", "Terus katanya.": "뜨루스 까따냐", "Bisikan": "비시깐", "apa kabar.": "아빠 까바르", "apa kabarmu.": "아빠 까바르무", "apa kabarmu hari ini.": "아빠 까바르무 하리 이니", "Bukan(orang indonesia), Tidak(makan), Belum(belum tiba), Jangan(merokok di sini)": "부깐 / 띠닥 / 블룸 / 장안", "kirim vs. menerima": "끼림 vs. 므느리마", "mulai vs. akhir": "물라이 vs. 아히르", "Panas vs. Dingin": "빠나스 vs. 딩인", "begitu 그래서 ya 알겠어요": "브기뚜 / 야", "harus 해야 하다.": "하루스", "harus. bisa. 해야 하다. 할 수 있다": "하루스 / 비사", "Kematin 죽음": "끄마띤 (kematian)", "Apa artinya? What does it mean?": "아빠 아르띠냐", "Kapan? 언제?(When?)": "까빤", "Di mana? 어디? (Where?)": "디 마나", "Bagaimana? (how?)": "바가이마나", "siapa ini? 누구야? (Who is this?)": "시아빠 이니", "Mengapa? 왜 ?(Why?)": "믕아빠", "Sungguh? 정말?(Really?)": "숭구", "Apa? 뭐라고?(What?)": "아빠", "apa ini 이건 뭐야?(What is This?)": "아빠 이니", "sangat": "상앗", "mau": "마우", "sengat": "스앗", "juga": "주가", "sedang. currency": "스당", "Ada(There is), ya": "아다", "jika. sama. kalau. if": "지까 / 깔라우", "sedikit": "스디낏", "cari": "짜리", "apa .... what": "아빠", "ada ... 있다": "아다", "Aku,kamu.": "아꾸 / 까무", "enggak = tidak. sama.": "응각 = 띠닥", "belum": "블룸", "atau": "아따우", "Namun 하지만": "나문", "..se puluh": "스 뿔루 (~십)", "se belas": "스 블라스 (11)", "dua belas": "두아 블라스 (12)", "tiga belas": "띠가 블라스 (13)", "empat belas": "음빳 블라스 (14)", "lima belas": "리마 블라스 (15)", "enam belas": "으남 블라스 (16)", "tujuh belas": "뚜주 블라스 (17)", "delapan belas": "들라빤 블라스 (18)", "sembilan belas": "슴빌란 블라스 (19)", "dua puluh": "두아 뿔루 (20)", "tiga puluh": "띠가 뿔루 (30)", "empat puluh": "음빳 뿔루 (40)", "lima puluh": "리마 뿔루 (50)", "enam puluh": "으남 뿔루 (60)", "tujuh puluh": "뚜주 뿔루 (70)", "delapan puluh": "들라빤 뿔루 (80)", "sembilan puluh": "슴빌란 뿔루 (90)", "seratus": "스라뚜스 (100)", "Mari belajar": "마리 블라자르", "saya butuh latihan 연습이 필요해.": "사야 부뚜 라띠한", "인도네시아어에서 요일을 알아보죠.": "(한국어 메모)", "cepat-cepat": "쯔빳-쯔빳", "pelan-pelan": "쁠란-쁠란", "Suda sampai 도착했어요(sampai 명사)": "수다 삼빠이", "Suda tiba 이미 도착하다": "수다 띠바", "Baru tiba 방금 도착하다": "바루 띠바", "Saya harus sekarang berangkat": "사야 하루스 스까랑 브랑깟", "kamu mau ke mana?": "까무 마우 끄 마나", "Macet sekali": "마쩻 스깔리", "macet = traffic jam": "마쩻", "Seberapa jauh itu? 얼마나 멀어?": "스브라빠 자우 이뚜", "Berjalan kaki. On foot": "브르잘란 까끼", "Itu di sana. it's over there": "이뚜 디 사나", "kurangi kecepatan 속도를 줄이다": "꾸랑이 끄쯔빠딴", "Naik": "나익", "turun, lereng": "뚜룬", "keluar": "끌루아르", "jauh long": "자우", "dekat. short": "드깟", "Lurus": "루루스", "lereng = naik": "르렝 = 나익", "Pergi ke mana kita hari ini?": "뻐르기 끄 마나 끼따 하리 이니", "Aku baru mau pulang": "아꾸 바루 마우 뿔랑", "Ayo pergi.": "아요 뻐르기", "Kamu ada di mana? 어디세요?": "까무 아다 디 마나", "Pernahkah Anda melihat hal seperti ini di dalam mobil?": "뻐르나까 안다 믈리핫 할 스뻐르띠 이니 디 달람 모빌", "Cepat-cepat.": "쯔빳-쯔빳", "Boleh mau bantuan?": "볼레 마우 반뚜안", "Sampai jumpa lusa, besok": "삼빠이 줌빠 루사, 브속", "Terima kasih kembali": "뜨리마 까시 끔발리", "lama tak jumpa 오랫만이네요.": "라마 딱 줌빠", "Banyak terima kasih 대단히 고맙습니다.": "바냑 뜨리마 까시", "tolong banyak bantu saya 많이 도와주세요.": "똘롱 바냑 반뚜 사야", "tolong aku. help me": "똘롱 아꾸", "selamat tinggal. good bye": "슬라맛 띵갈", "bantu 도움": "반뚜", "sama sama. you're welcome": "사마 사마", "Saya pergi dulu": "사야 뻐르기 둘루", "Kamu duluan.": "까무 둘루안", "Nama saya Joe.": "나마 사야 조", "Selamat tingal.": "슬라맛 띵갈", "Aku akan pergi.": "아꾸 아깐 뻐르기", "Siapa namamu.": "시아빠 나마무", "Selamat pergi.": "슬라맛 뻐르기", "Terima kasih atas usaha Anda": "뜨리마 까시 아따스 우사하 안다", "kamu ayo duluan saja 그냥 너 먼저 가": "까무 아요 둘루안 사자", "terima kasih banyak": "뜨리마 까시 바냑", "makasih": "마까시", "Terima kasih atas bantuannya.": "뜨리마 까시 아따스 반뚜안냐", "Boleh minta bantuan?": "볼레 민따 반뚜안", "Ada yang bisa saya bantu?": "아다 양 비사 사야 반뚜", "sebelum kamu pergi": "스블룸 까무 뻐르기", "minggu lalu": "밍구 랄루", "minggu lalu/ini/depan": "밍구 랄루/이니/드빤", "akan libur": "아깐 리부르", "akan berlibur": "아깐 브를리부르", "Kapan kamu akan berlibur?": "까빤 까무 아깐 브를리부르", "Akhir pekan ini 이번 주말": "아히르 뻐깐 이니", "Akhir pekan lalu": "아히르 뻐깐 랄루", "Akhir pekan depan": "아히르 뻐깐 드빤", "Minggu ini 이번주": "밍구 이니", "Minggu depan 다음주": "밍구 드빤", "Minggu lalu 지난주": "밍구 랄루", "libur. liburan": "리부르 / 리부란", "Belum ada janji. 아직 약속이 없다.": "블룸 아다 잔지", "Mari kita pergi besok jam 10": "마리 끼따 뻐르기 브속 잠 스뿔루", "kemarin, hari ini, besok, lusa": "끄마린, 하리 이니, 브속, 루사", "월요일 hari senin": "하리 스닌", "화요일 hari selasa": "하리 슬라사", "수요일 hari rabu": "하리 라부", "목요일 hari kamis": "하리 까미스", "금요일 hari jumat": "하리 주맛", "토요일 hari sabtu": "하리 삽뚜", "일요일 hari minggu": "하리 밍구", "Kadang-kadang hari itu 그날 언젠간": "까당-까당 하리 이뚜", "Kadang-kadang 때때로": "까당-까당", "hari itu 그날": "하리 이뚜", "kaldu": "깔두", "kuah": "꾸아", "Telur rebus matang": "뜰루르 르부스 마땅", "Telur Setengah matang. Egg Half-baked 계란반숙": "뜰루르 스뜽아 마땅", "Selalu setengah matang": "슬랄루 스뜽아 마땅", "Tolong dua bagi 두개로 나누어 주세요": "똘롱 두아 바기", "Tidak asin": "띠닥 아신", "Saya minum sedikit saat makan malam.": "사야 미눔 스디낏 사앗 마깐 말람", "Untuk dibawa": "운뚝 디바와", "Untuk di sini": "운뚝 디 시니", "Telur goreng 계란후라이": "뜰루르 고렝", "Ini ada supnya 이거 국물이 있다고? (Is this soup)": "이니 아다 숩냐", "sumpit 젖가락": "숨삣", "Tolong bagi menjadi dua = Tolong bagi dua": "똘롱 바기 믄자디 두아", "Sudah makan? udah makan?": "수다 마깐", "Saya lapar": "사야 라빠르", "Saya kenyang": "사야 끄냥", "saya kenyang": "사야 끄냥", "Hanya makan bersama ya 그냥 같이 먹어": "하냐 마깐 브르사마 야", "Satu kaki ayam, satu sayap": "사뚜 까끼 아얌, 사뚜 사얍", "Saya bisa makan sekarang": "사야 비사 마깐 스까랑", "susah di cari kecil(besar)": "수사 디 짜리", "Yang Termurah": "양 뜨르무라", "Yang Termahal": "양 뜨르마할", "berapa harga?": "브라빠 하르가", "Sangat mahal. very expensive": "상앗 마할", "Sangat murah.": "상앗 무라", "Mahal": "마할", "Tarifnya sama 800rb": "따리프냐 사마 들라빤 라뚜스 리부", "Diskon ongkos kirim 배송비할인": "디스콘 옹꼬스 끼림", "Toko Roti": "또꼬 로띠", "Orang kaya, Orang miskin": "오랑 까야, 오랑 미스낀", "suaminya yang baru": "수아미냐 양 바루", "istrinya": "이스뜨리냐", "seorang gadis = wanita": "스오랑 가디스 = 와니따", "Dengan siapa? 누구하고? who with?": "든간 시아빠", "guru. teacher": "구루", "tuan. mister. 아저씨": "뚜안", "Siapa orang ini?": "시아빠 오랑 이니", "Siapa? 누가요?": "시아빠", "Berapa orang. how many people": "브라빠 오랑", "Kita.": "끼따", "mba mas pak.": "음바 마스 빡", "Berangkat dari Ascort Hotell 10:10": "브랑깟 다리 아스콧 호텔 스뿔루 르빠 스뿔루", "Tempat istirahat": "뜸빳 이스띠라핫", "reservasi": "레세르바시", "Besok aku bantu reservasi. 내일 예약 도와줄께": "브속 아꾸 반뚜 레세르바시", "Letaknya di lobi.": "르딱냐 디 로비", "Tolong saya asbak": "똘롱 사야 아스박", "Itu ada di ascott": "이뚜 아다 디 아스콧", "Handuk basah 물수건": "한둑 바사", "selamat Lebaran~": "슬라맛 르바란", "Selamat bersenang-senang = have a good time": "슬라맛 브르스낭-스낭", "slmt. sama selamat": "슬라맛", "selamat jular": "슬라맛 줄라르", "Memiliki Hari yang baik. have a good day": "므밀리끼 하리 양 바익", "semoga harimu menyenangkan 좋은 하루 되세요": "스모가 하리무 므녀낭깐", "Semoga harimu menyenangkang.": "스모가 하리무 므녀낭깐", "Saya sekarang berada di kantor": "사야 스까랑 브라다 디 깐또르", "Saya sudah di kantor. Sy sdh di kantor": "사야 수다 디 깐또르", "Ya. Aku pergi bekerja. I go to work": "야. 아꾸 뻐르기 브끄르자", "Iya Selamat bekerja. yes good job": "이야 슬라맛 브끄르자", "Melanjutkan. continue": "믈란주뜨깐", "Kartu bisnis": "까르뚜 비스니스", "Berwisata": "브르위사따", "pulang di korea": "뿔랑 디 꼬레아", "pulang pergi": "뿔랑 뻐르기", "Berangkat vs. Tiba": "브랑깟 vs. 띠바", "Berangkat / Tiba 09.30": "브랑깟 / 띠바 잠 스믈란 르빠 띠가 뿔루", "Berangkat jam 9": "브랑깟 잠 스믈란", "kuat sekali": "꾸앗 스깔리", "Semangat": "스망앗", "semangat untuk hari ini.": "스망앗 운뚝 하리 이니", "Kerja bagus 잘했어": "끄르자 바구스", "pintar 똑똑하다. 영리하다": "삔따르", "rumah / ruang": "루마 / 루앙", "Selesai mandi": "슬레사이 만디", "Aku di rumah": "아꾸 디 루마", "Tutup saja. Just close it. 그냥 닫으세요": "뚜뚭 사자", "Di mana rumahmu": "디 마나 루마무", "Aku sangat lelah hari ini. I'm very tired today": "아꾸 상앗 를라 하리 이니", "Hari ini aku sangat capek": "하리 이니 아꾸 상앗 짜뻭", "Saya lelar 피곤해요": "사야 를라", "Sangat sulit. very difficult": "상앗 술릿", "takut": "따꿋", "Hujan baru saja mulai turun 방금 비가 내리기 시작했어요": "후잔 바루 사자 물라이 뚜룬", "hari ini sangat panas": "하리 이니 상앗 빠나스", "Sepertinya akan turun hujan": "스뻐르띠냐 아깐 뚜룬 후잔", "hujan.": "후잔", "Panas sekali 엄청 덥네": "빠나스 스깔리", "Hari ini sangat panas": "하리 이니 상앗 빠나스", "mohon. please": "모혼", "silakan 제발": "실라깐", "Maaf, saya terlambat.": "마압, 사야 뜨를람밧", "semoga 바라건대": "스모가", "putra dan putri": "뿌뜨라 단 뿌뜨리", "dengan putra": "든간 뿌뜨라", "ayah ibu anak laki-laki anak perempuan": "아야 이부 아낙 라끼-라끼 아낙 쁘름뿌안", "saya mau kopi. sama. saya ingin kopi": "사야 마우 꼬삐", "mau kopi?": "마우 꼬삐", "Boleh isi ulang?": "볼레 이시 울랑", "Saya mau pijat tubuh": "사야 마우 삐잣 뚜부", "Saya mau pijat kaki.": "사야 마우 삐잣 까끼", "Ketika datang ke klub golf Garding Raya?": "끄띠까 다땅 끄 끌럽 골프 가딩 라야", "sama. Kapan masuk ke golf club Garding Raya?": "까빤 마숙 끄 골프 끌럽 가딩 라야", "Selamat tidur.": "슬라맛 띠두르", "Kamu sudah tidur? 자고 있어?": "까무 수다 띠두르", "tolong kirim SMS atau Email": "똘롱 끼림 에스엠에스 아따우 이메일", "saya kirimkan segera. I will send it soon": "사야 끼림깐 스게라", "Boleh merokok di sini?": "볼레 므로꼭 디 시니", "ASBAK.": "아스박", "jangan tanya. usah (ber)tanya. Do not ASK.": "장안 따냐", "Sakit": "사낏", "sial. 18": "시알", "kostum.": "꼬스뚬", "Berapa meter": "브라빠 메떠르", "Selamat sore.": "슬라맛 소레", "putih atau merah.": "뿌띠 아따우 므라", "pendakian": "뻔다끼안", "hari senin": "하리 스닌", "hari selasa": "하리 슬라사", "hari rabu": "하리 라부", "hari kamis": "하리 까미스", "hari jumat": "하리 주맛", "hari sabtu": "하리 삽뚜", "hari minggu": "하리 밍구", "jika. if": "지까", "pikir. think": "삐끼르", "satu": "사뚜", "dua": "두아", "tiga": "띠가", "empat": "음빳", "lima": "리마", "enam": "으남", "tujuh": "뚜주", "delapan": "들라빤", "sembilan": "슴빌란", "sepuluh": "스뿔루", "sebelas": "스블라스", "dua puluh satu": "두아 뿔루 사뚜", "seribu": "스리부", "시작과 끝. Mulai dan Akhir": "물라이 단 아히르", "Apa katamu? what did you say?": "아빠 까따무", "https://naver.me/x7BeC2Eq": "(링크)", "hanya karena kamu 오직 너 때문에": "하냐 까레나 까무", "Sudah sampai 도착했어요": "수다 삼빠이", "Saya sudah sampai. 나는 이미 도착했다.": "사야 수다 삼빠이", "Sama sama.": "사마 사마", "Selamat tinggal.": "슬라맛 띵갈", "lama tak jumpa 오랫만이네요": "라마 딱 줌빠"};
 const RAW=[{"theme":"📚 어휘·문법 학습","items":[{"cat":"📚 기초문법·부정표현","indo":"Bukan(orang indonesia), Tidak(makan), Belum(belum tiba), Jangan(merokok di sini)","meaning":"부정·금지 표현 기초 (bukan/tidak/belum/jangan) 학습","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"juga","meaning":"도 (juga) - 기본 접속사","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"sangat","meaning":"매우/정말 (sangat) - 강조 부사","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"mau","meaning":"원하다/~하고 싶다 (mau) - 의지 동사","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"sengat","meaning":"정말/매우 (sangat의 구어체: sengat) - 강조","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"jika. sama. kalau. if","meaning":"만약/~이면 (jika / kalau)","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"sedang. currency","meaning":"지금/현재 (sedang) - 진행형 조동사","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"sedikit","meaning":"조금, 약간 (sedikit)","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"Ada(There is), ya","meaning":"있다/있어요 (ada)","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"Aku,kamu.","meaning":"나(aku), 너(kamu) - 기본 인칭대명사","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"jika. if","meaning":"만약 (jika / if)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 기초어휘","indo":"pikir. think","meaning":"생각하다 (pikir / think)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 기초어휘","indo":"apa .... what","meaning":"무엇 (apa / what)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 기초어휘","indo":"ada ... 있다","meaning":"있다 (ada) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 기초어휘·부정","indo":"enggak = tidak. sama.","meaning":"아니요 (enggak = tidak) - 구어체","lang":"인도네시아어"},{"cat":"📚 기초어휘·부정","indo":"belum","meaning":"아직 안 했다 (belum)","lang":"인도네시아어"},{"cat":"📚 기초어휘·접속사","indo":"atau","meaning":"또는, 아니면 (atau)","lang":"인도네시아어"},{"cat":"📚 기초어휘·접속사","indo":"Namun 하지만","meaning":"하지만 (namun) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 숫자·수사학습","indo":"satu","meaning":"1","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"dua","meaning":"2","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"tiga","meaning":"3","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"empat","meaning":"4","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"lima","meaning":"5","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"enam","meaning":"6","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"tujuh","meaning":"7","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"delapan","meaning":"8","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"sembilan","meaning":"9","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"sepuluh","meaning":"10","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"sebelas","meaning":"11","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"dua belas","meaning":"12","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"dua puluh","meaning":"20","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"dua puluh satu","meaning":"21","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"seratus","meaning":"100","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"seribu","meaning":"1000","lang":"인도네시아어"},{"cat":"📚 어휘학습","indo":"Apa artinya? What does it mean?","meaning":"무슨 뜻이야? (apa artinya?)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 어휘학습","indo":"begitu 그래서 ya 알겠어요","meaning":"그래서(begitu)/알겠어요(ya) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 어휘학습","indo":"harus 해야 하다.","meaning":"해야 한다 (harus) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 어휘학습","indo":"harus. bisa. 해야 하다. 할 수 있다","meaning":"해야 한다(harus) / 할 수 있다(bisa) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 어휘학습","indo":"Kematin 죽음","meaning":"죽음 (kematian) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 어휘학습","indo":"시작과 끝. Mulai dan Akhir","meaning":"시작과 끝 - mulai dan akhir 한인 혼합 메모","lang":"혼합(한국어+인도네시아어)"},{"cat":"📚 어휘학습·비교","indo":"kirim vs. menerima","meaning":"보내다(kirim) vs 받다(menerima) 어휘 비교","lang":"인도네시아어"},{"cat":"📚 어휘학습·비교","indo":"mulai vs. akhir","meaning":"시작(mulai) vs 끝(akhir) 비교","lang":"인도네시아어"},{"cat":"📚 어휘학습·비교","indo":"Panas vs. Dingin","meaning":"덥다(panas) vs 춥다(dingin) 비교","lang":"인도네시아어"},{"cat":"📚 의문사학습","indo":"Bagaimana? (how?)","meaning":"어떻게? (bagaimana)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 의문사학습","indo":"Kapan? 언제?(When?)","meaning":"언제? (kapan) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"Di mana? 어디? (Where?)","meaning":"어디? (di mana) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"siapa ini? 누구야? (Who is this?)","meaning":"누구야? (siapa ini) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"Mengapa? 왜 ?(Why?)","meaning":"왜? (mengapa) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"Sungguh? 정말?(Really?)","meaning":"정말? (sungguh) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"Apa? 뭐라고?(What?)","meaning":"뭐라고? (apa) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"apa ini 이건 뭐야?(What is This?)","meaning":"이건 뭐야? (apa ini) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문표현","indo":"Apa katamu? what did you say?","meaning":"뭐라고 했어? (apa katamu?)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 학습·권유표현","indo":"Mari belajar","meaning":"공부합시다! (mari belajar)","lang":"인도네시아어"},{"cat":"📚 학습·연습","indo":"saya butuh latihan 연습이 필요해.","meaning":"연습이 필요해 (saya butuh latihan) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"}]},
 {"theme":"😊 일상·감정 표현","items":[{"cat":"😊 가능·허락표현","indo":"kamu bisa. sama. boleh dirimu. you can","meaning":"너 할 수 있어 (kamu bisa)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 가능·허락표현","indo":"Bisakah Boleh bisa 할수있다","meaning":"가능해요, 할 수 있어요 (bisakah/boleh/bisa) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 가능·허락표현","indo":"Apa itu mungkin? 가능합니까?","meaning":"가능합니까? (apa itu mungkin) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 가능·허락표현","indo":"bisa할수있다","meaning":"할 수 있다 (bisa) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 가능표현","indo":"Bisakah saya? 내가 할 수 있을까?","meaning":"내가 할 수 있을까? (bisakah saya?) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 감정·감성표현","indo":"Cinta. love","meaning":"사랑 (cinta)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 감정·감성표현","indo":"hanya karena kamu 오직 너 때문에","meaning":"오직 너 때문에 (hanya karena kamu) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 감정·관계표현","indo":"Suka wanita 여자를 좋아한다.","meaning":"여자를 좋아한다 (suka wanita) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 감정·그리움표현","indo":"Rindu. miss","meaning":"보고 싶다 (rindu / miss)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 감정·여가표현","indo":"Bermain. 놀다 Aku bosan 심심해","meaning":"놀다(bermain) / 지루하다(aku bosan) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"😊 감정·표현","indo":"Bisikan","meaning":"귓속말 (bisikan)","lang":"인도네시아어"},{"cat":"😊 대화·이야기표현","indo":"Terus katanya.","meaning":"그래서 어떻게 됐어? (terus katanya)","lang":"인도네시아어"},{"cat":"😊 동조·공감표현","indo":"Saya juga. me too","meaning":"나도요 (saya juga / me too)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 소통·요청표현","indo":"Tolong Bicara 말씀해주세요.","meaning":"말씀해주세요 (tolong bicara) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 소통·요청표현","indo":"Bicara pelan 천천히 말하세요","meaning":"천천히 말해주세요 (bicara pelan) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 완료·상태표현","indo":"Aku sudah","meaning":"다 했어 (aku sudah)","lang":"인도네시아어"},{"cat":"😊 위로·괜찮음표현","indo":"tidak apa apa / tak apa apa / tak papa","meaning":"괜찮아, 상관없어 (tidak apa apa)","lang":"인도네시아어"},{"cat":"😊 위로·괜찮음표현","indo":"Tidak apa apa its ok. no problom","meaning":"괜찮아요 (tidak apa apa / its ok)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 이해·동의표현","indo":"Aku mengerti","meaning":"알겠다 (aku mengerti)","lang":"인도네시아어"},{"cat":"😊 이해·반응표현","indo":"begitu ya. i see","meaning":"그렇구나, 알겠어 (begitu ya)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 이해·완료표현","indo":"Sudah tahu. 이미알고있다","meaning":"이미 알고 있다 (sudah tahu) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 이해·확인표현","indo":"Apakah Anda(kamu) memahami?","meaning":"이해하셨나요? (apakah anda memahami?)","lang":"인도네시아어"},{"cat":"😊 이해·확인표현","indo":"Saya tidak tahu.","meaning":"모르겠어요 (saya tidak tahu)","lang":"인도네시아어"},{"cat":"😊 이해·확인표현","indo":"Aku tahu, i know","meaning":"알아 (aku tahu / i know)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 이해·확인표현","indo":"Aku tidak tahu, i dont know","meaning":"몰라 (aku tidak tahu / i don't know)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 이해표현","indo":"Saya mengerti. I Understand","meaning":"알겠습니다 (saya mengerti)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 일상·감정표현","indo":"santai aja","meaning":"천천히 편하게 해 (santai aja) - 위로·격려","lang":"인도네시아어"},{"cat":"😊 일상·감정표현","indo":"nggak masalah kok, santai aja, makasih juga ya","meaning":"괜찮아, 편하게 해, 고마워 - 일상 친근 표현","lang":"인도네시아어"},{"cat":"😊 일상·감정표현","indo":"aku senang = I'm happy","meaning":"나는 행복해 (aku senang)","lang":"인도네시아어"},{"cat":"😊 일상·동의표현","indo":"ya iya","meaning":"응 맞아 (ya iya)","lang":"인도네시아어"},{"cat":"😊 일상·동의표현","indo":"Jadi. sama. begitu","meaning":"그래서, 그러니까 (jadi)","lang":"인도네시아어"},{"cat":"😊 일상·동의표현","indo":"baiklah. sama begituuu. okay","meaning":"좋아, 알겠어 (baiklah)","lang":"인도네시아어"},{"cat":"😊 일상·동의표현","indo":"Baiklah.","meaning":"좋아요, 알겠어요 (baiklah)","lang":"인도네시아어"},{"cat":"😊 일상·동의표현","indo":"baiklah.","meaning":"좋아요 (baiklah)","lang":"인도네시아어"},{"cat":"😊 일상·문제상황","indo":"Ada yang salah.","meaning":"뭔가 잘못됐어요 (ada yang salah)","lang":"인도네시아어"},{"cat":"😊 일상·상태표현","indo":"baik. good, baik-baik. fine","meaning":"좋다, 괜찮다 (baik / baik-baik)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"Saya baik baik saja","meaning":"잘 지내요 (saya baik baik saja)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"sedang minum ? drinking?","meaning":"마시는 중이야? (sedang minum?)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"apa kabar.","meaning":"잘 지내요? (apa kabar)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"apa kabarmu.","meaning":"잘 지내요? (apa kabarmu)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"apa kabarmu hari ini.","meaning":"오늘 잘 지내요? (apa kabarmu hari ini)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"saya bagus 난 괜찮아","meaning":"나는 괜찮아 (saya bagus) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 일상·안부표현","indo":"sedang apa ya? 지금 뭐해?","meaning":"지금 뭐해? (sedang apa ya) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 일상·여가표현","indo":"Aku sedang menonton drama korea","meaning":"한국 드라마 보는 중 (aku sedang menonton drama korea)","lang":"인도네시아어"},{"cat":"😊 일상·예절표현","indo":"silakan = please","meaning":"어서오세요/please (silakan)","lang":"인도네시아어"},{"cat":"😊 칭찬·평가표현","indo":"Kamu baik.","meaning":"당신은 좋은 사람이에요 (kamu baik)","lang":"인도네시아어"},{"cat":"😊 희망·욕구표현","indo":"ingin 싶다. 원한다.","meaning":"원하다, ~하고 싶다 (ingin) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 희망·의지표현","indo":"Mau bisa baru 나는 뭔가 새로운 것을 하고 싶다","meaning":"나는 새로운 걸 하고 싶다 (mau bisa baru) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"}]},
 {"theme":"🚗 이동·교통·방향","items":[{"cat":"🚗 거리·방향","indo":"jauh long","meaning":"멀다 (jauh / long)","lang":"혼합(인도네시아어+영어)"},{"cat":"🚗 거리·방향","indo":"dekat. short","meaning":"가깝다 (dekat / short)","lang":"혼합(인도네시아어+영어)"},{"cat":"🚗 거리·방향","indo":"Seberapa jauh itu? 얼마나 멀어?","meaning":"얼마나 멀어? (seberapa jauh itu) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"🚗 교통·안전","indo":"kurangi kecepatan 속도를 줄이다","meaning":"속도 줄여주세요 (kurangi kecepatan) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 교통·이동","indo":"Macet sekali","meaning":"교통체증이 심하다 (macet sekali)","lang":"인도네시아어"},{"cat":"🚗 교통·이동","indo":"macet = traffic jam","meaning":"교통체증 (macet = traffic jam)","lang":"인도네시아어"},{"cat":"🚗 교통·차량","indo":"Pernahkah Anda melihat hal seperti ini di dalam mobil?","meaning":"차 안에서 이런 걸 본 적 있어요? (pernahkah anda melihat...)","lang":"인도네시아어"},{"cat":"🚗 방향·길안내","indo":"Lurus","meaning":"직진 (lurus)","lang":"인도네시아어"},{"cat":"🚗 방향·길안내","indo":"lereng = naik","meaning":"오르막 (lereng = naik)","lang":"인도네시아어"},{"cat":"🚗 위치·방향표현","indo":"Itu di sana. it's over there","meaning":"저기 있어 (itu di sana)","lang":"혼합(인도네시아어+영어)"},{"cat":"🚗 위치·안부표현","indo":"Kamu ada di mana? 어디세요?","meaning":"어디세요? (kamu ada di mana) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·교통","indo":"cepat-cepat","meaning":"빨리빨리 (cepat-cepat) - 서두르기","lang":"인도네시아어"},{"cat":"🚗 이동·교통","indo":"pelan-pelan","meaning":"천천히 (pelan-pelan) - 속도 조절","lang":"인도네시아어"},{"cat":"🚗 이동·귀가","indo":"Aku baru mau pulang","meaning":"나 곧 집에 갈 거야 (aku baru mau pulang)","lang":"인도네시아어"},{"cat":"🚗 이동·도착표현","indo":"Sudah sampai 도착했어요","meaning":"도착했어요 (sudah sampai) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·방법","indo":"Berjalan kaki. On foot","meaning":"걸어서 (berjalan kaki)","lang":"혼합(인도네시아어+영어)"},{"cat":"🚗 이동·방향","indo":"kamu mau ke mana?","meaning":"어디 가? (kamu mau ke mana?)","lang":"인도네시아어"},{"cat":"🚗 이동·방향","indo":"Naik","meaning":"올라가다/타다 (naik)","lang":"인도네시아어"},{"cat":"🚗 이동·방향","indo":"turun, lereng","meaning":"내려가다/내리다 (turun)","lang":"인도네시아어"},{"cat":"🚗 이동·방향","indo":"keluar","meaning":"나가다 (keluar)","lang":"인도네시아어"},{"cat":"🚗 이동·속도","indo":"Cepat-cepat.","meaning":"빨리빨리 (cepat-cepat)","lang":"인도네시아어"},{"cat":"🚗 이동·속도","indo":"pelan-pelan","meaning":"천천히 (pelan-pelan)","lang":"인도네시아어"},{"cat":"🚗 이동·약속","indo":"Pergi ke mana kita hari ini?","meaning":"오늘 우리 어디 가? (pergi ke mana kita hari ini?)","lang":"인도네시아어"},{"cat":"🚗 이동·위치","indo":"Suda sampai 도착했어요(sampai 명사)","meaning":"도착했어요 (sudah sampai) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·위치","indo":"Suda tiba 이미 도착하다","meaning":"이미 도착했다 (sudah tiba) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·위치","indo":"Baru tiba 방금 도착하다","meaning":"방금 도착했다 (baru tiba) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·위치","indo":"Saya sudah sampai. 나는 이미 도착했다.","meaning":"나는 이미 도착했다 (saya sudah sampai) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·출발","indo":"Saya harus sekarang berangkat","meaning":"나는 지금 출발해야 한다 (saya harus sekarang berangkat)","lang":"인도네시아어"},{"cat":"🚗 이동·출발표현","indo":"Ayo pergi.","meaning":"자, 가자! (ayo pergi)","lang":"인도네시아어"}]},
@@ -137,10 +271,31 @@ const RAW=[{"theme":"📚 어휘·문법 학습","items":[{"cat":"📚 기초문
 {"theme":"🔗 참고링크","items":[{"cat":"🔗 참고링크","indo":"https://naver.me/x7BeC2Eq","meaning":"네이버 외부 링크 (참고 자료)","lang":"URL/링크"}]},
 {"theme":"😤 감탄·속어","items":[{"cat":"😤 감탄·속어표현","indo":"sial. 18","meaning":"이런! 젠장! (sial) - 구어체 감탄","lang":"인도네시아어"}]},
 {"theme":"🚫 금지·제한","items":[{"cat":"🚫 금지·제한표현","indo":"jangan tanya. usah (ber)tanya. Do not ASK.","meaning":"묻지 마세요 (jangan tanya)","lang":"혼합(인도네시아어+영어)"}]}];
-let lf='all',og=new Set();
-function gp(k){if(P[k])return P[k];const lo=k.toLowerCase();for(const[a,b]of Object.entries(P)){if(a.toLowerCase()===lo)return b;}return ''}
+
+// 전체 아이템 flat 배열
+const ALL_ITEMS = RAW.flatMap(g => g.items.map(it => ({...it, theme: g.theme})));
+
+let lf='all', og=new Set(), activeTheme=null;
+let modalLf='all';
+
+/* ── 발음 ── */
+function gp(k){
+  if(P[k])return P[k];
+  const lo=k.toLowerCase();
+  for(const[a,b]of Object.entries(P)){if(a.toLowerCase()===lo)return b;}
+  return '';
+}
 function glc(l){return l==='인도네시아어'?'lid':l==='한국어'?'lko':l.includes('혼합')?'lmix':'lid'}
 function gll(l){return l==='인도네시아어'?'ID':l==='한국어'?'KO':l.includes('혼합')?'혼합':'기타'}
+
+/* ── 하이라이트 ── */
+function hl(t, q){
+  if(!q) return t;
+  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+  return t.replace(re,'<mark>$1</mark>');
+}
+
+/* ── 메인 필터 ── */
 function fi(items){
   const q=document.getElementById('search').value.toLowerCase();
   return items.filter(it=>{
@@ -150,39 +305,187 @@ function fi(items){
     return lok&&tok;
   });
 }
-function hl(t){
-  const q=document.getElementById('search').value;
-  if(!q)return t;
-  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
-  return t.replace(re,'<mark>$1</mark>');
+
+function setLang(btn,val){
+  lf=val;
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
 }
-function setLang(btn,val){lf=val;document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();}
-function toggleAll(open){RAW.filter(g=>fi(g.items).length>0).forEach(g=>{open?og.add(g.theme):og.delete(g.theme)});render();}
+function toggleAll(open){
+  getVisibleGroups().forEach(g=>{open?og.add(g.theme):og.delete(g.theme)});
+  render();
+}
 function toggleGroup(theme){og.has(theme)?og.delete(theme):og.add(theme);render();}
-function render(){
-  const q=document.getElementById('search').value;
-  let tg=0,ti=0,html='';
+
+/* ── 카테고리 칩 ── */
+function buildChips(){
+  const wrap=document.getElementById('cat-chips');
+  const total=RAW.reduce((s,g)=>s+g.items.length,0);
+  let html=`<button class="chip active" id="chip-all" onclick="selectTheme(null,this)"><span>전체</span><span class="chip-count">${total}</span></button>`;
   RAW.forEach(g=>{
-    const items=fi(g.items);if(!items.length)return;
-    tg++;ti+=items.length;
-    const isOpen=og.has(g.theme)||q.length>0;
     const em=g.theme.split(' ')[0];
     const tit=g.theme.slice(em.length).trim();
-    html+=`<div class="gc"><div class="gh" onclick="toggleGroup('${g.theme.replace(/'/g,"\\'")}')"><span class="ge">${em}</span><span class="gt">${tit}</span><span class="gbg">${items.length}</span><svg class="chev${isOpen?' open':''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></div><div class="gbody${isOpen?' open':''}"><div class="ch"><span>인도네시아어</span><span>한글 발음</span><span>해석</span><span>언어</span></div>`;
+    const id='chip-'+encodeURIComponent(g.theme);
+    html+=`<button class="chip" id="${id}" onclick="selectTheme('${g.theme.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}',this)">${em} <span>${tit}</span><span class="chip-count">${g.items.length}</span></button>`;
+  });
+  wrap.innerHTML=html;
+}
+
+function selectTheme(theme, btn){
+  activeTheme=theme;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  if(theme){
+    const id='chip-'+encodeURIComponent(theme);
+    const el=document.getElementById(id);
+    if(el)el.classList.add('active');
+    og.clear(); og.add(theme);
+  } else {
+    document.getElementById('chip-all').classList.add('active');
+  }
+  render();
+  document.getElementById('cat-drop').style.display='none';
+  document.getElementById('cat-search').value='';
+}
+
+/* ── 카테고리 검색 드롭다운 ── */
+function onCatSearch(){
+  const q=document.getElementById('cat-search').value.toLowerCase().trim();
+  const drop=document.getElementById('cat-drop');
+  if(!q){drop.style.display='none';return;}
+  const matches=RAW.filter(g=>g.theme.toLowerCase().includes(q)||g.items.some(it=>it.cat.toLowerCase().includes(q)));
+  if(!matches.length){drop.innerHTML='<div class="cd-item" style="color:var(--text3);cursor:default">결과 없음</div>';drop.style.display='block';return;}
+  drop.innerHTML=matches.map(g=>{
+    const em=g.theme.split(' ')[0];
+    const tit=g.theme.slice(em.length).trim();
+    const isA=activeTheme===g.theme;
+    return `<div class="cd-item${isA?' active':''}" onmousedown="selectTheme('${g.theme.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}',null)">${em} ${tit}<span class="cd-cnt">${g.items.length}</span></div>`;
+  }).join('');
+  drop.style.display='block';
+}
+function showCatDrop(){if(document.getElementById('cat-search').value)onCatSearch();}
+function hideCatDrop(){setTimeout(()=>{document.getElementById('cat-drop').style.display='none';},160);}
+
+/* ── 보이는 그룹 ── */
+function getVisibleGroups(){
+  return RAW.filter(g=>{
+    if(activeTheme&&g.theme!==activeTheme)return false;
+    return fi(g.items).length>0;
+  });
+}
+
+/* ── 메인 렌더 ── */
+function render(){
+  const q=document.getElementById('search').value;
+  const visGroups=getVisibleGroups();
+  let tg=0,ti=0,html='';
+  visGroups.forEach(g=>{
+    const items=fi(g.items);
+    if(!items.length)return;
+    tg++;ti+=items.length;
+    const isOpen=og.has(g.theme)||q.length>0||(activeTheme===g.theme);
+    const em=g.theme.split(' ')[0];
+    const tit=g.theme.slice(em.length).trim();
+    html+=`<div class="gc"><div class="gh" onclick="toggleGroup('${g.theme.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')"><span class="ge">${em}</span><span class="gt">${tit}</span><span class="gbg">${items.length}</span><svg class="chev${isOpen?' open':''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></div><div class="gbody${isOpen?' open':''}"><div class="ch"><span>인도네시아어</span><span>한글 발음</span><span>해석</span><span>언어</span></div>`;
     const bc={};items.forEach(it=>{(bc[it.cat]||(bc[it.cat]=[])).push(it)});
     Object.entries(bc).forEach(([cat,ci])=>{
       if(Object.keys(bc).length>1)html+=`<div class="sl">${cat}</div>`;
       ci.forEach(it=>{
         const pr=gp(it.indo);
-        html+=`<div class="ir"><div class="cell id">${hl(it.indo)}</div><div class="cell pr">${pr?hl(pr):'—'}</div><div class="cell mn">${hl(it.meaning)}</div><div class="cell lc"><span class="lp ${glc(it.lang)}">${gll(it.lang)}</span></div></div>`;
+        html+=`<div class="ir"><div class="cell id">${hl(it.indo,q)}</div><div class="cell pr">${pr?hl(pr,q):'—'}</div><div class="cell mn">${hl(it.meaning,q)}</div><div class="cell lc"><span class="lp ${glc(it.lang)}">${gll(it.lang)}</span></div></div>`;
       });
     });
     html+=`</div></div>`;
   });
-  if(!html)html='<div class="empty">검색 결과가 없습니다.</div>';
+  if(!html)html='<div class="empty">🔍 검색 결과가 없습니다.</div>';
   document.getElementById('groups').innerHTML=html;
-  document.getElementById('stats').innerHTML=`<span>카테고리 <span class="sv">${tg}</span>개</span><span>표현 <span class="sv">${ti}</span>개</span><span>${lf==='all'?'전체 언어':lf==='mix'?'혼합 항목만':'인도네시아어만'}</span>`;
+
+  // 통계
+  const total=ALL_ITEMS.length;
+  let st=`<span>카테고리 <span class="sv">${tg}</span>개</span>`;
+  st+=`<span>표현 <span class="sv clickable" onclick="openModal()" title="클릭하면 전체 표현 목록 열기">${ti}</span> / <span class="sv clickable" onclick="openModal()" title="클릭하면 전체 표현 목록 열기">${total}</span>개</span>`;
+  if(activeTheme) st+=`<span class="atag">${activeTheme}<button onclick="selectTheme(null,document.getElementById('chip-all'))">✕</button></span>`;
+  st+=`<span style="margin-left:auto">${lf==='all'?'전체 언어':lf==='mix'?'혼합 항목만':'인도네시아어만'}</span>`;
+  document.getElementById('stats').innerHTML=st;
 }
+
+/* ══════════════════════════════
+   전체 표현 모달
+══════════════════════════════ */
+function openModal(){
+  document.getElementById('modal-overlay').classList.remove('hidden');
+  document.getElementById('modal-search').value='';
+  document.getElementById('modal-sort').value='default';
+  modalLf='all';
+  document.querySelectorAll('.mfb').forEach((b,i)=>b.classList.toggle('active',i===0));
+  renderModal();
+  setTimeout(()=>document.getElementById('modal-search').focus(),80);
+}
+function closeModalDirect(){
+  document.getElementById('modal-overlay').classList.add('hidden');
+}
+function closeModal(e){
+  if(e.target===document.getElementById('modal-overlay')) closeModalDirect();
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalDirect();});
+
+function setModalLang(btn,val){
+  modalLf=val;
+  document.querySelectorAll('.mfb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderModal();
+}
+
+function renderModal(){
+  const q=document.getElementById('modal-search').value.toLowerCase().trim();
+  const sort=document.getElementById('modal-sort').value;
+
+  let items=[...ALL_ITEMS].filter(it=>{
+    const lok=modalLf==='all'||(modalLf==='id'&&it.lang==='인도네시아어')||(modalLf==='mix'&&it.lang.includes('혼합'));
+    const pr=gp(it.indo).toLowerCase();
+    const tok=!q||it.indo.toLowerCase().includes(q)||it.meaning.toLowerCase().includes(q)||pr.includes(q)||it.cat.toLowerCase().includes(q)||it.theme.toLowerCase().includes(q);
+    return lok&&tok;
+  });
+
+  if(sort==='alpha') items.sort((a,b)=>a.meaning.localeCompare(b.meaning,'ko'));
+  else if(sort==='cat') items.sort((a,b)=>a.cat.localeCompare(b.cat,'ko'));
+
+  const tbody=document.getElementById('modal-tbody');
+  const empty=document.getElementById('modal-empty');
+
+  if(!items.length){
+    tbody.innerHTML='';
+    empty.style.display='block';
+    document.getElementById('modal-count').textContent='';
+    document.getElementById('modal-sub').textContent='검색 결과 없음';
+    return;
+  }
+  empty.style.display='none';
+  tbody.innerHTML=items.map(it=>{
+    const pr=gp(it.indo);
+    return `<tr onclick="goToTheme('${it.theme.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">
+      <td class="td-indo">${hl(it.indo,q)}</td>
+      <td class="td-pron">${pr?hl(pr,q):'—'}</td>
+      <td>${hl(it.meaning,q)}</td>
+      <td class="td-cat">${hl(it.cat,q)}</td>
+      <td class="td-lang"><span class="lp ${glc(it.lang)}">${gll(it.lang)}</span></td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('modal-count').textContent=`${items.length}개 표시 중`;
+  document.getElementById('modal-sub').textContent=`${items.length} / ${ALL_ITEMS.length}개 표현`;
+}
+
+function goToTheme(theme){
+  closeModalDirect();
+  selectTheme(theme, null);
+  setTimeout(()=>{
+    const el=document.querySelector('.gc');
+    if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  },100);
+}
+
+buildChips();
 render();
 </script>
 </body>
