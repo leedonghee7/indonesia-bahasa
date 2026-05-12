@@ -9,361 +9,179 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f8f7f4;
-  --surface:#ffffff;
-  --surface2:#f2f1ee;
-  --border:#e4e2dd;
-  --border2:#d0cec9;
-  --text:#1a1917;
-  --text2:#5a5854;
-  --text3:#8a8784;
-  --accent:#1a6b3c;
-  --accent-bg:#e8f5ee;
-  --accent-text:#0d4527;
-  --mix-bg:#fef8ec;
-  --mix-text:#7a4f00;
-  --ko-bg:#eef6e8;
-  --ko-text:#2d5a1b;
-  --id-bg:#e8f0fb;
-  --id-text:#1a3a7a;
-  --radius:10px;
-  --radius-sm:6px;
+  --bg:#f8f7f4;--surface:#fff;--surface2:#f2f1ee;
+  --border:#e4e2dd;--border2:#d0cec9;
+  --text:#1a1917;--text2:#5a5854;--text3:#8a8784;
+  --accent:#1a6b3c;--accent-bg:#e8f5ee;--accent-text:#0d4527;
+  --pron-bg:#fff8ee;--pron:#7a4a00;
+  --mix-bg:#fef8ec;--mix-text:#7a4f00;
+  --ko-bg:#eef6e8;--ko-text:#2d5a1b;
+  --id-bg:#e8f0fb;--id-text:#1a3a7a;
+  --r:10px;--rs:6px;
 }
 html{scroll-behavior:smooth}
-body{
-  font-family:'Noto Sans KR',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  font-size:14px;
-  line-height:1.6;
-}
-
-/* Header */
-header{
-  background:var(--surface);
-  border-bottom:1px solid var(--border);
-  padding:0 24px;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-.header-inner{
-  max-width:900px;
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  gap:16px;
-  padding:14px 0;
-}
-.logo{
-  font-size:18px;
-  font-weight:600;
-  color:var(--text);
-  white-space:nowrap;
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.logo-flag{font-size:22px}
-.search-wrap{flex:1;position:relative}
-.search-wrap svg{
-  position:absolute;left:12px;top:50%;transform:translateY(-50%);
-  color:var(--text3);pointer-events:none;
-}
-#search{
-  width:100%;height:38px;
-  padding:0 12px 0 38px;
-  border:1px solid var(--border2);
-  border-radius:var(--radius-sm);
-  font-family:inherit;font-size:13px;
-  background:var(--surface2);
-  color:var(--text);
-  outline:none;
-  transition:border-color .15s,background .15s;
-}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.6}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100}
+.hi{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:14px 0}
+.logo{font-size:18px;font-weight:600;color:var(--text);white-space:nowrap;display:flex;align-items:center;gap:8px}
+.sw{flex:1;position:relative}
+.sw svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
+#search{width:100%;height:38px;padding:0 12px 0 38px;border:1px solid var(--border2);border-radius:var(--rs);font-family:inherit;font-size:13px;background:var(--surface2);color:var(--text);outline:none;transition:border-color .15s,background .15s}
 #search:focus{border-color:var(--accent);background:#fff}
-
-/* Main */
-main{max-width:900px;margin:0 auto;padding:24px}
-
-/* Toolbar */
-.toolbar{
-  display:flex;gap:8px;flex-wrap:wrap;align-items:center;
-  margin-bottom:16px;
-}
-.filter-group{display:flex;gap:4px;flex-wrap:wrap}
-.fbtn{
-  height:30px;padding:0 12px;
-  font-family:inherit;font-size:12px;font-weight:500;
-  border:1px solid var(--border2);border-radius:20px;
-  background:var(--surface);color:var(--text2);
-  cursor:pointer;transition:all .15s;
-  white-space:nowrap;
-}
-.fbtn:hover{background:var(--surface2);border-color:var(--border2)}
-.fbtn.active{background:var(--accent-bg);border-color:var(--accent);color:var(--accent-text);font-weight:600}
-.ctrl-btns{display:flex;gap:6px;margin-left:auto}
-.cbtn{
-  height:30px;padding:0 12px;
-  font-family:inherit;font-size:12px;
-  border:1px solid var(--border2);border-radius:var(--radius-sm);
-  background:var(--surface);color:var(--text2);
-  cursor:pointer;transition:all .15s;
-  display:flex;align-items:center;gap:5px;
-  white-space:nowrap;
-}
-.cbtn:hover{background:var(--surface2)}
-.cbtn svg{width:13px;height:13px}
-
-/* Stats bar */
-.stats{
-  display:flex;gap:16px;flex-wrap:wrap;
-  font-size:12px;color:var(--text3);
-  margin-bottom:20px;
-  padding:10px 14px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius-sm);
-}
-.stat-item{display:flex;align-items:center;gap:5px}
-.stat-val{font-weight:600;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px}
-
-/* Groups */
-.group-card{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  overflow:hidden;
-  margin-bottom:8px;
-  transition:box-shadow .15s;
-}
-.group-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.group-header{
-  display:flex;align-items:center;gap:10px;
-  padding:12px 16px;cursor:pointer;
-  user-select:none;
-  transition:background .12s;
-}
-.group-header:hover{background:var(--surface2)}
-.g-emoji{font-size:18px;flex-shrink:0;width:26px;text-align:center}
-.g-title{font-size:14px;font-weight:600;color:var(--text);flex:1}
-.g-badge{
-  font-size:11px;font-weight:600;
-  padding:2px 9px;border-radius:20px;
-  background:var(--accent-bg);color:var(--accent-text);
-  flex-shrink:0;
-  font-family:'IBM Plex Mono',monospace;
-}
-.chevron{
-  width:16px;height:16px;color:var(--text3);
-  transition:transform .2s;flex-shrink:0;
-}
-.chevron.open{transform:rotate(180deg)}
-
-/* Group body */
-.group-body{display:none}
-.group-body.open{display:block}
-.col-head{
-  display:grid;grid-template-columns:1fr 1fr 72px;
-  background:var(--surface2);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-}
-.col-head span{
-  padding:6px 14px;
-  font-size:11px;font-weight:600;
-  color:var(--text3);letter-spacing:.05em;text-transform:uppercase;
-}
-.subcat-label{
-  padding:5px 14px;
-  font-size:11px;font-weight:600;color:var(--text3);
-  background:var(--surface2);
-  border-bottom:1px solid var(--border);
-  letter-spacing:.03em;
-}
-.item-row{
-  display:grid;grid-template-columns:1fr 1fr 72px;
-  border-bottom:1px solid var(--border);
-  transition:background .1s;
-}
-.item-row:last-child{border-bottom:none}
-.item-row:hover .cell{background:#fafaf8}
-.cell{padding:8px 14px;font-size:13px;color:var(--text);line-height:1.5}
-.cell.indo{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:12.5px;font-weight:500;
-  color:#1a3560;
-  word-break:break-word;
-}
-.cell.meaning{color:var(--text2);font-size:12.5px}
-.cell.lang-col{display:flex;align-items:center;padding:8px 10px}
-.lang-pill{
-  font-size:10px;font-weight:700;
-  padding:2px 7px;border-radius:20px;
-  white-space:nowrap;letter-spacing:.04em;
-}
-.lang-id{background:var(--id-bg);color:var(--id-text)}
-.lang-mix{background:var(--mix-bg);color:var(--mix-text)}
-.lang-ko{background:var(--ko-bg);color:var(--ko-text)}
-.lang-url{background:#f0e8ff;color:#4a2080}
-
+main{max-width:980px;margin:0 auto;padding:24px}
+.tb{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.fg{display:flex;gap:4px;flex-wrap:wrap}
+.fb{height:30px;padding:0 12px;font-family:inherit;font-size:12px;font-weight:500;border:1px solid var(--border2);border-radius:20px;background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
+.fb:hover{background:var(--surface2)}
+.fb.active{background:var(--accent-bg);border-color:var(--accent);color:var(--accent-text);font-weight:600}
+.cbs{display:flex;gap:6px;margin-left:auto}
+.cb{height:30px;padding:0 12px;font-family:inherit;font-size:12px;border:1px solid var(--border2);border-radius:var(--rs);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.cb:hover{background:var(--surface2)}
+.cb svg{width:13px;height:13px}
+.stats{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--text3);margin-bottom:20px;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs)}
+.sv{font-weight:600;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px}
+.gc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:8px;transition:box-shadow .15s}
+.gc:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.gh{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;user-select:none;transition:background .12s}
+.gh:hover{background:var(--surface2)}
+.ge{font-size:18px;flex-shrink:0;width:26px;text-align:center}
+.gt{font-size:14px;font-weight:600;color:var(--text);flex:1}
+.gbg{font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px;background:var(--accent-bg);color:var(--accent-text);flex-shrink:0;font-family:'IBM Plex Mono',monospace}
+.chev{width:16px;height:16px;color:var(--text3);transition:transform .2s;flex-shrink:0}
+.chev.open{transform:rotate(180deg)}
+.gbody{display:none}
+.gbody.open{display:block}
+.ch{display:grid;grid-template-columns:1fr 0.6fr 0.9fr 68px;background:var(--surface2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ch span{padding:6px 12px;font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.05em;text-transform:uppercase}
+.sl{padding:5px 14px;font-size:11px;font-weight:600;color:var(--text3);background:var(--surface2);border-bottom:1px solid var(--border);letter-spacing:.02em}
+.ir{display:grid;grid-template-columns:1fr 0.6fr 0.9fr 68px;border-bottom:1px solid var(--border);transition:background .1s}
+.ir:last-child{border-bottom:none}
+.ir:hover .cell{background:#fafaf8}
+.cell{padding:8px 12px;font-size:13px;color:var(--text);line-height:1.5}
+.cell.id{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:#1a3560;word-break:break-word}
+.cell.pr{font-size:12px;color:var(--pron);background:var(--pron-bg);font-weight:500}
+.cell.mn{color:var(--text2);font-size:12.5px}
+.cell.lc{display:flex;align-items:center;padding:8px 10px}
+.lp{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;white-space:nowrap;letter-spacing:.04em}
+.lid{background:var(--id-bg);color:var(--id-text)}
+.lmix{background:var(--mix-bg);color:var(--mix-text)}
+.lko{background:var(--ko-bg);color:var(--ko-text)}
 mark{background:#ffe58a;border-radius:2px;padding:0 1px}
-
-.empty{
-  padding:48px 24px;text-align:center;
-  color:var(--text3);font-size:14px;
-}
-.empty svg{width:32px;height:32px;margin-bottom:12px;opacity:.4;display:block;margin-left:auto;margin-right:auto}
-
-/* Footer */
-footer{
-  text-align:center;padding:24px;
-  font-size:12px;color:var(--text3);
-  border-top:1px solid var(--border);
-  margin-top:32px;
-}
-
-@media(max-width:600px){
-  header{padding:0 12px}
-  main{padding:16px 12px}
-  .header-inner{gap:10px;padding:10px 0}
-  .logo-text{display:none}
-  .col-head{grid-template-columns:1fr 1fr}
-  .col-head span:last-child{display:none}
-  .item-row{grid-template-columns:1fr 1fr}
-  .cell.lang-col{display:none}
-  .ctrl-btns{display:none}
+.empty{padding:48px 24px;text-align:center;color:var(--text3);font-size:14px}
+footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-top:1px solid var(--border);margin-top:32px}
+@media(max-width:640px){
+  header{padding:0 12px}main{padding:16px 12px}.hi{gap:10px;padding:10px 0}
+  .logo span:last-child{display:none}
+  .ch{grid-template-columns:1fr 1fr}.ch span:nth-child(2),.ch span:last-child{display:none}
+  .ir{grid-template-columns:1fr 1fr}.cell.pr,.cell.lc{display:none}
+  .cbs{display:none}
 }
 </style>
 </head>
 <body>
-
 <header>
-  <div class="header-inner">
-    <div class="logo">
-      <span class="logo-flag">🇮🇩</span>
-      <span class="logo-text">인도네시아어 회화 사전</span>
-    </div>
-    <div class="search-wrap">
+  <div class="hi">
+    <div class="logo"><span>🇮🇩</span><span>인도네시아어 회화 사전</span></div>
+    <div class="sw">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="search" placeholder="인도네시아어 또는 해석 검색..." oninput="render()">
+      <input type="text" id="search" placeholder="인도네시아어, 발음, 해석 검색..." oninput="render()">
     </div>
   </div>
 </header>
-
 <main>
-  <div class="toolbar">
-    <div class="filter-group" id="lang-filters">
-      <button class="fbtn active" onclick="setLang(this,'all')">전체</button>
-      <button class="fbtn" onclick="setLang(this,'id')">인도네시아어만</button>
-      <button class="fbtn" onclick="setLang(this,'mix')">혼합</button>
+  <div class="tb">
+    <div class="fg">
+      <button class="fb active" onclick="setLang(this,'all')">전체</button>
+      <button class="fb" onclick="setLang(this,'id')">인도네시아어만</button>
+      <button class="fb" onclick="setLang(this,'mix')">혼합</button>
     </div>
-    <div class="ctrl-btns">
-      <button class="cbtn" onclick="toggleAll(true)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
-        모두 펼치기
-      </button>
-      <button class="cbtn" onclick="toggleAll(false)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 15l-6-6-6 6"/></svg>
-        모두 접기
-      </button>
+    <div class="cbs">
+      <button class="cb" onclick="toggleAll(true)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>모두 펼치기</button>
+      <button class="cb" onclick="toggleAll(false)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 15l-6-6-6 6"/></svg>모두 접기</button>
     </div>
   </div>
-
   <div class="stats" id="stats"></div>
   <div id="groups"></div>
 </main>
-
-<footer>인도네시아 일상 회화 기록 · 총 306개 표현 · 36개 카테고리</footer>
-
+<footer>인도네시아 일상 회화 기록 · 한글 발음 포함 · 318개 표현</footer>
 <script>
-const RAW=[{"theme":"😊 일상·감정 표현","items":[{"cat":"😊 일상·감정표현","lang":"인도네시아어","indo":"santai aja","meaning":"천천히 편하게 해 - 위로·격려"},{"cat":"😊 일상·감정표현","lang":"인도네시아어","indo":"nggak masalah kok, santai aja, makasih juga ya","meaning":"괜찮아, 편하게 해, 고마워 - 일상 친근 표현"},{"cat":"😊 일상·예절표현","lang":"인도네시아어","indo":"silakan","meaning":"어서오세요 / please"},{"cat":"😊 일상·감정표현","lang":"인도네시아어","indo":"aku senang","meaning":"나는 행복해"},{"cat":"😊 일상·안부표현","lang":"인도네시아어","indo":"Saya baik baik saja","meaning":"잘 지내요"},{"cat":"😊 일상·안부표현","lang":"혼합(인도네시아어+한국어)","indo":"saya bagus 난 괜찮아","meaning":"나는 괜찮아"},{"cat":"😊 가능표현","lang":"혼합(인도네시아어+한국어)","indo":"Bisakah saya?","meaning":"내가 할 수 있을까?"},{"cat":"😊 이해표현","lang":"혼합(인도네시아어+영어)","indo":"Saya mengerti","meaning":"알겠습니다"},{"cat":"😊 희망·의지표현","lang":"혼합(인도네시아어+한국어)","indo":"Mau bisa baru","meaning":"나는 새로운 걸 하고 싶다"},{"cat":"😊 이해·동의표현","lang":"인도네시아어","indo":"Aku mengerti","meaning":"알겠다"},{"cat":"😊 감정·감성표현","lang":"혼합(인도네시아어+영어)","indo":"Cinta","meaning":"사랑 (love)"},{"cat":"😊 감정·여가표현","lang":"혼합(인도네시아어+한국어+영어)","indo":"Bermain / Aku bosan","meaning":"놀다 / 지루하다"},{"cat":"😊 일상·동의표현","lang":"인도네시아어","indo":"ya iya","meaning":"응 맞아"},{"cat":"😊 일상·상태표현","lang":"인도네시아어","indo":"baik / baik-baik","meaning":"좋다, 괜찮다"},{"cat":"😊 이해·반응표현","lang":"혼합(인도네시아어+영어)","indo":"begitu ya","meaning":"그렇구나, 알겠어 (i see)"},{"cat":"😊 동조·공감표현","lang":"혼합(인도네시아어+영어)","indo":"Saya juga","meaning":"나도요 (me too)"},{"cat":"😊 가능·허락표현","lang":"혼합(인도네시아어+영어)","indo":"kamu bisa","meaning":"너 할 수 있어 (you can)"},{"cat":"😊 일상·동의표현","lang":"인도네시아어","indo":"baiklah","meaning":"좋아, 알겠어 (okay)"},{"cat":"😊 감정·그리움표현","lang":"혼합(인도네시아어+영어)","indo":"Rindu","meaning":"보고 싶다 (miss)"},{"cat":"😊 완료·상태표현","lang":"인도네시아어","indo":"Aku sudah","meaning":"다 했어"},{"cat":"😊 이해·완료표현","lang":"혼합(인도네시아어+한국어)","indo":"Sudah tahu","meaning":"이미 알고 있다"},{"cat":"😊 가능·허락표현","lang":"혼합(인도네시아어+한국어)","indo":"Bisakah / Boleh / bisa","meaning":"가능해요, 할 수 있어요"},{"cat":"😊 가능·허락표현","lang":"혼합(인도네시아어+한국어)","indo":"Apa itu mungkin?","meaning":"가능합니까?"},{"cat":"😊 이해·확인표현","lang":"인도네시아어","indo":"Apakah Anda memahami?","meaning":"이해하셨나요?"},{"cat":"😊 칭찬·평가표현","lang":"인도네시아어","indo":"Kamu baik","meaning":"당신은 좋은 사람이에요"},{"cat":"😊 이해·확인표현","lang":"인도네시아어","indo":"Saya tidak tahu","meaning":"모르겠어요"},{"cat":"😊 일상·동의표현","lang":"인도네시아어","indo":"Baiklah","meaning":"좋아요, 알겠어요"},{"cat":"😊 가능·허락표현","lang":"혼합(인도네시아어+한국어)","indo":"bisa","meaning":"할 수 있다"},{"cat":"😊 이해·확인표현","lang":"혼합(인도네시아어+영어)","indo":"Aku tahu","meaning":"알아 (i know)"},{"cat":"😊 이해·확인표현","lang":"혼합(인도네시아어+영어)","indo":"Aku tidak tahu","meaning":"몰라 (i don't know)"},{"cat":"😊 일상·문제상황","lang":"인도네시아어","indo":"Ada yang salah","meaning":"뭔가 잘못됐어요"},{"cat":"😊 일상·동의표현","lang":"인도네시아어","indo":"Jadi","meaning":"그래서, 그러니까"},{"cat":"😊 일상·안부표현","lang":"인도네시아어","indo":"Apakah kamu sibuk?","meaning":"바쁘세요?"},{"cat":"😊 일상·안부표현","lang":"혼합(인도네시아어+한국어)","indo":"sedang apa ya?","meaning":"지금 뭐해?"},{"cat":"😊 감정·관계표현","lang":"혼합(인도네시아어+한국어)","indo":"Suka wanita","meaning":"여자를 좋아한다"},{"cat":"😊 소통·요청표현","lang":"혼합(인도네시아어+한국어)","indo":"Tolong Bicara","meaning":"말씀해주세요"},{"cat":"😊 소통·요청표현","lang":"혼합(인도네시아어+한국어)","indo":"Bicara pelan","meaning":"천천히 말해주세요"},{"cat":"😊 희망·욕구표현","lang":"혼합(인도네시아어+한국어)","indo":"ingin","meaning":"원하다, ~하고 싶다"},{"cat":"😊 위로·괜찮음표현","lang":"혼합(인도네시아어+영어)","indo":"Tidak apa apa","meaning":"괜찮아요 (it's ok)"},{"cat":"😊 위로·괜찮음표현","lang":"인도네시아어","indo":"tidak apa apa / tak papa","meaning":"괜찮아, 상관없어"},{"cat":"😊 일상·안부표현","lang":"인도네시아어","indo":"sedang minum?","meaning":"마시는 중이야?"},{"cat":"😊 일상·여가표현","lang":"인도네시아어","indo":"Aku sedang menonton drama korea","meaning":"한국 드라마 보는 중"},{"cat":"😊 대화·이야기표현","lang":"인도네시아어","indo":"Terus katanya","meaning":"그래서 어떻게 됐어?"},{"cat":"😊 감정·표현","lang":"인도네시아어","indo":"Bisikan","meaning":"귓속말"},{"cat":"😊 일상·안부표현","lang":"인도네시아어","indo":"apa kabar","meaning":"잘 지내요?"},{"cat":"😊 일상·안부표현","lang":"인도네시아어","indo":"apa kabarmu","meaning":"잘 지내요?"},{"cat":"😊 일상·안부표현","lang":"인도네시아어","indo":"apa kabarmu hari ini","meaning":"오늘 잘 지내요?"}]},{"theme":"📚 어휘·문법 학습","items":[{"cat":"📚 기초문법·부정표현","lang":"인도네시아어","indo":"Bukan / Tidak / Belum / Jangan","meaning":"부정·금지 표현 기초"},{"cat":"📚 어휘학습·비교","lang":"인도네시아어","indo":"kirim vs. menerima","meaning":"보내다 vs 받다"},{"cat":"📚 어휘학습·비교","lang":"인도네시아어","indo":"mulai vs. akhir","meaning":"시작 vs 끝"},{"cat":"📚 어휘학습·비교","lang":"인도네시아어","indo":"Panas vs. Dingin","meaning":"덥다 vs 춥다"},{"cat":"📚 어휘학습","lang":"혼합(인도네시아어+한국어)","indo":"begitu / ya","meaning":"그래서 / 알겠어요"},{"cat":"📚 어휘학습","lang":"혼합(인도네시아어+한국어)","indo":"harus","meaning":"해야 한다"},{"cat":"📚 어휘학습","lang":"혼합(인도네시아어+한국어)","indo":"harus / bisa","meaning":"해야 한다 / 할 수 있다"},{"cat":"📚 어휘학습","lang":"혼합(인도네시아어+영어)","indo":"Apa artinya?","meaning":"무슨 뜻이야?"},{"cat":"📚 의문사학습","lang":"혼합(인도네시아어+한국어+영어)","indo":"Kapan?","meaning":"언제? (When?)"},{"cat":"📚 의문사학습","lang":"혼합(인도네시아어+한국어+영어)","indo":"Di mana?","meaning":"어디? (Where?)"},{"cat":"📚 의문사학습","lang":"혼합(인도네시아어+영어)","indo":"Bagaimana?","meaning":"어떻게? (How?)"},{"cat":"📚 의문사학습","lang":"혼합(인도네시아어+한국어+영어)","indo":"siapa ini?","meaning":"누구야? (Who?)"},{"cat":"📚 의문사학습","lang":"혼합(인도네시아어+한국어+영어)","indo":"Mengapa?","meaning":"왜? (Why?)"},{"cat":"📚 의문사학습","lang":"혼합(인도네시아어+한국어+영어)","indo":"Sungguh?","meaning":"정말? (Really?)"},{"cat":"📚 의문사학습","lang":"혼합(인도네시아어+한국어+영어)","indo":"Apa?","meaning":"뭐라고? (What?)"},{"cat":"📚 의문사학습","lang":"혼합(인도네시아어+한국어+영어)","indo":"apa ini?","meaning":"이건 뭐야? (What is this?)"},{"cat":"📚 기초어휘","lang":"인도네시아어","indo":"sangat","meaning":"매우/정말 - 강조 부사"},{"cat":"📚 기초어휘","lang":"인도네시아어","indo":"mau","meaning":"원하다 / ~하고 싶다"},{"cat":"📚 기초어휘","lang":"인도네시아어","indo":"sengat","meaning":"정말/매우 (sangat 구어체)"},{"cat":"📚 기초어휘","lang":"혼합(인도네시아어+영어)","indo":"jika / if","meaning":"만약"},{"cat":"📚 기초어휘","lang":"혼합(인도네시아어+영어)","indo":"pikir / think","meaning":"생각하다"},{"cat":"📚 기초어휘","lang":"인도네시아어","indo":"juga","meaning":"도 - 기본 접속사"},{"cat":"📚 기초어휘","lang":"인도네시아어","indo":"sedang","meaning":"지금/현재 - 진행형 조동사"},{"cat":"📚 기초어휘","lang":"인도네시아어","indo":"Ada","meaning":"있다 / 있어요"},{"cat":"📚 기초어휘","lang":"인도네시아어","indo":"jika / kalau","meaning":"만약/~이면"},{"cat":"📚 기초어휘","lang":"인도네시아어","indo":"sedikit","meaning":"조금, 약간"},{"cat":"📚 기초어휘","lang":"인도네시아어","indo":"cari","meaning":"찾다"},{"cat":"📚 기초어휘","lang":"혼합(인도네시아어+영어)","indo":"apa / what","meaning":"무엇"},{"cat":"📚 기초어휘","lang":"인도네시아어","indo":"Aku / kamu","meaning":"나 / 너 - 기본 인칭대명사"},{"cat":"📚 기초어휘·부정","lang":"인도네시아어","indo":"enggak = tidak","meaning":"아니요 - 구어체"},{"cat":"📚 기초어휘·부정","lang":"인도네시아어","indo":"belum","meaning":"아직 안 했다"},{"cat":"📚 기초어휘·접속사","lang":"인도네시아어","indo":"atau","meaning":"또는, 아니면"},{"cat":"📚 기초어휘·접속사","lang":"혼합(인도네시아어+한국어)","indo":"Namun","meaning":"하지만"},{"cat":"📚 숫자·수사학습","lang":"인도네시아어","indo":"se puluh","meaning":"~십 - 숫자 접두어"},{"cat":"📚 숫자·수사학습","lang":"인도네시아어","indo":"se belas","meaning":"11"},{"cat":"📚 숫자·수사학습","lang":"인도네시아어","indo":"dua belas","meaning":"12"},{"cat":"📚 학습·권유표현","lang":"인도네시아어","indo":"Mari belajar","meaning":"공부합시다!"},{"cat":"📚 학습·연습","lang":"혼합(인도네시아어+한국어)","indo":"saya butuh latihan","meaning":"연습이 필요해"},{"cat":"📚 요일학습","lang":"혼합(한국어+인도네시아어)","indo":"hari senin / selasa / rabu / kamis / jumat / sabtu / minggu","meaning":"월~일요일 요일 표현"}]},{"theme":"🚗 이동·교통·방향","items":[{"cat":"🚗 이동·속도","lang":"인도네시아어","indo":"cepat-cepat","meaning":"빨리빨리"},{"cat":"🚗 이동·속도","lang":"인도네시아어","indo":"pelan-pelan","meaning":"천천히"},{"cat":"🚗 이동·위치","lang":"혼합(인도네시아어+한국어)","indo":"Sudah sampai","meaning":"도착했어요"},{"cat":"🚗 이동·위치","lang":"혼합(인도네시아어+한국어)","indo":"Sudah tiba","meaning":"이미 도착했다"},{"cat":"🚗 이동·위치","lang":"혼합(인도네시아어+한국어)","indo":"Baru tiba","meaning":"방금 도착했다"},{"cat":"🚗 이동·출발","lang":"인도네시아어","indo":"Saya harus sekarang berangkat","meaning":"나는 지금 출발해야 한다"},{"cat":"🚗 이동·방향","lang":"인도네시아어","indo":"kamu mau ke mana?","meaning":"어디 가?"},{"cat":"🚗 교통·이동","lang":"인도네시아어","indo":"Macet sekali","meaning":"교통체증이 심하다"},{"cat":"🚗 교통·이동","lang":"인도네시아어","indo":"macet","meaning":"교통체증 (traffic jam)"},{"cat":"🚗 거리·방향","lang":"혼합(인도네시아어+한국어+영어)","indo":"Seberapa jauh itu?","meaning":"얼마나 멀어?"},{"cat":"🚗 이동·방법","lang":"혼합(인도네시아어+영어)","indo":"Berjalan kaki","meaning":"걸어서 (on foot)"},{"cat":"🚗 위치·방향표현","lang":"혼합(인도네시아어+영어)","indo":"Itu di sana","meaning":"저기 있어 (it's over there)"},{"cat":"🚗 교통·안전","lang":"혼합(인도네시아어+한국어)","indo":"kurangi kecepatan","meaning":"속도 줄여주세요"},{"cat":"🚗 이동·방향","lang":"인도네시아어","indo":"Naik","meaning":"올라가다 / 타다"},{"cat":"🚗 이동·방향","lang":"인도네시아어","indo":"turun","meaning":"내려가다 / 내리다"},{"cat":"🚗 이동·방향","lang":"인도네시아어","indo":"keluar","meaning":"나가다"},{"cat":"🚗 거리·방향","lang":"혼합(인도네시아어+영어)","indo":"jauh","meaning":"멀다 (far)"},{"cat":"🚗 거리·방향","lang":"혼합(인도네시아어+영어)","indo":"dekat","meaning":"가깝다 (close)"},{"cat":"🚗 방향·길안내","lang":"인도네시아어","indo":"Lurus","meaning":"직진"},{"cat":"🚗 방향·길안내","lang":"인도네시아어","indo":"lereng = naik","meaning":"오르막"},{"cat":"🚗 이동·약속","lang":"인도네시아어","indo":"Pergi ke mana kita hari ini?","meaning":"오늘 우리 어디 가?"},{"cat":"🚗 이동·귀가","lang":"인도네시아어","indo":"Aku baru mau pulang","meaning":"나 곧 집에 갈 거야"},{"cat":"🚗 이동·출발표현","lang":"인도네시아어","indo":"Ayo pergi","meaning":"자, 가자!"},{"cat":"🚗 위치·안부표현","lang":"혼합(인도네시아어+한국어)","indo":"Kamu ada di mana?","meaning":"어디세요?"},{"cat":"🚗 교통·차량","lang":"인도네시아어","indo":"Pernahkah Anda melihat hal seperti ini di dalam mobil?","meaning":"차 안에서 이런 걸 본 적 있어요?"},{"cat":"🚗 이동·도착표현","lang":"혼합(인도네시아어+한국어)","indo":"Sudah sampai","meaning":"도착했어요"}]},{"theme":"🤝 인사·감사·배려","items":[{"cat":"🤝 도움·배려표현","lang":"인도네시아어","indo":"Boleh mau bantuan?","meaning":"도움이 필요하세요?"},{"cat":"🤝 인사·작별표현","lang":"인도네시아어","indo":"Sampai jumpa lusa / besok","meaning":"모레·내일 봐요"},{"cat":"🤝 감사표현","lang":"인도네시아어","indo":"Terima kasih kembali","meaning":"천만에요"},{"cat":"🤝 인사·재회표현","lang":"혼합(인도네시아어+한국어)","indo":"lama tak jumpa","meaning":"오랜만이에요"},{"cat":"🤝 감사표현","lang":"혼합(인도네시아어+한국어)","indo":"Banyak terima kasih","meaning":"정말 감사합니다"},{"cat":"🤝 도움·배려표현","lang":"혼합(인도네시아어+한국어)","indo":"tolong banyak bantu saya","meaning":"많이 도와주세요"},{"cat":"🤝 도움·배려표현","lang":"혼합(인도네시아어+영어)","indo":"tolong aku","meaning":"도와줘 (help me)"},{"cat":"🤝 인사·작별표현","lang":"인도네시아어","indo":"selamat tinggal","meaning":"잘 있어, 안녕히 계세요"},{"cat":"🤝 도움·배려표현","lang":"혼합(인도네시아어+한국어)","indo":"bantu","meaning":"도움"},{"cat":"🤝 감사·응답표현","lang":"혼합(인도네시아어+영어)","indo":"sama sama","meaning":"천만에요 (you're welcome)"},{"cat":"🤝 인사·재회표현","lang":"인도네시아어","indo":"lama tak jumpa","meaning":"오랜만이에요"},{"cat":"🤝 인사·작별표현","lang":"인도네시아어","indo":"Saya pergi dulu","meaning":"먼저 갈게요"},{"cat":"🤝 양보·배려표현","lang":"인도네시아어","indo":"Kamu duluan","meaning":"먼저 하세요"},{"cat":"🤝 감사·응답표현","lang":"인도네시아어","indo":"Sama sama","meaning":"천만에요"},{"cat":"🤝 자기소개표현","lang":"인도네시아어","indo":"Nama saya ...","meaning":"제 이름은 ...입니다"},{"cat":"🤝 인사·작별표현","lang":"인도네시아어","indo":"Selamat tinggal","meaning":"잘 있어요"},{"cat":"🤝 인사·작별표현","lang":"인도네시아어","indo":"Aku akan pergi","meaning":"나 갈게요"},{"cat":"🤝 자기소개표현","lang":"인도네시아어","indo":"Siapa namamu?","meaning":"이름이 뭐예요?"},{"cat":"🤝 인사·작별표현","lang":"인도네시아어","indo":"Selamat pergi","meaning":"잘 가요"},{"cat":"🤝 감사표현","lang":"인도네시아어","indo":"Terima kasih atas usaha Anda","meaning":"노력해줘서 고마워요"},{"cat":"🤝 양보·배려표현","lang":"혼합(인도네시아어+한국어)","indo":"kamu ayo duluan saja","meaning":"그냥 너 먼저 가"},{"cat":"🤝 감사표현","lang":"인도네시아어","indo":"terima kasih banyak","meaning":"정말 감사합니다"},{"cat":"🤝 감사표현","lang":"인도네시아어","indo":"makasih","meaning":"고마워 (구어체)"},{"cat":"🤝 감사표현","lang":"인도네시아어","indo":"Terima kasih atas bantuannya","meaning":"도와줘서 감사해요"},{"cat":"🤝 도움요청표현","lang":"인도네시아어","indo":"Boleh minta bantuan?","meaning":"도움 요청해도 될까요?"},{"cat":"🤝 도움·서비스표현","lang":"인도네시아어","indo":"Ada yang bisa saya bantu?","meaning":"도와드릴게 있나요?"},{"cat":"🤝 인사·작별표현","lang":"인도네시아어","indo":"sebelum kamu pergi","meaning":"가기 전에"}]},{"theme":"📅 날짜·시간·일정","items":[{"cat":"📅 날짜·시간표현","lang":"인도네시아어","indo":"minggu lalu / ini / depan","meaning":"지난주 / 이번주 / 다음주"},{"cat":"📅 날짜·일정","lang":"인도네시아어","indo":"akan libur / akan berlibur","meaning":"곧 휴가다 / 곧 여행 갈 것이다"},{"cat":"📅 날짜·일정","lang":"인도네시아어","indo":"Kapan kamu akan berlibur?","meaning":"언제 휴가 가?"},{"cat":"📅 날짜·시간표현","lang":"혼합(인도네시아어+한국어)","indo":"Akhir pekan ini / lalu / depan","meaning":"이번 / 지난 / 다음 주말"},{"cat":"📅 날짜·일정","lang":"인도네시아어","indo":"libur / liburan","meaning":"휴일 / 휴가"},{"cat":"📅 약속·일정","lang":"혼합(인도네시아어+한국어)","indo":"Belum ada janji","meaning":"아직 약속이 없다"},{"cat":"📅 약속·일정","lang":"인도네시아어","indo":"Mari kita pergi besok jam 10","meaning":"내일 10시에 같이 가자"},{"cat":"📅 날짜·시간표현","lang":"인도네시아어","indo":"kemarin / hari ini / besok / lusa","meaning":"어제 / 오늘 / 내일 / 모레"},{"cat":"📅 요일표현","lang":"혼합(한국어+인도네시아어)","indo":"hari senin","meaning":"월요일"},{"cat":"📅 요일표현","lang":"혼합(한국어+인도네시아어)","indo":"hari selasa","meaning":"화요일"},{"cat":"📅 요일표현","lang":"혼합(한국어+인도네시아어)","indo":"hari rabu","meaning":"수요일"},{"cat":"📅 요일표현","lang":"혼합(한국어+인도네시아어)","indo":"hari kamis","meaning":"목요일"},{"cat":"📅 요일표현","lang":"혼합(한국어+인도네시아어)","indo":"hari jumat","meaning":"금요일"},{"cat":"📅 요일표현","lang":"혼합(한국어+인도네시아어)","indo":"hari sabtu","meaning":"토요일"},{"cat":"📅 요일표현","lang":"혼합(한국어+인도네시아어)","indo":"hari minggu","meaning":"일요일"},{"cat":"📅 시간·날짜표현","lang":"혼합(인도네시아어+한국어)","indo":"Kadang-kadang","meaning":"때때로"},{"cat":"📅 시간·날짜표현","lang":"혼합(인도네시아어+한국어)","indo":"hari itu","meaning":"그날"}]},{"theme":"🍽️ 식당·음식·식사","items":[{"cat":"🍽️ 식당·음식","lang":"인도네시아어","indo":"kaldu","meaning":"육수"},{"cat":"🍽️ 식당·음식","lang":"인도네시아어","indo":"kuah","meaning":"국물"},{"cat":"🍽️ 식당·음식주문","lang":"인도네시아어","indo":"Telur rebus matang","meaning":"완숙 계란"},{"cat":"🍽️ 식당·음식주문","lang":"혼합(인도네시아어+영어+한국어)","indo":"Telur Setengah matang","meaning":"반숙 계란"},{"cat":"🍽️ 식당·음식주문","lang":"인도네시아어","indo":"Selalu setengah matang","meaning":"항상 반숙으로"},{"cat":"🍽️ 식당·주문","lang":"혼합(인도네시아어+한국어)","indo":"Tolong dua bagi","meaning":"두 개로 나눠주세요"},{"cat":"🍽️ 식당·주문","lang":"인도네시아어","indo":"Tidak asin","meaning":"짜지 않게 해주세요"},{"cat":"🍽️ 식사·음주","lang":"인도네시아어","indo":"Saya minum sedikit saat makan malam","meaning":"저녁식사 때 조금 마셨다"},{"cat":"🍽️ 식당·주문","lang":"인도네시아어","indo":"Untuk dibawa","meaning":"포장해 가세요"},{"cat":"🍽️ 식당·주문","lang":"인도네시아어","indo":"Untuk di sini","meaning":"여기서 먹을게요"},{"cat":"🍽️ 식당·주문","lang":"혼합(인도네시아어+한국어)","indo":"Telur goreng","meaning":"계란 후라이"},{"cat":"🍽️ 식당·음식","lang":"혼합(인도네시아어+한국어)","indo":"Ini ada supnya?","meaning":"국물이 있어? (Is this soup?)"},{"cat":"🍽️ 식당·식기","lang":"혼합(인도네시아어+한국어)","indo":"sumpit","meaning":"젓가락"},{"cat":"🍽️ 식당·주문","lang":"인도네시아어","indo":"Tolong bagi menjadi dua","meaning":"둘로 나눠주세요"},{"cat":"🍽️ 식사·안부표현","lang":"인도네시아어","indo":"Sudah makan?","meaning":"밥 먹었어?"},{"cat":"🍽️ 식사·상태표현","lang":"인도네시아어","indo":"Saya lapar","meaning":"나 배고파"},{"cat":"🍽️ 식사·상태표현","lang":"인도네시아어","indo":"Saya kenyang","meaning":"나 배불러"},{"cat":"🍽️ 식사·동행","lang":"혼합(인도네시아어+한국어)","indo":"Hanya makan bersama ya","meaning":"그냥 같이 먹어"},{"cat":"🍽️ 식당·주문","lang":"인도네시아어","indo":"Satu kaki ayam, satu sayap","meaning":"닭발 하나, 닭날개 하나"},{"cat":"🍽️ 식사표현","lang":"인도네시아어","indo":"Saya bisa makan sekarang","meaning":"나 지금 먹을 수 있어요"}]},{"theme":"🛒 쇼핑·가격·구매","items":[{"cat":"🛒 쇼핑·탐색","lang":"인도네시아어","indo":"susah di cari","meaning":"찾기 어렵다"},{"cat":"🛒 쇼핑·가격흥정","lang":"인도네시아어","indo":"Yang Termurah","meaning":"가장 저렴한 것"},{"cat":"🛒 쇼핑·가격흥정","lang":"인도네시아어","indo":"Yang Termahal","meaning":"가장 비싼 것"},{"cat":"🛒 쇼핑·가격흥정","lang":"인도네시아어","indo":"berapa harga?","meaning":"가격이 얼마예요?"},{"cat":"🛒 쇼핑·가격","lang":"혼합(인도네시아어+영어)","indo":"Sangat mahal","meaning":"매우 비싸다"},{"cat":"🛒 쇼핑·가격","lang":"인도네시아어","indo":"Sangat murah","meaning":"매우 저렴하다"},{"cat":"🛒 쇼핑·가격","lang":"인도네시아어","indo":"Mahal","meaning":"비싸다"},{"cat":"🛒 쇼핑·가격","lang":"인도네시아어","indo":"Tarifnya sama 800rb","meaning":"요금이 80만 루피아"},{"cat":"🛒 쇼핑·배송","lang":"혼합(인도네시아어+한국어)","indo":"Diskon ongkos kirim","meaning":"배송비 할인"},{"cat":"🛒 상점·장소","lang":"인도네시아어","indo":"Toko Roti","meaning":"빵집"}]},{"theme":"👥 인물·호칭·관계","items":[{"cat":"👥 사회·신분표현","lang":"인도네시아어","indo":"Orang kaya / Orang miskin","meaning":"부자 / 가난한 사람"},{"cat":"👥 인물·관계","lang":"인도네시아어","indo":"suaminya yang baru","meaning":"새 남편"},{"cat":"👥 인물·관계","lang":"인도네시아어","indo":"istrinya","meaning":"그의 아내"},{"cat":"👥 인물·호칭","lang":"인도네시아어","indo":"seorang gadis = wanita","meaning":"젊은 여성 / 아가씨"},{"cat":"👥 동반·동행표현","lang":"혼합(인도네시아어+한국어+영어)","indo":"Dengan siapa?","meaning":"누구하고?"},{"cat":"👥 직업·호칭","lang":"혼합(인도네시아어+영어)","indo":"guru","meaning":"선생님 (teacher)"},{"cat":"👥 직업·호칭","lang":"혼합(인도네시아어+한국어+영어)","indo":"tuan / mister","meaning":"아저씨"},{"cat":"👥 인물·확인","lang":"인도네시아어","indo":"Siapa orang ini?","meaning":"이 사람 누구야?"},{"cat":"👥 인물·확인","lang":"혼합(인도네시아어+한국어)","indo":"Siapa?","meaning":"누가요?"},{"cat":"👥 인원·수량","lang":"혼합(인도네시아어+영어)","indo":"Berapa orang?","meaning":"몇 명이에요?"},{"cat":"👥 인칭·집단표현","lang":"인도네시아어","indo":"Kita","meaning":"우리"},{"cat":"👥 호칭·존대표현","lang":"인도네시아어","indo":"mba / mas / pak","meaning":"언니 / 오빠 / 아저씨"}]},{"theme":"⏰ 시간·약속","items":[{"cat":"⏰ 시간·일정표현","lang":"인도네시아어","indo":"berapa lama?","meaning":"얼마나 오래?"},{"cat":"⏰ 시간·약속","lang":"인도네시아어","indo":"Harap kembali jam 3 sore hari ini","meaning":"오늘 오후 3시까지 돌아와 주세요"},{"cat":"⏰ 시간·약속","lang":"인도네시아어","indo":"Kita akan kembali jam 5 sore","meaning":"우리는 오후 5시에 돌아올 것입니다"},{"cat":"⏰ 시간·약속","lang":"인도네시아어","indo":"Dari jam 10 pagi hingga jam 5 sore","meaning":"오전 10시부터 오후 5시까지"},{"cat":"⏰ 시간표현","lang":"인도네시아어","indo":"mulai jam 5 sore","meaning":"오후 5시부터 시작"},{"cat":"⏰ 시간표현","lang":"인도네시아어","indo":"hingga jam 6 sore","meaning":"오후 6시까지"},{"cat":"⏰ 시간표현","lang":"혼합(인도네시아어+한국어+영어)","indo":"jam berapa?","meaning":"몇 시?"},{"cat":"⏰ 시간표현·어휘","lang":"인도네시아어","indo":"jam dua ≠ dua jam","meaning":"2시와 2시간은 달라요"},{"cat":"⏰ 시간표현","lang":"인도네시아어","indo":"Mulai jam 2","meaning":"2시부터 시작"}]},{"theme":"🏨 호텔·숙박·서비스","items":[{"cat":"🏨 호텔·숙박","lang":"인도네시아어","indo":"Berangkat dari Ascott Hotel 10:10","meaning":"Ascott 호텔에서 10:10 출발"},{"cat":"🏨 호텔·휴게","lang":"인도네시아어","indo":"Tempat istirahat","meaning":"휴게 장소"},{"cat":"🏨 호텔·예약","lang":"인도네시아어","indo":"reservasi","meaning":"예약"},{"cat":"🏨 예약·도움","lang":"혼합(인도네시아어+한국어)","indo":"Besok aku bantu reservasi","meaning":"내일 예약 도와줄게"},{"cat":"🏨 호텔·위치","lang":"인도네시아어","indo":"Letaknya di lobi","meaning":"로비에 있어요"},{"cat":"🏨 호텔·서비스","lang":"인도네시아어","indo":"Tolong saya asbak","meaning":"재떨이 갖다 주세요"},{"cat":"🏨 호텔·위치","lang":"인도네시아어","indo":"Itu ada di Ascott","meaning":"그것은 아스콧에 있어요"},{"cat":"🏨 호텔·서비스","lang":"혼합(인도네시아어+한국어)","indo":"Handuk basah","meaning":"물수건"}]},{"theme":"🎉 인사·축하·덕담","items":[{"cat":"🎉 인사·축하표현","lang":"인도네시아어","indo":"selamat Lebaran","meaning":"이슬람 명절 인사"},{"cat":"🎉 인사·축하표현","lang":"혼합(인도네시아어+영어)","indo":"Selamat bersenang-senang","meaning":"즐거운 시간 되세요 (have a good time)"},{"cat":"🎉 인사·축하표현","lang":"인도네시아어","indo":"selamat","meaning":"축하해요"},{"cat":"🎉 인사·덕담표현","lang":"혼합(인도네시아어+영어)","indo":"Memiliki Hari yang baik","meaning":"좋은 하루 되세요"},{"cat":"🎉 인사·덕담표현","lang":"혼합(인도네시아어+한국어)","indo":"semoga harimu menyenangkan","meaning":"좋은 하루 되세요"},{"cat":"🎉 인사·덕담표현","lang":"인도네시아어","indo":"Semoga harimu menyenangkan","meaning":"좋은 하루 되세요"}]},{"theme":"💼 업무·직장","items":[{"cat":"💼 업무·직장","lang":"인도네시아어","indo":"Saya sekarang berada di kantor","meaning":"나는 지금 사무실에 있다"},{"cat":"💼 업무·상황","lang":"인도네시아어","indo":"Apakah kamu sibuk?","meaning":"바쁘세요?"},{"cat":"💼 업무·위치","lang":"인도네시아어","indo":"Saya sudah di kantor","meaning":"나는 이미 사무실에 있다"},{"cat":"💼 업무·일상표현","lang":"혼합(인도네시아어+영어)","indo":"Ya. Aku pergi bekerja","meaning":"네, 나는 일하러 가요"},{"cat":"💼 업무·칭찬","lang":"혼합(인도네시아어+영어)","indo":"Iya Selamat bekerja","meaning":"잘했어, 수고했어"},{"cat":"💼 업무·진행표현","lang":"혼합(인도네시아어+영어)","indo":"Melanjutkan","meaning":"계속하다 (continue)"},{"cat":"💼 업무·명함","lang":"인도네시아어","indo":"Kartu bisnis","meaning":"명함"}]},{"theme":"✈️ 여행·출발·도착","items":[{"cat":"✈️ 여행·관광","lang":"인도네시아어","indo":"Berwisata","meaning":"관광하다, 여행하다"},{"cat":"✈️ 여행·이동","lang":"인도네시아어","indo":"pulang di Korea","meaning":"한국으로 귀국하다"},{"cat":"✈️ 여행·이동","lang":"인도네시아어","indo":"pulang pergi","meaning":"왕복"},{"cat":"✈️ 여행·이동","lang":"인도네시아어","indo":"Berangkat vs. Tiba","meaning":"출발 vs 도착"},{"cat":"✈️ 이동·일정","lang":"인도네시아어","indo":"Berangkat / Tiba 09:30","meaning":"출발/도착 09:30"},{"cat":"✈️ 이동·출발","lang":"인도네시아어","indo":"Berangkat jam 9","meaning":"9시에 출발"}]},{"theme":"💪 칭찬·격려","items":[{"cat":"💪 감탄·칭찬표현","lang":"인도네시아어","indo":"kuat sekali","meaning":"정말 강하다/대단하다"},{"cat":"💪 격려·응원표현","lang":"인도네시아어","indo":"Semangat","meaning":"파이팅! 힘내!"},{"cat":"💪 격려·응원표현","lang":"인도네시아어","indo":"semangat untuk hari ini","meaning":"오늘도 파이팅"},{"cat":"💪 칭찬·격려표현","lang":"혼합(인도네시아어+한국어)","indo":"Kerja bagus","meaning":"잘했어"},{"cat":"💪 칭찬·능력표현","lang":"혼합(인도네시아어+한국어)","indo":"pintar","meaning":"똑똑하다"}]},{"theme":"🏠 일상·주거","items":[{"cat":"🏠 주거·공간표현","lang":"인도네시아어","indo":"rumah / ruang","meaning":"집 / 방"},{"cat":"🏠 일상·생활","lang":"인도네시아어","indo":"Selesai mandi","meaning":"샤워 끝났다"},{"cat":"🏠 일상·위치표현","lang":"인도네시아어","indo":"Aku di rumah","meaning":"나는 집에 있다"},{"cat":"🏠 일상·지시표현","lang":"혼합(인도네시아어+한국어+영어)","indo":"Tutup saja","meaning":"그냥 닫아"},{"cat":"🏠 주거·위치표현","lang":"인도네시아어","indo":"Di mana rumahmu?","meaning":"집이 어디야?"}]},{"theme":"😰 어려움·피로·감정","items":[{"cat":"😰 감정·피로표현","lang":"혼합(인도네시아어+영어)","indo":"Aku sangat lelah hari ini","meaning":"오늘 정말 피곤하다"},{"cat":"😰 감정·피로표현","lang":"인도네시아어","indo":"Hari ini aku sangat capek","meaning":"오늘 정말 피곤하다"},{"cat":"😰 감정·피로표현","lang":"혼합(인도네시아어+한국어)","indo":"Saya lelah","meaning":"피곤해요"},{"cat":"😰 감정·어려움표현","lang":"혼합(인도네시아어+영어)","indo":"Sangat sulit","meaning":"매우 어렵다"},{"cat":"😰 감정표현","lang":"인도네시아어","indo":"takut","meaning":"무섭다"}]},{"theme":"🌦️ 날씨·자연","items":[{"cat":"🌦️ 날씨표현","lang":"혼합(인도네시아어+한국어)","indo":"Hujan baru saja mulai turun","meaning":"방금 비가 내리기 시작했어요"},{"cat":"🌦️ 날씨표현","lang":"인도네시아어","indo":"hari ini sangat panas","meaning":"오늘 정말 덥다"},{"cat":"🌦️ 날씨표현","lang":"인도네시아어","indo":"Sepertinya akan turun hujan","meaning":"비가 올 것 같다"},{"cat":"🌦️ 날씨표현","lang":"인도네시아어","indo":"hujan","meaning":"비"},{"cat":"🌡️ 날씨·온도표현","lang":"혼합(인도네시아어+한국어)","indo":"Panas sekali","meaning":"엄청 덥네"},{"cat":"🌡️ 날씨·온도표현","lang":"인도네시아어","indo":"Hari ini sangat panas","meaning":"오늘 정말 덥다"}]},{"theme":"🙏 요청·사과·기원","items":[{"cat":"🙏 요청·공손표현","lang":"혼합(인도네시아어+영어)","indo":"mohon","meaning":"부탁드립니다 (please)"},{"cat":"🙏 요청·공손표현","lang":"혼합(인도네시아어+한국어)","indo":"silakan","meaning":"제발, 어서"},{"cat":"🙏 사과·양해표현","lang":"인도네시아어","indo":"Maaf, saya terlambat","meaning":"죄송해요, 늦었어요"},{"cat":"🙏 희망·기원표현","lang":"혼합(인도네시아어+한국어)","indo":"semoga","meaning":"바라건대, 바라다"}]},{"theme":"👨‍👩‍👧 가족·호칭","items":[{"cat":"👨‍👩‍👧 가족·호칭","lang":"인도네시아어","indo":"putra dan putri","meaning":"아들과 딸"},{"cat":"👨‍👩‍👧 가족·호칭","lang":"인도네시아어","indo":"dengan putra","meaning":"아들과 함께"},{"cat":"👨‍👩‍👧 가족·호칭","lang":"인도네시아어","indo":"ayah / ibu / anak laki-laki / anak perempuan","meaning":"아버지 / 어머니 / 아들 / 딸"}]},{"theme":"☕ 카페·음료","items":[{"cat":"☕ 카페·음료주문","lang":"인도네시아어","indo":"saya mau kopi","meaning":"커피 마시고 싶다"},{"cat":"☕ 카페·음료주문","lang":"인도네시아어","indo":"mau kopi?","meaning":"커피 마실래?"},{"cat":"☕ 카페·음료","lang":"인도네시아어","indo":"Boleh isi ulang?","meaning":"리필 돼요?"}]},{"theme":"💆 마사지·스파","items":[{"cat":"💆 마사지·스파","lang":"인도네시아어","indo":"Saya mau pijat tubuh","meaning":"전신 마사지 받고 싶다"},{"cat":"💆 마사지·스파","lang":"인도네시아어","indo":"Saya mau pijat kaki","meaning":"발 마사지 받고 싶다"}]},{"theme":"⛳ 골프·스포츠","items":[{"cat":"⛳ 골프·스포츠","lang":"인도네시아어","indo":"Kapan masuk ke golf club Gading Raya?","meaning":"Gading Raya 골프클럽 입장 시간 묻기"},{"cat":"⛳ 골프·스포츠","lang":"인도네시아어","indo":"Ketika datang ke klub golf Gading Raya?","meaning":"Gading Raya 골프장 방문 시간 묻기"}]},{"theme":"🌙 취침·야간","items":[{"cat":"🌙 인사·취침표현","lang":"인도네시아어","indo":"Selamat tidur","meaning":"잘 자요"},{"cat":"🌙 일상·안부표현","lang":"혼합(인도네시아어+한국어)","indo":"Kamu sudah tidur?","meaning":"자고 있어?"}]},{"theme":"📱 메시지·연락","items":[{"cat":"📱 메시지·연락","lang":"인도네시아어","indo":"tolong kirim SMS atau Email","meaning":"SMS/이메일 발송 요청"},{"cat":"📱 메시지·연락","lang":"혼합(인도네시아어+영어)","indo":"saya kirimkan segera","meaning":"곧 보낼게요"}]},{"theme":"🚬 흡연·소지품","items":[{"cat":"🚬 규칙·금지","lang":"인도네시아어","indo":"Boleh merokok di sini?","meaning":"여기서 담배 피워도 돼요?"},{"cat":"🚬 물품·소지품","lang":"인도네시아어","indo":"ASBAK","meaning":"재떨이"}]},{"theme":"⏳ 기다림·대기","items":[{"cat":"⏳ 기다림·대기표현","lang":"혼합(인도네시아어+영어)","indo":"tunggu","meaning":"잠깐 기다려주세요"},{"cat":"⏳ 기다림·대기표현","lang":"인도네시아어","indo":"Tunggu sebentar / Tunggu ya","meaning":"잠깐만요"}]},{"theme":"🚫 금지·제한","items":[{"cat":"🚫 금지·제한표현","lang":"혼합(인도네시아어+영어)","indo":"jangan tanya","meaning":"묻지 마세요 (Do not ask)"}]},{"theme":"🏥 건강·몸상태","items":[{"cat":"🏥 건강·몸상태","lang":"인도네시아어","indo":"Sakit","meaning":"아프다"}]},{"theme":"😤 감탄·속어","items":[{"cat":"😤 감탄·속어표현","lang":"인도네시아어","indo":"sial","meaning":"이런! 젠장! (구어체 감탄)"}]},{"theme":"🎨 기타표현","items":[{"cat":"🎭 복장·의상","lang":"인도네시아어","indo":"kostum","meaning":"의상/복장"},{"cat":"📏 수량·거리표현","lang":"인도네시아어","indo":"Berapa meter?","meaning":"몇 미터?"},{"cat":"🌅 인사·시간대표현","lang":"인도네시아어","indo":"Selamat sore","meaning":"좋은 오후 (인사)"},{"cat":"🎨 색상·선택표현","lang":"인도네시아어","indo":"putih atau merah","meaning":"흰색 아니면 빨간색?"},{"cat":"🏔️ 지형·방향표현","lang":"인도네시아어","indo":"pendakian","meaning":"등반/오르막"}]}];
-
-let langFilter='all', openGroups=new Set();
-
-function getLangClass(l){
-  if(l==='인도네시아어') return 'lang-id';
-  if(l==='한국어') return 'lang-ko';
-  if(l.includes('혼합')) return 'lang-mix';
-  return 'lang-id';
-}
-function getLangLabel(l){
-  if(l==='인도네시아어') return 'ID';
-  if(l==='한국어') return 'KO';
-  if(l.includes('혼합')) return '혼합';
-  return 'URL';
-}
-function filterItems(items){
+const P={"Tunggu = Tunggu sebentar = Tunggu ya.": "뚱구 / 뚱구 스븐따르 / 뚱구 야", "tunggu ya, wating please": "뚱구 야", "Harap kembali jam 3 sore hari ini.": "하랍 끔발리 잠 띠가 소레 하리 이니", "Kita akan kembali jam 5 sore": "끼따 아깐 끔발리 잠 리마 소레", "Harap Anda akan kembali jam 5 sore hari ini": "하랍 안다 아깐 끔발리 잠 리마 소레 하리 이니", "Dari jam 10 pagi hingga jam 5 sore.": "다리 잠 스뿔루 빠기 힝가 잠 리마 소레", "berapa lama?": "브라빠 라마", "mulai jam 5 sore": "물라이 잠 리마 소레", "hingga jam 6 sore": "힝가 잠 으남 소레", "Mulai jam 2": "물라이 잠 두아", "jam dua tidak sama dua jam": "잠 두아 띠닥 사마 두아 잠", "jam berapa? 몇시?": "잠 브라빠", "santai aja": "산따이 아자", "nggak masalah kok, santai aja, makasih juga ya": "응각 마살라 꼭, 산따이 아자, 마까시 주가 야", "silakan = please": "실라깐", "aku senang = I'm happy": "아꾸 스낭", "Saya baik baik saja": "사야 바익 바익 사자", "saya bagus 난 괜찮아": "사야 바구스", "Bisakah saya? 내가 할 수 있을까?": "비사까 사야", "Saya mengerti. I Understand": "사야 멍으르띠", "Mau bisa baru 나는 뭔가 새로운 것을 하고 싶다": "마우 비사 바루", "Aku mengerti": "아꾸 멍으르띠", "Cinta. love": "찐따", "Bermain. 놀다 Aku bosan 심심해": "브르마인 / 아꾸 보산", "ya iya": "야 이야", "baik. good, baik-baik. fine": "바익 / 바익-바익", "begitu ya. i see": "브기뚜 야", "Saya juga. me too": "사야 주가", "kamu bisa. sama. boleh dirimu. you can": "까무 비사", "baiklah. sama begituuu. okay": "바익라", "Rindu. miss": "린두", "Aku sudah": "아꾸 수다", "Sudah tahu. 이미알고있다": "수다 따우", "Bisakah Boleh bisa 할수있다": "비사까 / 볼레 / 비사", "Apa itu mungkin? 가능합니까?": "아빠 이뚜 뭉낀", "Apakah Anda(kamu) memahami?": "아빠까 안다 므마하미", "Kamu baik.": "까무 바익", "Saya tidak tahu.": "사야 띠닥 따우", "Baiklah.": "바익라", "baiklah.": "바익라", "bisa할수있다": "비사", "Aku tahu, i know": "아꾸 따우", "Aku tidak tahu, i dont know": "아꾸 띠닥 따우", "Ada yang salah.": "아다 양 살라", "Jadi. sama. begitu": "자디", "Apakah kamu sibuk? sama. sibuk kan": "아빠까 까무 시북", "sedang apa ya? 지금 뭐해?": "스당 아빠 야", "Suka wanita 여자를 좋아한다.": "수까 와니따", "Tolong Bicara 말씀해주세요.": "똘롱 비짜라", "Bicara pelan 천천히 말하세요": "비짜라 쁠란", "ingin 싶다. 원한다.": "잉인", "Tidak apa apa its ok. no problom": "띠닥 아빠 아빠", "tidak apa apa / tak apa apa / tak papa": "띠닥 아빠 아빠 / 딱 빠빠", "sedang minum ? drinking?": "스당 미눔", "Aku sedang menonton drama korea": "아꾸 스당 므논똔 드라마 꼬레아", "Terus katanya.": "뜨루스 까따냐", "Bisikan": "비시깐", "apa kabar.": "아빠 까바르", "apa kabarmu.": "아빠 까바르무", "apa kabarmu hari ini.": "아빠 까바르무 하리 이니", "Bukan(orang indonesia), Tidak(makan), Belum(belum tiba), Jangan(merokok di sini)": "부깐 / 띠닥 / 블룸 / 장안", "kirim vs. menerima": "끼림 vs. 므느리마", "mulai vs. akhir": "물라이 vs. 아히르", "Panas vs. Dingin": "빠나스 vs. 딩인", "begitu 그래서 ya 알겠어요": "브기뚜 / 야", "harus 해야 하다.": "하루스", "harus. bisa. 해야 하다. 할 수 있다": "하루스 / 비사", "Kematin 죽음": "끄마띤 (kematian)", "Apa artinya? What does it mean?": "아빠 아르띠냐", "Kapan? 언제?(When?)": "까빤", "Di mana? 어디? (Where?)": "디 마나", "Bagaimana? (how?)": "바가이마나", "siapa ini? 누구야? (Who is this?)": "시아빠 이니", "Mengapa? 왜 ?(Why?)": "믕아빠", "Sungguh? 정말?(Really?)": "숭구", "Apa? 뭐라고?(What?)": "아빠", "apa ini 이건 뭐야?(What is This?)": "아빠 이니", "sangat": "상앗", "mau": "마우", "sengat": "스앗", "juga": "주가", "sedang. currency": "스당", "Ada(There is), ya": "아다", "jika. sama. kalau. if": "지까 / 깔라우", "sedikit": "스디낏", "cari": "짜리", "apa .... what": "아빠", "ada ... 있다": "아다", "Aku,kamu.": "아꾸 / 까무", "enggak = tidak. sama.": "응각 = 띠닥", "belum": "블룸", "atau": "아따우", "Namun 하지만": "나문", "..se puluh": "스 뿔루 (~십)", "se belas": "스 블라스 (11)", "dua belas": "두아 블라스 (12)", "tiga belas": "띠가 블라스 (13)", "empat belas": "음빳 블라스 (14)", "lima belas": "리마 블라스 (15)", "enam belas": "으남 블라스 (16)", "tujuh belas": "뚜주 블라스 (17)", "delapan belas": "들라빤 블라스 (18)", "sembilan belas": "슴빌란 블라스 (19)", "dua puluh": "두아 뿔루 (20)", "tiga puluh": "띠가 뿔루 (30)", "empat puluh": "음빳 뿔루 (40)", "lima puluh": "리마 뿔루 (50)", "enam puluh": "으남 뿔루 (60)", "tujuh puluh": "뚜주 뿔루 (70)", "delapan puluh": "들라빤 뿔루 (80)", "sembilan puluh": "슴빌란 뿔루 (90)", "seratus": "스라뚜스 (100)", "Mari belajar": "마리 블라자르", "saya butuh latihan 연습이 필요해.": "사야 부뚜 라띠한", "인도네시아어에서 요일을 알아보죠.": "(한국어 메모)", "cepat-cepat": "쯔빳-쯔빳", "pelan-pelan": "쁠란-쁠란", "Suda sampai 도착했어요(sampai 명사)": "수다 삼빠이", "Suda tiba 이미 도착하다": "수다 띠바", "Baru tiba 방금 도착하다": "바루 띠바", "Saya harus sekarang berangkat": "사야 하루스 스까랑 브랑깟", "kamu mau ke mana?": "까무 마우 끄 마나", "Macet sekali": "마쩻 스깔리", "macet = traffic jam": "마쩻", "Seberapa jauh itu? 얼마나 멀어?": "스브라빠 자우 이뚜", "Berjalan kaki. On foot": "브르잘란 까끼", "Itu di sana. it's over there": "이뚜 디 사나", "kurangi kecepatan 속도를 줄이다": "꾸랑이 끄쯔빠딴", "Naik": "나익", "turun, lereng": "뚜룬", "keluar": "끌루아르", "jauh long": "자우", "dekat. short": "드깟", "Lurus": "루루스", "lereng = naik": "르렝 = 나익", "Pergi ke mana kita hari ini?": "뻐르기 끄 마나 끼따 하리 이니", "Aku baru mau pulang": "아꾸 바루 마우 뿔랑", "Ayo pergi.": "아요 뻐르기", "Kamu ada di mana? 어디세요?": "까무 아다 디 마나", "Pernahkah Anda melihat hal seperti ini di dalam mobil?": "뻐르나까 안다 믈리핫 할 스뻐르띠 이니 디 달람 모빌", "Cepat-cepat.": "쯔빳-쯔빳", "Boleh mau bantuan?": "볼레 마우 반뚜안", "Sampai jumpa lusa, besok": "삼빠이 줌빠 루사, 브속", "Terima kasih kembali": "뜨리마 까시 끔발리", "lama tak jumpa 오랫만이네요.": "라마 딱 줌빠", "Banyak terima kasih 대단히 고맙습니다.": "바냑 뜨리마 까시", "tolong banyak bantu saya 많이 도와주세요.": "똘롱 바냑 반뚜 사야", "tolong aku. help me": "똘롱 아꾸", "selamat tinggal. good bye": "슬라맛 띵갈", "bantu 도움": "반뚜", "sama sama. you're welcome": "사마 사마", "Saya pergi dulu": "사야 뻐르기 둘루", "Kamu duluan.": "까무 둘루안", "Nama saya Joe.": "나마 사야 조", "Selamat tingal.": "슬라맛 띵갈", "Aku akan pergi.": "아꾸 아깐 뻐르기", "Siapa namamu.": "시아빠 나마무", "Selamat pergi.": "슬라맛 뻐르기", "Terima kasih atas usaha Anda": "뜨리마 까시 아따스 우사하 안다", "kamu ayo duluan saja 그냥 너 먼저 가": "까무 아요 둘루안 사자", "terima kasih banyak": "뜨리마 까시 바냑", "makasih": "마까시", "Terima kasih atas bantuannya.": "뜨리마 까시 아따스 반뚜안냐", "Boleh minta bantuan?": "볼레 민따 반뚜안", "Ada yang bisa saya bantu?": "아다 양 비사 사야 반뚜", "sebelum kamu pergi": "스블룸 까무 뻐르기", "minggu lalu": "밍구 랄루", "minggu lalu/ini/depan": "밍구 랄루/이니/드빤", "akan libur": "아깐 리부르", "akan berlibur": "아깐 브를리부르", "Kapan kamu akan berlibur?": "까빤 까무 아깐 브를리부르", "Akhir pekan ini 이번 주말": "아히르 뻐깐 이니", "Akhir pekan lalu": "아히르 뻐깐 랄루", "Akhir pekan depan": "아히르 뻐깐 드빤", "Minggu ini 이번주": "밍구 이니", "Minggu depan 다음주": "밍구 드빤", "Minggu lalu 지난주": "밍구 랄루", "libur. liburan": "리부르 / 리부란", "Belum ada janji. 아직 약속이 없다.": "블룸 아다 잔지", "Mari kita pergi besok jam 10": "마리 끼따 뻐르기 브속 잠 스뿔루", "kemarin, hari ini, besok, lusa": "끄마린, 하리 이니, 브속, 루사", "월요일 hari senin": "하리 스닌", "화요일 hari selasa": "하리 슬라사", "수요일 hari rabu": "하리 라부", "목요일 hari kamis": "하리 까미스", "금요일 hari jumat": "하리 주맛", "토요일 hari sabtu": "하리 삽뚜", "일요일 hari minggu": "하리 밍구", "Kadang-kadang hari itu 그날 언젠간": "까당-까당 하리 이뚜", "Kadang-kadang 때때로": "까당-까당", "hari itu 그날": "하리 이뚜", "kaldu": "깔두", "kuah": "꾸아", "Telur rebus matang": "뜰루르 르부스 마땅", "Telur Setengah matang. Egg Half-baked 계란반숙": "뜰루르 스뜽아 마땅", "Selalu setengah matang": "슬랄루 스뜽아 마땅", "Tolong dua bagi 두개로 나누어 주세요": "똘롱 두아 바기", "Tidak asin": "띠닥 아신", "Saya minum sedikit saat makan malam.": "사야 미눔 스디낏 사앗 마깐 말람", "Untuk dibawa": "운뚝 디바와", "Untuk di sini": "운뚝 디 시니", "Telur goreng 계란후라이": "뜰루르 고렝", "Ini ada supnya 이거 국물이 있다고? (Is this soup)": "이니 아다 숩냐", "sumpit 젖가락": "숨삣", "Tolong bagi menjadi dua = Tolong bagi dua": "똘롱 바기 믄자디 두아", "Sudah makan? udah makan?": "수다 마깐", "Saya lapar": "사야 라빠르", "Saya kenyang": "사야 끄냥", "saya kenyang": "사야 끄냥", "Hanya makan bersama ya 그냥 같이 먹어": "하냐 마깐 브르사마 야", "Satu kaki ayam, satu sayap": "사뚜 까끼 아얌, 사뚜 사얍", "Saya bisa makan sekarang": "사야 비사 마깐 스까랑", "susah di cari kecil(besar)": "수사 디 짜리", "Yang Termurah": "양 뜨르무라", "Yang Termahal": "양 뜨르마할", "berapa harga?": "브라빠 하르가", "Sangat mahal. very expensive": "상앗 마할", "Sangat murah.": "상앗 무라", "Mahal": "마할", "Tarifnya sama 800rb": "따리프냐 사마 들라빤 라뚜스 리부", "Diskon ongkos kirim 배송비할인": "디스콘 옹꼬스 끼림", "Toko Roti": "또꼬 로띠", "Orang kaya, Orang miskin": "오랑 까야, 오랑 미스낀", "suaminya yang baru": "수아미냐 양 바루", "istrinya": "이스뜨리냐", "seorang gadis = wanita": "스오랑 가디스 = 와니따", "Dengan siapa? 누구하고? who with?": "든간 시아빠", "guru. teacher": "구루", "tuan. mister. 아저씨": "뚜안", "Siapa orang ini?": "시아빠 오랑 이니", "Siapa? 누가요?": "시아빠", "Berapa orang. how many people": "브라빠 오랑", "Kita.": "끼따", "mba mas pak.": "음바 마스 빡", "Berangkat dari Ascort Hotell 10:10": "브랑깟 다리 아스콧 호텔 스뿔루 르빠 스뿔루", "Tempat istirahat": "뜸빳 이스띠라핫", "reservasi": "레세르바시", "Besok aku bantu reservasi. 내일 예약 도와줄께": "브속 아꾸 반뚜 레세르바시", "Letaknya di lobi.": "르딱냐 디 로비", "Tolong saya asbak": "똘롱 사야 아스박", "Itu ada di ascott": "이뚜 아다 디 아스콧", "Handuk basah 물수건": "한둑 바사", "selamat Lebaran~": "슬라맛 르바란", "Selamat bersenang-senang = have a good time": "슬라맛 브르스낭-스낭", "slmt. sama selamat": "슬라맛", "selamat jular": "슬라맛 줄라르", "Memiliki Hari yang baik. have a good day": "므밀리끼 하리 양 바익", "semoga harimu menyenangkan 좋은 하루 되세요": "스모가 하리무 므녀낭깐", "Semoga harimu menyenangkang.": "스모가 하리무 므녀낭깐", "Saya sekarang berada di kantor": "사야 스까랑 브라다 디 깐또르", "Saya sudah di kantor. Sy sdh di kantor": "사야 수다 디 깐또르", "Ya. Aku pergi bekerja. I go to work": "야. 아꾸 뻐르기 브끄르자", "Iya Selamat bekerja. yes good job": "이야 슬라맛 브끄르자", "Melanjutkan. continue": "믈란주뜨깐", "Kartu bisnis": "까르뚜 비스니스", "Berwisata": "브르위사따", "pulang di korea": "뿔랑 디 꼬레아", "pulang pergi": "뿔랑 뻐르기", "Berangkat vs. Tiba": "브랑깟 vs. 띠바", "Berangkat / Tiba 09.30": "브랑깟 / 띠바 잠 스믈란 르빠 띠가 뿔루", "Berangkat jam 9": "브랑깟 잠 스믈란", "kuat sekali": "꾸앗 스깔리", "Semangat": "스망앗", "semangat untuk hari ini.": "스망앗 운뚝 하리 이니", "Kerja bagus 잘했어": "끄르자 바구스", "pintar 똑똑하다. 영리하다": "삔따르", "rumah / ruang": "루마 / 루앙", "Selesai mandi": "슬레사이 만디", "Aku di rumah": "아꾸 디 루마", "Tutup saja. Just close it. 그냥 닫으세요": "뚜뚭 사자", "Di mana rumahmu": "디 마나 루마무", "Aku sangat lelah hari ini. I'm very tired today": "아꾸 상앗 를라 하리 이니", "Hari ini aku sangat capek": "하리 이니 아꾸 상앗 짜뻭", "Saya lelar 피곤해요": "사야 를라", "Sangat sulit. very difficult": "상앗 술릿", "takut": "따꿋", "Hujan baru saja mulai turun 방금 비가 내리기 시작했어요": "후잔 바루 사자 물라이 뚜룬", "hari ini sangat panas": "하리 이니 상앗 빠나스", "Sepertinya akan turun hujan": "스뻐르띠냐 아깐 뚜룬 후잔", "hujan.": "후잔", "Panas sekali 엄청 덥네": "빠나스 스깔리", "Hari ini sangat panas": "하리 이니 상앗 빠나스", "mohon. please": "모혼", "silakan 제발": "실라깐", "Maaf, saya terlambat.": "마압, 사야 뜨를람밧", "semoga 바라건대": "스모가", "putra dan putri": "뿌뜨라 단 뿌뜨리", "dengan putra": "든간 뿌뜨라", "ayah ibu anak laki-laki anak perempuan": "아야 이부 아낙 라끼-라끼 아낙 쁘름뿌안", "saya mau kopi. sama. saya ingin kopi": "사야 마우 꼬삐", "mau kopi?": "마우 꼬삐", "Boleh isi ulang?": "볼레 이시 울랑", "Saya mau pijat tubuh": "사야 마우 삐잣 뚜부", "Saya mau pijat kaki.": "사야 마우 삐잣 까끼", "Ketika datang ke klub golf Garding Raya?": "끄띠까 다땅 끄 끌럽 골프 가딩 라야", "sama. Kapan masuk ke golf club Garding Raya?": "까빤 마숙 끄 골프 끌럽 가딩 라야", "Selamat tidur.": "슬라맛 띠두르", "Kamu sudah tidur? 자고 있어?": "까무 수다 띠두르", "tolong kirim SMS atau Email": "똘롱 끼림 에스엠에스 아따우 이메일", "saya kirimkan segera. I will send it soon": "사야 끼림깐 스게라", "Boleh merokok di sini?": "볼레 므로꼭 디 시니", "ASBAK.": "아스박", "jangan tanya. usah (ber)tanya. Do not ASK.": "장안 따냐", "Sakit": "사낏", "sial. 18": "시알", "kostum.": "꼬스뚬", "Berapa meter": "브라빠 메떠르", "Selamat sore.": "슬라맛 소레", "putih atau merah.": "뿌띠 아따우 므라", "pendakian": "뻔다끼안"};
+const RAW=[{"theme":"📚 어휘·문법 학습","items":[{"cat":"📚 기초문법·부정표현","indo":"Bukan(orang indonesia), Tidak(makan), Belum(belum tiba), Jangan(merokok di sini)","meaning":"부정·금지 표현 기초 (bukan/tidak/belum/jangan) 학습","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"juga","meaning":"도 (juga) - 기본 접속사","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"sangat","meaning":"매우/정말 (sangat) - 강조 부사","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"mau","meaning":"원하다/~하고 싶다 (mau) - 의지 동사","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"sengat","meaning":"정말/매우 (sangat의 구어체: sengat) - 강조","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"jika. sama. kalau. if","meaning":"만약/~이면 (jika / kalau)","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"sedang. currency","meaning":"지금/현재 (sedang) - 진행형 조동사","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"sedikit","meaning":"조금, 약간 (sedikit)","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"Ada(There is), ya","meaning":"있다/있어요 (ada)","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"Aku,kamu.","meaning":"나(aku), 너(kamu) - 기본 인칭대명사","lang":"인도네시아어"},{"cat":"📚 기초어휘","indo":"jika. if","meaning":"만약 (jika / if)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 기초어휘","indo":"pikir. think","meaning":"생각하다 (pikir / think)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 기초어휘","indo":"apa .... what","meaning":"무엇 (apa / what)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 기초어휘","indo":"ada ... 있다","meaning":"있다 (ada) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 기초어휘·부정","indo":"enggak = tidak. sama.","meaning":"아니요 (enggak = tidak) - 구어체","lang":"인도네시아어"},{"cat":"📚 기초어휘·부정","indo":"belum","meaning":"아직 안 했다 (belum)","lang":"인도네시아어"},{"cat":"📚 기초어휘·접속사","indo":"atau","meaning":"또는, 아니면 (atau)","lang":"인도네시아어"},{"cat":"📚 기초어휘·접속사","indo":"Namun 하지만","meaning":"하지만 (namun) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 숫자·수사학습","indo":"satu","meaning":"1","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"dua","meaning":"2","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"tiga","meaning":"3","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"empat","meaning":"4","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"lima","meaning":"5","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"enam","meaning":"6","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"tujuh","meaning":"7","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"delapan","meaning":"8","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"sembilan","meaning":"9","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"sepuluh","meaning":"10","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"sebelas","meaning":"11","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"dua belas","meaning":"12","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"dua puluh","meaning":"20","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"dua puluh satu","meaning":"21","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"seratus","meaning":"100","lang":"인도네시아어"},{"cat":"📚 숫자·수사학습","indo":"seribu","meaning":"1000","lang":"인도네시아어"},{"cat":"📚 어휘학습","indo":"Apa artinya? What does it mean?","meaning":"무슨 뜻이야? (apa artinya?)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 어휘학습","indo":"begitu 그래서 ya 알겠어요","meaning":"그래서(begitu)/알겠어요(ya) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 어휘학습","indo":"harus 해야 하다.","meaning":"해야 한다 (harus) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 어휘학습","indo":"harus. bisa. 해야 하다. 할 수 있다","meaning":"해야 한다(harus) / 할 수 있다(bisa) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 어휘학습","indo":"Kematin 죽음","meaning":"죽음 (kematian) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📚 어휘학습","indo":"시작과 끝. Mulai dan Akhir","meaning":"시작과 끝 - mulai dan akhir 한인 혼합 메모","lang":"혼합(한국어+인도네시아어)"},{"cat":"📚 어휘학습·비교","indo":"kirim vs. menerima","meaning":"보내다(kirim) vs 받다(menerima) 어휘 비교","lang":"인도네시아어"},{"cat":"📚 어휘학습·비교","indo":"mulai vs. akhir","meaning":"시작(mulai) vs 끝(akhir) 비교","lang":"인도네시아어"},{"cat":"📚 어휘학습·비교","indo":"Panas vs. Dingin","meaning":"덥다(panas) vs 춥다(dingin) 비교","lang":"인도네시아어"},{"cat":"📚 의문사학습","indo":"Bagaimana? (how?)","meaning":"어떻게? (bagaimana)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 의문사학습","indo":"Kapan? 언제?(When?)","meaning":"언제? (kapan) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"Di mana? 어디? (Where?)","meaning":"어디? (di mana) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"siapa ini? 누구야? (Who is this?)","meaning":"누구야? (siapa ini) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"Mengapa? 왜 ?(Why?)","meaning":"왜? (mengapa) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"Sungguh? 정말?(Really?)","meaning":"정말? (sungguh) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"Apa? 뭐라고?(What?)","meaning":"뭐라고? (apa) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문사학습","indo":"apa ini 이건 뭐야?(What is This?)","meaning":"이건 뭐야? (apa ini) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"📚 의문표현","indo":"Apa katamu? what did you say?","meaning":"뭐라고 했어? (apa katamu?)","lang":"혼합(인도네시아어+영어)"},{"cat":"📚 학습·권유표현","indo":"Mari belajar","meaning":"공부합시다! (mari belajar)","lang":"인도네시아어"},{"cat":"📚 학습·연습","indo":"saya butuh latihan 연습이 필요해.","meaning":"연습이 필요해 (saya butuh latihan) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"}]},
+{"theme":"😊 일상·감정 표현","items":[{"cat":"😊 가능·허락표현","indo":"kamu bisa. sama. boleh dirimu. you can","meaning":"너 할 수 있어 (kamu bisa)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 가능·허락표현","indo":"Bisakah Boleh bisa 할수있다","meaning":"가능해요, 할 수 있어요 (bisakah/boleh/bisa) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 가능·허락표현","indo":"Apa itu mungkin? 가능합니까?","meaning":"가능합니까? (apa itu mungkin) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 가능·허락표현","indo":"bisa할수있다","meaning":"할 수 있다 (bisa) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 가능표현","indo":"Bisakah saya? 내가 할 수 있을까?","meaning":"내가 할 수 있을까? (bisakah saya?) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 감정·감성표현","indo":"Cinta. love","meaning":"사랑 (cinta)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 감정·감성표현","indo":"hanya karena kamu 오직 너 때문에","meaning":"오직 너 때문에 (hanya karena kamu) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 감정·관계표현","indo":"Suka wanita 여자를 좋아한다.","meaning":"여자를 좋아한다 (suka wanita) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 감정·그리움표현","indo":"Rindu. miss","meaning":"보고 싶다 (rindu / miss)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 감정·여가표현","indo":"Bermain. 놀다 Aku bosan 심심해","meaning":"놀다(bermain) / 지루하다(aku bosan) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"😊 감정·표현","indo":"Bisikan","meaning":"귓속말 (bisikan)","lang":"인도네시아어"},{"cat":"😊 대화·이야기표현","indo":"Terus katanya.","meaning":"그래서 어떻게 됐어? (terus katanya)","lang":"인도네시아어"},{"cat":"😊 동조·공감표현","indo":"Saya juga. me too","meaning":"나도요 (saya juga / me too)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 소통·요청표현","indo":"Tolong Bicara 말씀해주세요.","meaning":"말씀해주세요 (tolong bicara) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 소통·요청표현","indo":"Bicara pelan 천천히 말하세요","meaning":"천천히 말해주세요 (bicara pelan) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 완료·상태표현","indo":"Aku sudah","meaning":"다 했어 (aku sudah)","lang":"인도네시아어"},{"cat":"😊 위로·괜찮음표현","indo":"tidak apa apa / tak apa apa / tak papa","meaning":"괜찮아, 상관없어 (tidak apa apa)","lang":"인도네시아어"},{"cat":"😊 위로·괜찮음표현","indo":"Tidak apa apa its ok. no problom","meaning":"괜찮아요 (tidak apa apa / its ok)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 이해·동의표현","indo":"Aku mengerti","meaning":"알겠다 (aku mengerti)","lang":"인도네시아어"},{"cat":"😊 이해·반응표현","indo":"begitu ya. i see","meaning":"그렇구나, 알겠어 (begitu ya)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 이해·완료표현","indo":"Sudah tahu. 이미알고있다","meaning":"이미 알고 있다 (sudah tahu) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 이해·확인표현","indo":"Apakah Anda(kamu) memahami?","meaning":"이해하셨나요? (apakah anda memahami?)","lang":"인도네시아어"},{"cat":"😊 이해·확인표현","indo":"Saya tidak tahu.","meaning":"모르겠어요 (saya tidak tahu)","lang":"인도네시아어"},{"cat":"😊 이해·확인표현","indo":"Aku tahu, i know","meaning":"알아 (aku tahu / i know)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 이해·확인표현","indo":"Aku tidak tahu, i dont know","meaning":"몰라 (aku tidak tahu / i don't know)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 이해표현","indo":"Saya mengerti. I Understand","meaning":"알겠습니다 (saya mengerti)","lang":"혼합(인도네시아어+영어)"},{"cat":"😊 일상·감정표현","indo":"santai aja","meaning":"천천히 편하게 해 (santai aja) - 위로·격려","lang":"인도네시아어"},{"cat":"😊 일상·감정표현","indo":"nggak masalah kok, santai aja, makasih juga ya","meaning":"괜찮아, 편하게 해, 고마워 - 일상 친근 표현","lang":"인도네시아어"},{"cat":"😊 일상·감정표현","indo":"aku senang = I'm happy","meaning":"나는 행복해 (aku senang)","lang":"인도네시아어"},{"cat":"😊 일상·동의표현","indo":"ya iya","meaning":"응 맞아 (ya iya)","lang":"인도네시아어"},{"cat":"😊 일상·동의표현","indo":"Jadi. sama. begitu","meaning":"그래서, 그러니까 (jadi)","lang":"인도네시아어"},{"cat":"😊 일상·동의표현","indo":"baiklah. sama begituuu. okay","meaning":"좋아, 알겠어 (baiklah)","lang":"인도네시아어"},{"cat":"😊 일상·동의표현","indo":"Baiklah.","meaning":"좋아요, 알겠어요 (baiklah)","lang":"인도네시아어"},{"cat":"😊 일상·동의표현","indo":"baiklah.","meaning":"좋아요 (baiklah)","lang":"인도네시아어"},{"cat":"😊 일상·문제상황","indo":"Ada yang salah.","meaning":"뭔가 잘못됐어요 (ada yang salah)","lang":"인도네시아어"},{"cat":"😊 일상·상태표현","indo":"baik. good, baik-baik. fine","meaning":"좋다, 괜찮다 (baik / baik-baik)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"Saya baik baik saja","meaning":"잘 지내요 (saya baik baik saja)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"sedang minum ? drinking?","meaning":"마시는 중이야? (sedang minum?)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"apa kabar.","meaning":"잘 지내요? (apa kabar)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"apa kabarmu.","meaning":"잘 지내요? (apa kabarmu)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"apa kabarmu hari ini.","meaning":"오늘 잘 지내요? (apa kabarmu hari ini)","lang":"인도네시아어"},{"cat":"😊 일상·안부표현","indo":"saya bagus 난 괜찮아","meaning":"나는 괜찮아 (saya bagus) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 일상·안부표현","indo":"sedang apa ya? 지금 뭐해?","meaning":"지금 뭐해? (sedang apa ya) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 일상·여가표현","indo":"Aku sedang menonton drama korea","meaning":"한국 드라마 보는 중 (aku sedang menonton drama korea)","lang":"인도네시아어"},{"cat":"😊 일상·예절표현","indo":"silakan = please","meaning":"어서오세요/please (silakan)","lang":"인도네시아어"},{"cat":"😊 칭찬·평가표현","indo":"Kamu baik.","meaning":"당신은 좋은 사람이에요 (kamu baik)","lang":"인도네시아어"},{"cat":"😊 희망·욕구표현","indo":"ingin 싶다. 원한다.","meaning":"원하다, ~하고 싶다 (ingin) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"😊 희망·의지표현","indo":"Mau bisa baru 나는 뭔가 새로운 것을 하고 싶다","meaning":"나는 새로운 걸 하고 싶다 (mau bisa baru) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"}]},
+{"theme":"🚗 이동·교통·방향","items":[{"cat":"🚗 거리·방향","indo":"jauh long","meaning":"멀다 (jauh / long)","lang":"혼합(인도네시아어+영어)"},{"cat":"🚗 거리·방향","indo":"dekat. short","meaning":"가깝다 (dekat / short)","lang":"혼합(인도네시아어+영어)"},{"cat":"🚗 거리·방향","indo":"Seberapa jauh itu? 얼마나 멀어?","meaning":"얼마나 멀어? (seberapa jauh itu) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"🚗 교통·안전","indo":"kurangi kecepatan 속도를 줄이다","meaning":"속도 줄여주세요 (kurangi kecepatan) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 교통·이동","indo":"Macet sekali","meaning":"교통체증이 심하다 (macet sekali)","lang":"인도네시아어"},{"cat":"🚗 교통·이동","indo":"macet = traffic jam","meaning":"교통체증 (macet = traffic jam)","lang":"인도네시아어"},{"cat":"🚗 교통·차량","indo":"Pernahkah Anda melihat hal seperti ini di dalam mobil?","meaning":"차 안에서 이런 걸 본 적 있어요? (pernahkah anda melihat...)","lang":"인도네시아어"},{"cat":"🚗 방향·길안내","indo":"Lurus","meaning":"직진 (lurus)","lang":"인도네시아어"},{"cat":"🚗 방향·길안내","indo":"lereng = naik","meaning":"오르막 (lereng = naik)","lang":"인도네시아어"},{"cat":"🚗 위치·방향표현","indo":"Itu di sana. it's over there","meaning":"저기 있어 (itu di sana)","lang":"혼합(인도네시아어+영어)"},{"cat":"🚗 위치·안부표현","indo":"Kamu ada di mana? 어디세요?","meaning":"어디세요? (kamu ada di mana) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·교통","indo":"cepat-cepat","meaning":"빨리빨리 (cepat-cepat) - 서두르기","lang":"인도네시아어"},{"cat":"🚗 이동·교통","indo":"pelan-pelan","meaning":"천천히 (pelan-pelan) - 속도 조절","lang":"인도네시아어"},{"cat":"🚗 이동·귀가","indo":"Aku baru mau pulang","meaning":"나 곧 집에 갈 거야 (aku baru mau pulang)","lang":"인도네시아어"},{"cat":"🚗 이동·도착표현","indo":"Sudah sampai 도착했어요","meaning":"도착했어요 (sudah sampai) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·방법","indo":"Berjalan kaki. On foot","meaning":"걸어서 (berjalan kaki)","lang":"혼합(인도네시아어+영어)"},{"cat":"🚗 이동·방향","indo":"kamu mau ke mana?","meaning":"어디 가? (kamu mau ke mana?)","lang":"인도네시아어"},{"cat":"🚗 이동·방향","indo":"Naik","meaning":"올라가다/타다 (naik)","lang":"인도네시아어"},{"cat":"🚗 이동·방향","indo":"turun, lereng","meaning":"내려가다/내리다 (turun)","lang":"인도네시아어"},{"cat":"🚗 이동·방향","indo":"keluar","meaning":"나가다 (keluar)","lang":"인도네시아어"},{"cat":"🚗 이동·속도","indo":"Cepat-cepat.","meaning":"빨리빨리 (cepat-cepat)","lang":"인도네시아어"},{"cat":"🚗 이동·속도","indo":"pelan-pelan","meaning":"천천히 (pelan-pelan)","lang":"인도네시아어"},{"cat":"🚗 이동·약속","indo":"Pergi ke mana kita hari ini?","meaning":"오늘 우리 어디 가? (pergi ke mana kita hari ini?)","lang":"인도네시아어"},{"cat":"🚗 이동·위치","indo":"Suda sampai 도착했어요(sampai 명사)","meaning":"도착했어요 (sudah sampai) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·위치","indo":"Suda tiba 이미 도착하다","meaning":"이미 도착했다 (sudah tiba) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·위치","indo":"Baru tiba 방금 도착하다","meaning":"방금 도착했다 (baru tiba) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·위치","indo":"Saya sudah sampai. 나는 이미 도착했다.","meaning":"나는 이미 도착했다 (saya sudah sampai) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🚗 이동·출발","indo":"Saya harus sekarang berangkat","meaning":"나는 지금 출발해야 한다 (saya harus sekarang berangkat)","lang":"인도네시아어"},{"cat":"🚗 이동·출발표현","indo":"Ayo pergi.","meaning":"자, 가자! (ayo pergi)","lang":"인도네시아어"}]},
+{"theme":"🤝 인사·감사·배려","items":[{"cat":"🤝 감사·응답표현","indo":"Sama sama.","meaning":"천만에요 (sama sama)","lang":"인도네시아어"},{"cat":"🤝 감사·응답표현","indo":"sama sama. you're welcome","meaning":"천만에요 (sama sama / you're welcome)","lang":"혼합(인도네시아어+영어)"},{"cat":"🤝 감사표현","indo":"Terima kasih kembali","meaning":"천만에요 (terima kasih kembali)","lang":"인도네시아어"},{"cat":"🤝 감사표현","indo":"terima kasih banyak","meaning":"정말 감사합니다 (terima kasih banyak)","lang":"인도네시아어"},{"cat":"🤝 감사표현","indo":"makasih","meaning":"고마워 (makasih) - 구어체","lang":"인도네시아어"},{"cat":"🤝 감사표현","indo":"Terima kasih atas bantuannya.","meaning":"도와줘서 감사해요 (terima kasih atas bantuannya)","lang":"인도네시아어"},{"cat":"🤝 감사표현","indo":"Terima kasih atas usaha Anda","meaning":"노력해줘서 고마워요 (terima kasih atas usaha anda)","lang":"인도네시아어"},{"cat":"🤝 감사표현","indo":"Banyak terima kasih 대단히 고맙습니다.","meaning":"정말 감사합니다 (banyak terima kasih) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🤝 도움·배려표현","indo":"Boleh mau bantuan?","meaning":"도움이 필요하세요? (boleh mau bantuan?)","lang":"인도네시아어"},{"cat":"🤝 도움·배려표현","indo":"tolong aku. help me","meaning":"도와줘 (tolong aku)","lang":"혼합(인도네시아어+영어)"},{"cat":"🤝 도움·배려표현","indo":"tolong banyak bantu saya 많이 도와주세요.","meaning":"많이 도와주세요 (tolong banyak bantu saya) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🤝 도움·배려표현","indo":"bantu 도움","meaning":"도움 (bantu) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🤝 도움·서비스표현","indo":"Ada yang bisa saya bantu?","meaning":"도와드릴게 있나요? (ada yang bisa saya bantu?)","lang":"인도네시아어"},{"cat":"🤝 도움요청표현","indo":"Boleh minta bantuan?","meaning":"도움 요청해도 될까요? (boleh minta bantuan?)","lang":"인도네시아어"},{"cat":"🤝 양보·배려표현","indo":"Kamu duluan.","meaning":"먼저 하세요 (kamu duluan)","lang":"인도네시아어"},{"cat":"🤝 양보·배려표현","indo":"kamu ayo duluan saja 그냥 너 먼저 가","meaning":"그냥 너 먼저 가 (kamu ayo duluan saja) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🤝 인사·작별표현","indo":"Sampai jumpa lusa, besok","meaning":"모레·내일 봐요 (sampai jumpa lusa, besok)","lang":"인도네시아어"},{"cat":"🤝 인사·작별표현","indo":"sebelum kamu pergi","meaning":"가기 전에 (sebelum kamu pergi)","lang":"인도네시아어"},{"cat":"🤝 인사·작별표현","indo":"selamat tinggal. good bye","meaning":"잘 있어, 안녕히 계세요 (selamat tinggal)","lang":"인도네시아어"},{"cat":"🤝 인사·작별표현","indo":"Saya pergi dulu","meaning":"먼저 갈게요 (saya pergi dulu)","lang":"인도네시아어"},{"cat":"🤝 인사·작별표현","indo":"Selamat tinggal.","meaning":"잘 있어요 (selamat tinggal)","lang":"인도네시아어"},{"cat":"🤝 인사·작별표현","indo":"Aku akan pergi.","meaning":"나 갈게요 (aku akan pergi)","lang":"인도네시아어"},{"cat":"🤝 인사·작별표현","indo":"Selamat tingal.","meaning":"잘 있어요 (selamat tinggal)","lang":"인도네시아어"},{"cat":"🤝 인사·작별표현","indo":"Selamat pergi.","meaning":"잘 가요 (selamat pergi)","lang":"인도네시아어"},{"cat":"🤝 인사·재회표현","indo":"lama tak jumpa 오랫만이네요","meaning":"오랜만이에요 (lama tak jumpa)","lang":"인도네시아어"},{"cat":"🤝 인사·재회표현","indo":"lama tak jumpa 오랫만이네요.","meaning":"오랜만이에요 (lama tak jumpa) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🤝 자기소개표현","indo":"Nama saya Joe.","meaning":"제 이름은 Joe입니다 (nama saya Joe)","lang":"인도네시아어"},{"cat":"🤝 자기소개표현","indo":"Siapa namamu.","meaning":"이름이 뭐예요? (siapa namamu)","lang":"인도네시아어"}]},
+{"theme":"📅 날짜·시간·일정","items":[{"cat":"📅 날짜·시간표현","indo":"minggu lalu","meaning":"지난주 (minggu lalu)","lang":"인도네시아어"},{"cat":"📅 날짜·시간표현","indo":"minggu lalu/ini/depan","meaning":"지난주/이번주/다음주 (minggu lalu/ini/depan)","lang":"인도네시아어"},{"cat":"📅 날짜·시간표현","indo":"Akhir pekan lalu","meaning":"지난 주말 (akhir pekan lalu)","lang":"인도네시아어"},{"cat":"📅 날짜·시간표현","indo":"Akhir pekan depan","meaning":"다음 주말 (akhir pekan depan)","lang":"인도네시아어"},{"cat":"📅 날짜·시간표현","indo":"kemarin, hari ini, besok, lusa","meaning":"어제/오늘/내일/모레 (kemarin/hari ini/besok/lusa)","lang":"인도네시아어"},{"cat":"📅 날짜·시간표현","indo":"Akhir pekan ini 이번 주말","meaning":"이번 주말 (akhir pekan ini) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📅 날짜·시간표현","indo":"Minggu ini 이번주","meaning":"이번 주 (minggu ini) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📅 날짜·시간표현","indo":"Minggu depan 다음주","meaning":"다음 주 (minggu depan) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📅 날짜·시간표현","indo":"Minggu lalu 지난주","meaning":"지난 주 (minggu lalu) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📅 날짜·일정","indo":"akan libur","meaning":"곧 휴가다 (akan libur)","lang":"인도네시아어"},{"cat":"📅 날짜·일정","indo":"akan berlibur","meaning":"곧 여행/휴가 갈 것이다 (akan berlibur)","lang":"인도네시아어"},{"cat":"📅 날짜·일정","indo":"Kapan kamu akan berlibur?","meaning":"언제 휴가 가? (kapan kamu akan berlibur?)","lang":"인도네시아어"},{"cat":"📅 날짜·일정","indo":"libur. liburan","meaning":"휴일/휴가 (libur / liburan)","lang":"인도네시아어"},{"cat":"📅 시간·날짜표현","indo":"Kadang-kadang hari itu 그날 언젠간","meaning":"그날 언젠가 (kadang-kadang hari itu) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📅 시간·날짜표현","indo":"Kadang-kadang 때때로","meaning":"때때로 (kadang-kadang) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📅 시간·날짜표현","indo":"hari itu 그날","meaning":"그날 (hari itu) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📅 약속·일정","indo":"Mari kita pergi besok jam 10","meaning":"내일 10시에 같이 가자 (mari kita pergi besok jam 10)","lang":"인도네시아어"},{"cat":"📅 약속·일정","indo":"Belum ada janji. 아직 약속이 없다.","meaning":"아직 약속이 없다 (belum ada janji) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"📅 요일표현","indo":"hari senin","meaning":"월요일 - hari senin","lang":"혼합(한국어+인도네시아어)"},{"cat":"📅 요일표현","indo":"hari selasa","meaning":"화요일 - hari selasa","lang":"혼합(한국어+인도네시아어)"},{"cat":"📅 요일표현","indo":"hari rabu","meaning":"수요일 - hari rabu","lang":"혼합(한국어+인도네시아어)"},{"cat":"📅 요일표현","indo":"hari kamis","meaning":"목요일 - hari kamis","lang":"혼합(한국어+인도네시아어)"},{"cat":"📅 요일표현","indo":"hari jumat","meaning":"금요일 - hari jumat","lang":"혼합(한국어+인도네시아어)"},{"cat":"📅 요일표현","indo":"hari sabtu","meaning":"토요일 - hari sabtu","lang":"혼합(한국어+인도네시아어)"},{"cat":"📅 요일표현","indo":"hari minggu","meaning":"일요일 - hari minggu","lang":"혼합(한국어+인도네시아어)"}]},
+{"theme":"🍽️ 식당·음식·식사","items":[{"cat":"🍽️ 식당·식기","indo":"sumpit 젖가락","meaning":"젓가락 (sumpit) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🍽️ 식당·음식","indo":"kaldu","meaning":"육수 (kaldu) - 음식 재료","lang":"인도네시아어"},{"cat":"🍽️ 식당·음식","indo":"kuah","meaning":"국물 (kuah) - 음식 재료","lang":"인도네시아어"},{"cat":"🍽️ 식당·음식","indo":"Ini ada supnya 이거 국물이 있다고? (Is this soup)","meaning":"국물이 있어? (ini ada supnya) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🍽️ 식당·음식주문","indo":"Telur rebus matang","meaning":"완숙 계란 (telur rebus matang)","lang":"인도네시아어"},{"cat":"🍽️ 식당·음식주문","indo":"Selalu setengah matang","meaning":"항상 반숙으로 (selalu setengah matang)","lang":"인도네시아어"},{"cat":"🍽️ 식당·음식주문","indo":"Telur Setengah matang. Egg Half-baked 계란반숙","meaning":"반숙 계란 (telur setengah matang) - 혼합 메모","lang":"혼합(인도네시아어+영어+한국어)"},{"cat":"🍽️ 식당·주문","indo":"Tidak asin","meaning":"짜지 않게 해주세요 (tidak asin)","lang":"인도네시아어"},{"cat":"🍽️ 식당·주문","indo":"Tolong bagi menjadi dua = Tolong bagi dua","meaning":"둘로 나눠주세요 (tolong bagi menjadi dua)","lang":"인도네시아어"},{"cat":"🍽️ 식당·주문","indo":"Untuk di sini","meaning":"여기서 먹을게요 (untuk di sini)","lang":"인도네시아어"},{"cat":"🍽️ 식당·주문","indo":"Satu kaki ayam, satu sayap","meaning":"닭발 하나, 닭날개 하나 (satu kaki ayam, satu sayap)","lang":"인도네시아어"},{"cat":"🍽️ 식당·주문","indo":"Tolong dua bagi 두개로 나누어 주세요","meaning":"두 개로 나눠주세요 (tolong dua bagi) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🍽️ 식당·주문","indo":"Telur goreng 계란후라이","meaning":"계란 후라이 (telur goreng) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🍽️ 식사·동행","indo":"Hanya makan bersama ya 그냥 같이 먹어","meaning":"그냥 같이 먹어 (hanya makan bersama ya) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🍽️ 식사·상태표현","indo":"Saya lapar","meaning":"나 배고파 (saya lapar)","lang":"인도네시아어"},{"cat":"🍽️ 식사·상태표현","indo":"Saya kenyang","meaning":"나 배불러 (saya kenyang)","lang":"인도네시아어"},{"cat":"🍽️ 식사·상태표현","indo":"saya kenyang","meaning":"배불러요 (saya kenyang)","lang":"인도네시아어"},{"cat":"🍽️ 식사·안부표현","indo":"Sudah makan? udah makan?","meaning":"밥 먹었어? (sudah makan?)","lang":"인도네시아어"},{"cat":"🍽️ 식사·음주","indo":"Saya minum sedikit saat makan malam.","meaning":"저녁식사 때 조금 마셨다 (saya minum sedikit saat makan malam)","lang":"인도네시아어"},{"cat":"🍽️ 식사표현","indo":"Saya bisa makan sekarang","meaning":"나 지금 먹을 수 있어요 (saya bisa makan sekarang)","lang":"인도네시아어"}]},
+{"theme":"👥 인물·호칭·관계","items":[{"cat":"👥 동반·동행표현","indo":"Dengan siapa? 누구하고? who with?","meaning":"누구하고? (dengan siapa) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"👥 사회·신분표현","indo":"Orang kaya, Orang miskin","meaning":"부자(orang kaya), 가난한 사람(orang miskin)","lang":"인도네시아어"},{"cat":"👥 인물·관계","indo":"suaminya yang baru","meaning":"새 남편 (suaminya yang baru)","lang":"인도네시아어"},{"cat":"👥 인물·관계","indo":"istrinya","meaning":"그의 아내 (istrinya)","lang":"인도네시아어"},{"cat":"👥 인물·호칭","indo":"seorang gadis = wanita","meaning":"젊은 여성/아가씨 (seorang gadis = wanita)","lang":"인도네시아어"},{"cat":"👥 인물·확인","indo":"Siapa orang ini?","meaning":"이 사람 누구야? (siapa orang ini?)","lang":"인도네시아어"},{"cat":"👥 인물·확인","indo":"Siapa? 누가요?","meaning":"누가요? (siapa) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"👥 인원·수량","indo":"Berapa orang. how many people","meaning":"몇 명이에요? (berapa orang)","lang":"혼합(인도네시아어+영어)"},{"cat":"👥 인칭·집단표현","indo":"Kita.","meaning":"우리 (kita)","lang":"인도네시아어"},{"cat":"👥 직업·호칭","indo":"guru. teacher","meaning":"선생님 (guru / teacher)","lang":"혼합(인도네시아어+영어)"},{"cat":"👥 직업·호칭","indo":"tuan. mister. 아저씨","meaning":"아저씨 (tuan / mister) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"👥 호칭·존대표현","indo":"mba mas pak.","meaning":"언니/오빠/아저씨 (mba/mas/pak)","lang":"인도네시아어"}]},
+{"theme":"🛒 쇼핑·가격·구매","items":[{"cat":"🛒 상점·장소","indo":"Toko Roti","meaning":"빵집 (toko roti)","lang":"인도네시아어"},{"cat":"🛒 쇼핑·가격","indo":"Sangat murah.","meaning":"매우 저렴하다 (sangat murah)","lang":"인도네시아어"},{"cat":"🛒 쇼핑·가격","indo":"Mahal","meaning":"비싸다 (mahal)","lang":"인도네시아어"},{"cat":"🛒 쇼핑·가격","indo":"Tarifnya sama 800rb","meaning":"요금이 80만 루피아로 같아요 (tarifnya sama 800rb)","lang":"인도네시아어"},{"cat":"🛒 쇼핑·가격","indo":"Sangat mahal. very expensive","meaning":"매우 비싸다 (sangat mahal)","lang":"혼합(인도네시아어+영어)"},{"cat":"🛒 쇼핑·가격흥정","indo":"Yang Termurah","meaning":"가장 저렴한 것 (yang termurah)","lang":"인도네시아어"},{"cat":"🛒 쇼핑·가격흥정","indo":"Yang Termahal","meaning":"가장 비싼 것 (yang termahal)","lang":"인도네시아어"},{"cat":"🛒 쇼핑·가격흥정","indo":"berapa harga?","meaning":"가격이 얼마예요? (berapa harga?)","lang":"인도네시아어"},{"cat":"🛒 쇼핑·배송","indo":"Diskon ongkos kirim 배송비할인","meaning":"배송비 할인 (diskon ongkos kirim) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🛒 쇼핑·탐색","indo":"susah di cari kecil(besar)","meaning":"찾기 어렵다, 작다/크다 표현","lang":"인도네시아어"},{"cat":"🛒 쇼핑·탐색","indo":"cari","meaning":"찾다 (cari)","lang":"인도네시아어"},{"cat":"🛒 포장·주문","indo":"Untuk dibawa","meaning":"포장해 가세요 (untuk dibawa)","lang":"인도네시아어"}]},
+{"theme":"⏰ 시간·약속","items":[{"cat":"⏰ 시간·약속","indo":"Harap kembali jam 3 sore hari ini.","meaning":"오늘 오후 3시까지 돌아와 주세요","lang":"인도네시아어"},{"cat":"⏰ 시간·약속","indo":"Kita akan kembali jam 5 sore","meaning":"우리는 오후 5시에 돌아올 것입니다","lang":"인도네시아어"},{"cat":"⏰ 시간·약속","indo":"Harap Anda akan kembali jam 5 sore hari ini","meaning":"오늘 오후 5시까지 돌아오시길 바랍니다","lang":"인도네시아어"},{"cat":"⏰ 시간·약속","indo":"Dari jam 10 pagi hingga jam 5 sore.","meaning":"오전 10시부터 오후 5시까지","lang":"인도네시아어"},{"cat":"⏰ 시간·일정표현","indo":"berapa lama?","meaning":"얼마나 오래? (berapa lama?)","lang":"인도네시아어"},{"cat":"⏰ 시간표현","indo":"mulai jam 5 sore","meaning":"오후 5시부터 시작 (mulai jam 5 sore)","lang":"인도네시아어"},{"cat":"⏰ 시간표현","indo":"hingga jam 6 sore","meaning":"오후 6시까지 (hingga jam 6 sore)","lang":"인도네시아어"},{"cat":"⏰ 시간표현","indo":"Mulai jam 2","meaning":"2시부터 시작 (mulai jam 2)","lang":"인도네시아어"},{"cat":"⏰ 시간표현","indo":"jam berapa? 몇시?","meaning":"몇 시? (jam berapa) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"⏰ 시간표현·어휘","indo":"jam dua tidak sama dua jam","meaning":"2시와 2시간은 달라요 (jam dua ≠ dua jam)","lang":"인도네시아어"}]},
+{"theme":"🏨 호텔·숙박·서비스","items":[{"cat":"🏨 예약·도움","indo":"Besok aku bantu reservasi. 내일 예약 도와줄께","meaning":"내일 예약 도와줄게 (besok aku bantu reservasi) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🏨 호텔·서비스","indo":"Tolong saya asbak","meaning":"재떨이 갖다 주세요 (tolong saya asbak)","lang":"인도네시아어"},{"cat":"🏨 호텔·서비스","indo":"Handuk basah 물수건","meaning":"물수건 (handuk basah) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🏨 호텔·숙박","indo":"Berangkat dari Ascort Hotell 10:10","meaning":"Ascott 호텔에서 10:10 출발","lang":"인도네시아어"},{"cat":"🏨 호텔·예약","indo":"reservasi","meaning":"예약 (reservasi)","lang":"인도네시아어"},{"cat":"🏨 호텔·위치","indo":"Letaknya di lobi.","meaning":"로비에 있어요 (letaknya di lobi)","lang":"인도네시아어"},{"cat":"🏨 호텔·위치","indo":"Itu ada di ascott","meaning":"그것은 아스콧에 있어요 (itu ada di ascott)","lang":"인도네시아어"},{"cat":"🏨 호텔·휴게","indo":"Tempat istirahat","meaning":"휴게 장소 (tempat istirahat)","lang":"인도네시아어"}]},
+{"theme":"🎨 기타표현","items":[{"cat":"🌅 인사·시간대표현","indo":"Selamat sore.","meaning":"안녕하세요, 좋은 오후 (selamat sore)","lang":"인도네시아어"},{"cat":"🌙 인사·취침표현","indo":"Selamat tidur.","meaning":"잘 자요 (selamat tidur)","lang":"인도네시아어"},{"cat":"🌙 일상·안부표현","indo":"Kamu sudah tidur? 자고 있어?","meaning":"자고 있어? (kamu sudah tidur) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🎨 색상·선택표현","indo":"putih atau merah.","meaning":"흰색 아니면 빨간색? (putih atau merah)","lang":"인도네시아어"},{"cat":"🎭 복장·의상","indo":"kostum.","meaning":"의상/복장 (kostum)","lang":"인도네시아어"},{"cat":"🏔️ 방향·지형표현","indo":"pendakian","meaning":"등반/오르막 (pendakian)","lang":"인도네시아어"},{"cat":"📏 수량·거리표현","indo":"Berapa meter","meaning":"몇 미터? (berapa meter)","lang":"인도네시아어"}]},
+{"theme":"🎉 인사·축하·덕담","items":[{"cat":"🎉 인사·덕담표현","indo":"Semoga harimu menyenangkang.","meaning":"좋은 하루 되세요 (semoga harimu menyenangkan)","lang":"인도네시아어"},{"cat":"🎉 인사·덕담표현","indo":"Memiliki Hari yang baik. have a good day","meaning":"좋은 하루 되세요 (memiliki hari yang baik)","lang":"혼합(인도네시아어+영어)"},{"cat":"🎉 인사·덕담표현","indo":"semoga harimu menyenangkan 좋은 하루 되세요","meaning":"좋은 하루 되세요 (semoga harimu menyenangkan) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🎉 인사·축하표현","indo":"selamat Lebaran~","meaning":"이슬람 명절 인사 (selamat lebaran)","lang":"인도네시아어"},{"cat":"🎉 인사·축하표현","indo":"slmt. sama selamat","meaning":"축하해 (selamat) - 약어 메모","lang":"인도네시아어"},{"cat":"🎉 인사·축하표현","indo":"selamat jular","meaning":"축하해요 (selamat jalan - 오타: jular)","lang":"인도네시아어"},{"cat":"🎉 인사·축하표현","indo":"Selamat bersenang-senang = have a good time","meaning":"즐거운 시간 되세요 (selamat bersenang-senang)","lang":"혼합(인도네시아어+영어)"}]},
+{"theme":"💼 업무·직장","items":[{"cat":"💼 업무·명함","indo":"Kartu bisnis","meaning":"명함 (kartu bisnis)","lang":"인도네시아어"},{"cat":"💼 업무·상황","indo":"Apakah kamu sibuk? sama. sibuk kan","meaning":"바쁘세요? (apakah kamu sibuk?)","lang":"인도네시아어"},{"cat":"💼 업무·위치","indo":"Saya sudah di kantor. Sy sdh di kantor","meaning":"나는 이미 사무실에 있다 (saya sudah di kantor)","lang":"인도네시아어"},{"cat":"💼 업무·일상표현","indo":"Ya. Aku pergi bekerja. I go to work","meaning":"네, 나는 일하러 가요 (ya, aku pergi bekerja)","lang":"혼합(인도네시아어+영어)"},{"cat":"💼 업무·직장","indo":"Saya sekarang berada di kantor","meaning":"나는 지금 사무실에 있다 (saya sekarang berada di kantor)","lang":"인도네시아어"},{"cat":"💼 업무·진행표현","indo":"Melanjutkan. continue","meaning":"계속하다 (melanjutkan / continue)","lang":"혼합(인도네시아어+영어)"},{"cat":"💼 업무·칭찬","indo":"Iya Selamat bekerja. yes good job","meaning":"잘했어, 수고했어 (iya selamat bekerja)","lang":"혼합(인도네시아어+영어)"}]},
+{"theme":"✈️ 여행·출발·도착","items":[{"cat":"✈️ 여행·관광","indo":"Berwisata","meaning":"관광하다, 여행하다 (berwisata)","lang":"인도네시아어"},{"cat":"✈️ 여행·이동","indo":"pulang di korea","meaning":"한국으로 귀국하다 (pulang di korea)","lang":"인도네시아어"},{"cat":"✈️ 여행·이동","indo":"pulang pergi","meaning":"왕복 (pulang pergi)","lang":"인도네시아어"},{"cat":"✈️ 여행·이동","indo":"Berangkat vs. Tiba","meaning":"출발(berangkat) vs 도착(tiba) 비교","lang":"인도네시아어"},{"cat":"✈️ 이동·일정","indo":"Berangkat / Tiba 09.30","meaning":"출발/도착 09:30","lang":"인도네시아어"},{"cat":"✈️ 이동·출발","indo":"Berangkat jam 9","meaning":"9시에 출발 (berangkat jam 9)","lang":"인도네시아어"}]},
+{"theme":"🏠 일상·주거","items":[{"cat":"🏠 일상·생활","indo":"Selesai mandi","meaning":"샤워 끝났다 (selesai mandi)","lang":"인도네시아어"},{"cat":"🏠 일상·위치표현","indo":"Aku di rumah","meaning":"나는 집에 있다 (aku di rumah)","lang":"인도네시아어"},{"cat":"🏠 일상·지시표현","indo":"Tutup saja. Just close it. 그냥 닫으세요","meaning":"그냥 닫아 (tutup saja) - 혼합 메모","lang":"혼합(인도네시아어+한국어+영어)"},{"cat":"🏠 주거·공간표현","indo":"rumah / ruang","meaning":"집/방 (rumah/ruang)","lang":"인도네시아어"},{"cat":"🏠 주거·위치표현","indo":"Di mana rumahmu","meaning":"집이 어디야? (di mana rumahmu)","lang":"인도네시아어"}]},
+{"theme":"💪 칭찬·격려","items":[{"cat":"💪 감탄·칭찬표현","indo":"kuat sekali","meaning":"정말 강하다/대단하다 (kuat sekali)","lang":"인도네시아어"},{"cat":"💪 격려·응원표현","indo":"Semangat","meaning":"파이팅! 힘내! (semangat)","lang":"인도네시아어"},{"cat":"💪 격려·응원표현","indo":"semangat untuk hari ini.","meaning":"오늘도 파이팅 (semangat untuk hari ini)","lang":"인도네시아어"},{"cat":"💪 칭찬·격려표현","indo":"Kerja bagus 잘했어","meaning":"잘했어 (kerja bagus) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"💪 칭찬·능력표현","indo":"pintar 똑똑하다. 영리하다","meaning":"똑똑하다 (pintar) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"}]},
+{"theme":"😰 어려움·피로·감정","items":[{"cat":"😰 감정·어려움표현","indo":"Sangat sulit. very difficult","meaning":"매우 어렵다 (sangat sulit)","lang":"혼합(인도네시아어+영어)"},{"cat":"😰 감정·피로표현","indo":"Hari ini aku sangat capek","meaning":"오늘 정말 피곤하다 (hari ini aku sangat capek)","lang":"인도네시아어"},{"cat":"😰 감정·피로표현","indo":"Aku sangat lelah hari ini. I'm very tired today","meaning":"오늘 정말 피곤하다 (aku sangat lelah hari ini)","lang":"혼합(인도네시아어+영어)"},{"cat":"😰 감정·피로표현","indo":"Saya lelar 피곤해요","meaning":"피곤해요 (saya lelah) - 혼합 메모 (오타: lelar)","lang":"혼합(인도네시아어+한국어)"},{"cat":"😰 감정표현","indo":"takut","meaning":"무섭다 (takut)","lang":"인도네시아어"}]},
+{"theme":"🌦️ 날씨·자연","items":[{"cat":"🌦️ 날씨표현","indo":"hari ini sangat panas","meaning":"오늘 정말 덥다 (hari ini sangat panas)","lang":"인도네시아어"},{"cat":"🌦️ 날씨표현","indo":"Sepertinya akan turun hujan","meaning":"비가 올 것 같다 (sepertinya akan turun hujan)","lang":"인도네시아어"},{"cat":"🌦️ 날씨표현","indo":"hujan.","meaning":"비 (hujan)","lang":"인도네시아어"},{"cat":"🌦️ 날씨표현","indo":"Hujan baru saja mulai turun 방금 비가 내리기 시작했어요","meaning":"방금 비가 내리기 시작했어요 (hujan baru saja mulai turun) - 혼합","lang":"혼합(인도네시아어+한국어)"}]},
+{"theme":"🙏 요청·사과·기원","items":[{"cat":"🙏 사과·양해표현","indo":"Maaf, saya terlambat.","meaning":"죄송해요, 늦었어요 (maaf, saya terlambat)","lang":"인도네시아어"},{"cat":"🙏 요청·공손표현","indo":"mohon. please","meaning":"부탁드립니다 (mohon / please)","lang":"혼합(인도네시아어+영어)"},{"cat":"🙏 요청·공손표현","indo":"silakan 제발","meaning":"제발, 어서 (silakan) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"},{"cat":"🙏 희망·기원표현","indo":"semoga 바라건대","meaning":"바라건대, 바라다 (semoga) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"}]},
+{"theme":"☕ 카페·음료","items":[{"cat":"☕ 카페·음료","indo":"Boleh isi ulang?","meaning":"리필 돼요? (boleh isi ulang?)","lang":"인도네시아어"},{"cat":"☕ 카페·음료주문","indo":"saya mau kopi. sama. saya ingin kopi","meaning":"커피 마시고 싶다 (saya mau kopi)","lang":"인도네시아어"},{"cat":"☕ 카페·음료주문","indo":"mau kopi?","meaning":"커피 마실래? (mau kopi?)","lang":"인도네시아어"}]},
+{"theme":"👨‍👩‍👧 가족·호칭","items":[{"cat":"👨‍👩‍👧 가족·호칭","indo":"putra dan putri","meaning":"아들(putra)과 딸(putri) 가족 호칭","lang":"인도네시아어"},{"cat":"👨‍👩‍👧 가족·호칭","indo":"dengan putra","meaning":"아들과 함께 (dengan putra)","lang":"인도네시아어"},{"cat":"👨‍👩‍👧 가족·호칭","indo":"ayah ibu anak laki-laki anak perempuan","meaning":"아버지·어머니·아들·딸 - 가족 호칭 전체","lang":"인도네시아어"}]},
+{"theme":"⏳ 기다림·대기","items":[{"cat":"⏳ 기다림·대기표현","indo":"Tunggu = Tunggu sebentar = Tunggu ya.","meaning":"잠깐만요 (tunggu / tunggu sebentar)","lang":"인도네시아어"},{"cat":"⏳ 기다림·대기표현","indo":"tunggu ya, wating please","meaning":"잠깐 기다려주세요 (tunggu)","lang":"혼합(인도네시아어+영어)"}]},
+{"theme":"⛳ 골프·스포츠","items":[{"cat":"⛳ 골프·스포츠","indo":"Ketika datang ke klub golf Garding Raya?","meaning":"Gading Raya 골프장 방문 시간 묻기","lang":"인도네시아어"},{"cat":"⛳ 골프·스포츠","indo":"sama. Kapan masuk ke golf club Garding Raya?","meaning":"Gading Raya 골프클럽 입장 시간 묻기","lang":"인도네시아어"}]},
+{"theme":"🌡️ 날씨·온도","items":[{"cat":"🌡️ 날씨·온도표현","indo":"Hari ini sangat panas","meaning":"오늘 정말 덥다 (hari ini sangat panas)","lang":"인도네시아어"},{"cat":"🌡️ 날씨·온도표현","indo":"Panas sekali 엄청 덥네","meaning":"엄청 덥네 (panas sekali) - 혼합 메모","lang":"혼합(인도네시아어+한국어)"}]},
+{"theme":"💆 마사지·스파","items":[{"cat":"💆 마사지·스파","indo":"Saya mau pijat tubuh","meaning":"전신 마사지 받고 싶다 (saya mau pijat tubuh)","lang":"인도네시아어"},{"cat":"💆 마사지·스파","indo":"Saya mau pijat kaki.","meaning":"발 마사지 받고 싶다 (saya mau pijat kaki)","lang":"인도네시아어"}]},
+{"theme":"📱 메시지·연락","items":[{"cat":"📱 메시지·연락","indo":"tolong kirim SMS atau Email","meaning":"SMS/이메일 발송 요청 표현","lang":"인도네시아어"},{"cat":"📱 메시지·연락","indo":"saya kirimkan segera. I will send it soon","meaning":"곧 보낼게요 (saya kirimkan segera)","lang":"혼합(인도네시아어+영어)"}]},
+{"theme":"🚬 흡연·소지품","items":[{"cat":"🚬 규칙·금지","indo":"Boleh merokok di sini?","meaning":"여기서 담배 피워도 돼요? (boleh merokok di sini?)","lang":"인도네시아어"},{"cat":"🚬 물품·소지품","indo":"ASBAK.","meaning":"재떨이 (asbak)","lang":"인도네시아어"}]},
+{"theme":"🏥 건강·몸상태","items":[{"cat":"🏥 건강·몸상태","indo":"Sakit","meaning":"아프다 (sakit)","lang":"인도네시아어"}]},
+{"theme":"🔗 참고링크","items":[{"cat":"🔗 참고링크","indo":"https://naver.me/x7BeC2Eq","meaning":"네이버 외부 링크 (참고 자료)","lang":"URL/링크"}]},
+{"theme":"😤 감탄·속어","items":[{"cat":"😤 감탄·속어표현","indo":"sial. 18","meaning":"이런! 젠장! (sial) - 구어체 감탄","lang":"인도네시아어"}]},
+{"theme":"🚫 금지·제한","items":[{"cat":"🚫 금지·제한표현","indo":"jangan tanya. usah (ber)tanya. Do not ASK.","meaning":"묻지 마세요 (jangan tanya)","lang":"혼합(인도네시아어+영어)"}]}];
+let lf='all',og=new Set();
+function gp(k){if(P[k])return P[k];const lo=k.toLowerCase();for(const[a,b]of Object.entries(P)){if(a.toLowerCase()===lo)return b;}return ''}
+function glc(l){return l==='인도네시아어'?'lid':l==='한국어'?'lko':l.includes('혼합')?'lmix':'lid'}
+function gll(l){return l==='인도네시아어'?'ID':l==='한국어'?'KO':l.includes('혼합')?'혼합':'기타'}
+function fi(items){
   const q=document.getElementById('search').value.toLowerCase();
   return items.filter(it=>{
-    const langOk=langFilter==='all'||(langFilter==='id'&&it.lang==='인도네시아어')||(langFilter==='mix'&&it.lang.includes('혼합'));
-    const textOk=!q||it.indo.toLowerCase().includes(q)||it.meaning.toLowerCase().includes(q);
-    return langOk&&textOk;
+    const lok=lf==='all'||(lf==='id'&&it.lang==='인도네시아어')||(lf==='mix'&&it.lang.includes('혼합'));
+    const pr=gp(it.indo).toLowerCase();
+    const tok=!q||it.indo.toLowerCase().includes(q)||it.meaning.toLowerCase().includes(q)||pr.includes(q);
+    return lok&&tok;
   });
 }
 function hl(t){
   const q=document.getElementById('search').value;
-  if(!q) return t;
-  const re=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+  if(!q)return t;
+  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
   return t.replace(re,'<mark>$1</mark>');
 }
-function setLang(btn,val){
-  langFilter=val;
-  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  render();
-}
-function toggleAll(open){
-  RAW.filter(g=>filterItems(g.items).length>0).forEach(g=>{
-    open?openGroups.add(g.theme):openGroups.delete(g.theme);
-  });
-  render();
-}
-function toggleGroup(theme){
-  openGroups.has(theme)?openGroups.delete(theme):openGroups.add(theme);
-  render();
-}
+function setLang(btn,val){lf=val;document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();}
+function toggleAll(open){RAW.filter(g=>fi(g.items).length>0).forEach(g=>{open?og.add(g.theme):og.delete(g.theme)});render();}
+function toggleGroup(theme){og.has(theme)?og.delete(theme):og.add(theme);render();}
 function render(){
   const q=document.getElementById('search').value;
-  let totalG=0,totalI=0,html='';
+  let tg=0,ti=0,html='';
   RAW.forEach(g=>{
-    const items=filterItems(g.items);
-    if(!items.length) return;
-    totalG++;totalI+=items.length;
-    const isOpen=openGroups.has(g.theme)||q.length>0;
-    const emoji=g.theme.split(' ')[0];
-    const title=g.theme.slice(emoji.length).trim();
-    html+=`<div class="group-card">
-      <div class="group-header" onclick="toggleGroup('${g.theme.replace(/'/g,"\\'")}')">
-        <span class="g-emoji">${emoji}</span>
-        <span class="g-title">${title}</span>
-        <span class="g-badge">${items.length}</span>
-        <svg class="chevron${isOpen?' open':''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
-      </div>
-      <div class="group-body${isOpen?' open':''}">
-        <div class="col-head"><span>인도네시아어</span><span>해석 및 맥락</span><span>언어</span></div>`;
-    const byCat={};
-    items.forEach(it=>{(byCat[it.cat]||(byCat[it.cat]=[])).push(it)});
-    Object.entries(byCat).forEach(([cat,ci])=>{
-      if(Object.keys(byCat).length>1) html+=`<div class="subcat-label">${cat}</div>`;
+    const items=fi(g.items);if(!items.length)return;
+    tg++;ti+=items.length;
+    const isOpen=og.has(g.theme)||q.length>0;
+    const em=g.theme.split(' ')[0];
+    const tit=g.theme.slice(em.length).trim();
+    html+=`<div class="gc"><div class="gh" onclick="toggleGroup('${g.theme.replace(/'/g,"\\'")}')"><span class="ge">${em}</span><span class="gt">${tit}</span><span class="gbg">${items.length}</span><svg class="chev${isOpen?' open':''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></div><div class="gbody${isOpen?' open':''}"><div class="ch"><span>인도네시아어</span><span>한글 발음</span><span>해석</span><span>언어</span></div>`;
+    const bc={};items.forEach(it=>{(bc[it.cat]||(bc[it.cat]=[])).push(it)});
+    Object.entries(bc).forEach(([cat,ci])=>{
+      if(Object.keys(bc).length>1)html+=`<div class="sl">${cat}</div>`;
       ci.forEach(it=>{
-        html+=`<div class="item-row">
-          <div class="cell indo">${hl(it.indo)}</div>
-          <div class="cell meaning">${hl(it.meaning)}</div>
-          <div class="cell lang-col"><span class="lang-pill ${getLangClass(it.lang)}">${getLangLabel(it.lang)}</span></div>
-        </div>`;
+        const pr=gp(it.indo);
+        html+=`<div class="ir"><div class="cell id">${hl(it.indo)}</div><div class="cell pr">${pr?hl(pr):'—'}</div><div class="cell mn">${hl(it.meaning)}</div><div class="cell lc"><span class="lp ${glc(it.lang)}">${gll(it.lang)}</span></div></div>`;
       });
     });
     html+=`</div></div>`;
   });
-  if(!html) html=`<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>검색 결과가 없습니다.</div>`;
+  if(!html)html='<div class="empty">검색 결과가 없습니다.</div>';
   document.getElementById('groups').innerHTML=html;
-  document.getElementById('stats').innerHTML=`
-    <span class="stat-item"><span class="stat-val">${totalG}</span> 카테고리</span>
-    <span class="stat-item"><span class="stat-val">${totalI}</span> 표현</span>
-    <span class="stat-item">${langFilter==='all'?'전체 언어':langFilter==='mix'?'혼합 항목만':'인도네시아어만'}</span>
-  `;
+  document.getElementById('stats').innerHTML=`<span>카테고리 <span class="sv">${tg}</span>개</span><span>표현 <span class="sv">${ti}</span>개</span><span>${lf==='all'?'전체 언어':lf==='mix'?'혼합 항목만':'인도네시아어만'}</span>`;
 }
 render();
 </script>
