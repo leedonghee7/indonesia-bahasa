@@ -22,7 +22,6 @@
 html{scroll-behavior:smooth}
 body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.6}
 
-/* ── Header ── */
 header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:200;box-shadow:0 1px 4px rgba(0,0,0,.04)}
 .hi{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:12px 0}
 .logo{font-size:17px;font-weight:600;color:var(--text);white-space:nowrap;display:flex;align-items:center;gap:8px}
@@ -32,7 +31,6 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:0
 #search{width:100%;height:36px;padding:0 11px 0 34px;border:1px solid var(--border2);border-radius:var(--rs);font-family:inherit;font-size:13px;background:var(--surface2);color:var(--text);outline:none;transition:border-color .15s,background .15s}
 #search:focus{border-color:var(--accent);background:#fff}
 
-/* ── Category bar ── */
 .cat-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px}
 .cat-inner{max-width:980px;margin:0 auto;padding:10px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .cat-search-wrap{position:relative;flex:0 0 210px}
@@ -41,7 +39,7 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:0
 #cat-search:focus{border-color:var(--accent);background:#fff}
 #cat-drop{position:absolute;top:36px;left:0;right:0;background:var(--surface);border:1px solid var(--border2);border-radius:var(--rs);z-index:300;box-shadow:0 4px 12px rgba(0,0,0,.1);display:none;max-height:260px;overflow-y:auto}
 .cd-item{padding:8px 12px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:8px;transition:background .1s}
-.cd-item:hover,.cd-item.active{background:var(--accent-bg);color:var(--accent-text)}
+.cd-item:hover,.cd-item.sel{background:var(--accent-bg);color:var(--accent-text)}
 .cd-cnt{font-size:11px;color:var(--text3);margin-left:auto;font-family:'IBM Plex Mono',monospace}
 .cat-chips{display:flex;gap:5px;flex-wrap:wrap;flex:1}
 .chip{height:28px;padding:0 11px;font-family:inherit;font-size:11.5px;font-weight:500;border:1px solid var(--border2);border-radius:20px;background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
@@ -50,8 +48,6 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:0
 .chip-count{font-size:10px;opacity:.7;font-family:'IBM Plex Mono',monospace}
 
 main{max-width:980px;margin:0 auto;padding:20px 24px}
-
-/* ── Toolbar ── */
 .tb{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
 .fg{display:flex;gap:4px;flex-wrap:wrap}
 .fb{height:28px;padding:0 11px;font-family:inherit;font-size:12px;font-weight:500;border:1px solid var(--border2);border-radius:20px;background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
@@ -62,49 +58,50 @@ main{max-width:980px;margin:0 auto;padding:20px 24px}
 .cb:hover{background:var(--surface2)}
 .cb svg{width:13px;height:13px}
 
-/* ── Stats bar ── */
 .stats{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--text3);margin-bottom:18px;padding:9px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);align-items:center}
 .sv{font-weight:600;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px}
-.sv.clickable{cursor:pointer;border-bottom:1px dashed var(--accent);color:var(--accent-text);text-decoration:none}
-.sv.clickable:hover{opacity:.75}
+.sv-link{font-weight:600;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent-text);cursor:pointer;border-bottom:1px dashed var(--accent);text-decoration:none}
+.sv-link:hover{opacity:.75}
 .atag{display:inline-flex;align-items:center;gap:5px;background:var(--accent-bg);color:var(--accent-text);font-size:11px;font-weight:600;padding:2px 8px 2px 10px;border-radius:20px}
 .atag button{background:none;border:none;cursor:pointer;color:var(--accent-text);font-size:14px;line-height:1;padding:0;margin-left:1px;opacity:.6}
 .atag button:hover{opacity:1}
 
-/* ── 전체표현 모달 ── */
+/* modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:400;display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
 .modal-overlay.hidden{display:none}
-.modal{background:var(--surface);border-radius:var(--r);width:100%;max-width:900px;box-shadow:0 8px 32px rgba(0,0,0,.18);overflow:hidden}
-.modal-head{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:10}
+.modal{background:var(--surface);border-radius:var(--r);width:100%;max-width:920px;box-shadow:0 8px 32px rgba(0,0,0,.18);overflow:hidden}
+.modal-head{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);background:var(--surface)}
 .modal-title{font-size:15px;font-weight:600;flex:1}
-.modal-sub{font-size:12px;color:var(--text3)}
-.modal-close{width:30px;height:30px;border:none;background:var(--surface2);border-radius:6px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text2)}
+.modal-sub{font-size:12px;color:var(--text3);margin-left:8px}
+.modal-close{width:30px;height:30px;border:none;background:var(--surface2);border-radius:6px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text2);flex-shrink:0}
 .modal-close:hover{background:var(--border2)}
-.modal-toolbar{display:flex;gap:8px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--border);flex-wrap:wrap}
-.modal-search-wrap{position:relative;flex:1;min-width:160px}
-.modal-search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
+.modal-toolbar{display:flex;gap:8px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.msw{position:relative;flex:1;min-width:160px}
+.msw svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
 #modal-search{width:100%;height:34px;padding:0 10px 0 32px;border:1px solid var(--border2);border-radius:var(--rs);font-family:inherit;font-size:13px;background:var(--surface2);color:var(--text);outline:none}
 #modal-search:focus{border-color:var(--accent);background:#fff}
-.modal-filter-btns{display:flex;gap:4px;flex-wrap:wrap}
+.mfbs{display:flex;gap:4px;flex-wrap:wrap}
 .mfb{height:28px;padding:0 10px;font-family:inherit;font-size:11.5px;font-weight:500;border:1px solid var(--border2);border-radius:20px;background:var(--surface);color:var(--text2);cursor:pointer;white-space:nowrap;transition:all .15s}
 .mfb:hover{background:var(--surface2)}
 .mfb.active{background:var(--accent-bg);border-color:var(--accent);color:var(--accent-text);font-weight:600}
-.modal-sort{height:28px;padding:0 8px;font-family:inherit;font-size:12px;border:1px solid var(--border2);border-radius:var(--rs);background:var(--surface);color:var(--text2);cursor:pointer;outline:none}
-.modal-body{overflow-y:auto;max-height:60vh}
-.modal-table{width:100%;border-collapse:collapse;table-layout:fixed}
-.modal-table thead th{padding:7px 12px;font-size:11px;font-weight:600;color:var(--text3);text-align:left;background:var(--surface2);border-bottom:1px solid var(--border);letter-spacing:.05em;text-transform:uppercase;position:sticky;top:0;overflow:hidden;white-space:nowrap}
-.modal-table tbody tr{border-bottom:1px solid var(--border);transition:background .1s;cursor:pointer}
-.modal-table tbody tr:last-child{border-bottom:none}
-.modal-table tbody tr:hover{background:var(--surface2)}
-.modal-table td{padding:7px 12px;font-size:12.5px;vertical-align:middle;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.td-indo{font-family:'IBM Plex Mono',monospace;font-weight:500;color:#1a3560;font-size:12px}
-.td-pron{color:var(--pron);font-size:12px;background:var(--pron-bg)}
-.td-cat{font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.td-lang .lp{font-size:10px;font-weight:700;padding:2px 6px;border-radius:20px;white-space:nowrap}
+.msort{height:28px;padding:0 8px;font-family:inherit;font-size:12px;border:1px solid var(--border2);border-radius:var(--rs);background:var(--surface);color:var(--text2);cursor:pointer;outline:none}
+.modal-body{overflow-y:auto;max-height:58vh}
+.mtable{width:100%;border-collapse:collapse;table-layout:fixed}
+.mtable thead th{padding:7px 10px;font-size:11px;font-weight:600;color:var(--text3);text-align:left;background:var(--surface2);border-bottom:1px solid var(--border);letter-spacing:.05em;text-transform:uppercase;position:sticky;top:0;white-space:nowrap;overflow:hidden}
+.mtable tbody tr{border-bottom:1px solid var(--border);transition:background .1s;cursor:pointer}
+.mtable tbody tr:last-child{border-bottom:none}
+.mtable tbody tr:hover{background:var(--surface2)}
+.mtable td{padding:7px 10px;font-size:12.5px;vertical-align:middle;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.td-id{font-family:'IBM Plex Mono',monospace;font-weight:500;color:#1a3560;font-size:12px}
+.td-pr{color:var(--pron);font-size:12px;background:var(--pron-bg)}
+.td-cat{font-size:11px;color:var(--text3)}
+.lp{font-size:10px;font-weight:700;padding:2px 6px;border-radius:20px;white-space:nowrap}
+.lid{background:var(--id-bg);color:var(--id-text)}
+.lmix{background:var(--mix-bg);color:var(--mix-text)}
+.lko{background:var(--ko-bg);color:var(--ko-text)}
 .modal-empty{padding:32px;text-align:center;color:var(--text3);font-size:13px}
-.modal-count{font-size:12px;color:var(--text3);padding:8px 20px;border-top:1px solid var(--border);text-align:right}
+.modal-foot{font-size:12px;color:var(--text3);padding:8px 16px;border-top:1px solid var(--border);text-align:right}
 
-/* ── Group cards ── */
 .gc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:8px;transition:box-shadow .15s}
 .gc:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .gh{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;user-select:none;transition:background .12s}
@@ -127,10 +124,6 @@ main{max-width:980px;margin:0 auto;padding:20px 24px}
 .cell.pr{font-size:12px;color:var(--pron);background:var(--pron-bg);font-weight:500}
 .cell.mn{color:var(--text2);font-size:12.5px}
 .cell.lc{display:flex;align-items:center;padding:8px 10px}
-.lp{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;white-space:nowrap;letter-spacing:.04em}
-.lid{background:var(--id-bg);color:var(--id-text)}
-.lmix{background:var(--mix-bg);color:var(--mix-text)}
-.lko{background:var(--ko-bg);color:var(--ko-text)}
 mark{background:#ffe58a;border-radius:2px;padding:0 1px}
 .empty{padding:48px 24px;text-align:center;color:var(--text3);font-size:14px}
 footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-top:1px solid var(--border);margin-top:32px}
@@ -142,28 +135,24 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
   .ch{grid-template-columns:1fr 1fr}.ch span:nth-child(2),.ch span:last-child{display:none}
   .ir{grid-template-columns:1fr 1fr}.cell.pr,.cell.lc{display:none}
   .cbs{display:none}
-  .modal-overlay{padding:0}.modal{border-radius:0;min-height:100vh}
-  .modal-body{max-height:none}
+  .modal-overlay{padding:0;align-items:stretch}
+  .modal{border-radius:0;min-height:100vh;display:flex;flex-direction:column}
+  .modal-body{max-height:none;flex:1}
 }
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <header>
   <div class="hi">
-    <div class="logo">
-      <span class="logo-flag">🇮🇩</span>
-      <span>인도네시아어 Theo 회화 사전</span>
-    </div>
+    <div class="logo"><span class="logo-flag">&#127470;&#127465;</span><span>인도네시아어 Theo 회화 사전</span></div>
     <div class="sw">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="search" placeholder="단어·발음·해석 검색..." oninput="render()">
+      <input type="text" id="search" placeholder="단어&#183;발음&#183;해석 검색..." oninput="render()">
     </div>
   </div>
 </header>
 
-<!-- Category bar -->
 <div class="cat-bar">
   <div class="cat-inner">
     <div class="cat-search-wrap">
@@ -175,7 +164,6 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
   </div>
 </div>
 
-<!-- Main -->
 <main>
   <div class="tb">
     <div class="fg">
@@ -191,42 +179,40 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
   <div class="stats" id="stats"></div>
   <div id="groups"></div>
 </main>
-<footer>인도네시아 Theo 일상 회화 기록 · 한글 발음 포함 · 318개 표현</footer>
+<footer>인도네시아 Theo 일상 회화 기록 &#183; 한글 발음 포함 &#183; 318개 표현</footer>
 
 <!-- 전체 표현 모달 -->
-<div class="modal-overlay hidden" id="modal-overlay" onclick="closeModal(event)">
+<div class="modal-overlay hidden" id="modal-overlay">
   <div class="modal" id="modal">
     <div class="modal-head">
-      <div>
-        <div class="modal-title">🇮🇩 전체 표현 목록</div>
-        <div class="modal-sub" id="modal-sub">318개 표현</div>
-      </div>
-      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+      <div class="modal-title">&#127470;&#127465; 전체 표현 목록</div>
+      <span class="modal-sub" id="modal-sub">318개</span>
+      <button class="modal-close" id="modal-close-btn">&#10005;</button>
     </div>
     <div class="modal-toolbar">
-      <div class="modal-search-wrap">
+      <div class="msw">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="modal-search" placeholder="표현·발음·해석·카테고리 검색..." oninput="renderModal()">
+        <input type="text" id="modal-search" placeholder="표현&#183;발음&#183;해석&#183;카테고리 검색..." oninput="renderModal()">
       </div>
-      <div class="modal-filter-btns">
+      <div class="mfbs">
         <button class="mfb active" onclick="setModalLang(this,'all')">전체</button>
         <button class="mfb" onclick="setModalLang(this,'id')">인도네시아어만</button>
         <button class="mfb" onclick="setModalLang(this,'mix')">혼합</button>
       </div>
-      <select class="modal-sort" id="modal-sort" onchange="renderModal()">
+      <select class="msort" id="modal-sort" onchange="renderModal()">
         <option value="default">기본 순서</option>
         <option value="alpha">가나다 순 (해석)</option>
         <option value="cat">카테고리 순</option>
       </select>
     </div>
     <div class="modal-body">
-      <table class="modal-table">
+      <table class="mtable">
         <thead>
           <tr>
-            <th style="width:24%">인도네시아어</th>
+            <th style="width:22%">인도네시아어</th>
             <th style="width:18%">한글 발음</th>
-            <th style="width:24%">해석</th>
-            <th style="width:26%">카테고리</th>
+            <th style="width:22%">해석</th>
+            <th style="width:30%">카테고리</th>
             <th style="width:8%">언어</th>
           </tr>
         </thead>
@@ -234,7 +220,7 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
       </table>
       <div id="modal-empty" class="modal-empty" style="display:none">검색 결과가 없습니다.</div>
     </div>
-    <div class="modal-count" id="modal-count"></div>
+    <div class="modal-foot" id="modal-foot"></div>
   </div>
 </div>
 
@@ -272,73 +258,79 @@ const RAW=[{"theme":"📚 어휘·문법 학습","items":[{"cat":"📚 기초문
 {"theme":"😤 감탄·속어","items":[{"cat":"😤 감탄·속어표현","indo":"sial. 18","meaning":"이런! 젠장! (sial) - 구어체 감탄","lang":"인도네시아어"}]},
 {"theme":"🚫 금지·제한","items":[{"cat":"🚫 금지·제한표현","indo":"jangan tanya. usah (ber)tanya. Do not ASK.","meaning":"묻지 마세요 (jangan tanya)","lang":"혼합(인도네시아어+영어)"}]}];
 
-// 전체 아이템 flat 배열
-const ALL_ITEMS = RAW.flatMap(g => g.items.map(it => ({...it, theme: g.theme})));
+const ALL_ITEMS = RAW.flatMap(function(g){ return g.items.map(function(it){ return Object.assign({}, it, {theme: g.theme}); }); });
+let lf='all', og=new Set(), activeTheme=null, modalLf='all';
 
-let lf='all', og=new Set(), activeTheme=null;
-let modalLf='all';
-
-/* ── 발음 ── */
 function gp(k){
-  if(P[k])return P[k];
-  const lo=k.toLowerCase();
-  for(const[a,b]of Object.entries(P)){if(a.toLowerCase()===lo)return b;}
+  if(P[k]) return P[k];
+  var lo=k.toLowerCase();
+  var keys=Object.keys(P);
+  for(var i=0;i<keys.length;i++){ if(keys[i].toLowerCase()===lo) return P[keys[i]]; }
   return '';
 }
-function glc(l){return l==='인도네시아어'?'lid':l==='한국어'?'lko':l.includes('혼합')?'lmix':'lid'}
-function gll(l){return l==='인도네시아어'?'ID':l==='한국어'?'KO':l.includes('혼합')?'혼합':'기타'}
+function glc(l){ return l==='인도네시아어'?'lid':l==='한국어'?'lko':l.indexOf('혼합')>=0?'lmix':'lid'; }
+function gll(l){ return l==='인도네시아어'?'ID':l==='한국어'?'KO':l.indexOf('혼합')>=0?'혼합':'기타'; }
 
-/* ── 하이라이트 ── */
+function escHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 function hl(t, q){
-  if(!q) return t;
-  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
-  return t.replace(re,'<mark>$1</mark>');
+  if(!q) return escHtml(t);
+  var safe = escHtml(t);
+  var re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')','gi');
+  return safe.replace(re,'<mark>$1</mark>');
 }
 
 /* ── 메인 필터 ── */
 function fi(items){
-  const q=document.getElementById('search').value.toLowerCase();
-  return items.filter(it=>{
-    const lok=lf==='all'||(lf==='id'&&it.lang==='인도네시아어')||(lf==='mix'&&it.lang.includes('혼합'));
-    const pr=gp(it.indo).toLowerCase();
-    const tok=!q||it.indo.toLowerCase().includes(q)||it.meaning.toLowerCase().includes(q)||pr.includes(q);
-    return lok&&tok;
+  var q=document.getElementById('search').value.toLowerCase();
+  return items.filter(function(it){
+    var lok = lf==='all' || (lf==='id' && it.lang==='인도네시아어') || (lf==='mix' && it.lang.indexOf('혼합')>=0);
+    var pr  = gp(it.indo).toLowerCase();
+    var tok = !q || it.indo.toLowerCase().indexOf(q)>=0 || it.meaning.toLowerCase().indexOf(q)>=0 || pr.indexOf(q)>=0;
+    return lok && tok;
   });
 }
-
 function setLang(btn,val){
   lf=val;
-  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   render();
 }
 function toggleAll(open){
-  getVisibleGroups().forEach(g=>{open?og.add(g.theme):og.delete(g.theme)});
+  getVisibleGroups().forEach(function(g){ open ? og.add(g.theme) : og.delete(g.theme); });
   render();
 }
-function toggleGroup(theme){og.has(theme)?og.delete(theme):og.add(theme);render();}
+function toggleGroup(theme){ og.has(theme) ? og.delete(theme) : og.add(theme); render(); }
 
 /* ── 카테고리 칩 ── */
 function buildChips(){
-  const wrap=document.getElementById('cat-chips');
-  const total=RAW.reduce((s,g)=>s+g.items.length,0);
-  let html=`<button class="chip active" id="chip-all" onclick="selectTheme(null,this)"><span>전체</span><span class="chip-count">${total}</span></button>`;
-  RAW.forEach(g=>{
-    const em=g.theme.split(' ')[0];
-    const tit=g.theme.slice(em.length).trim();
-    const id='chip-'+encodeURIComponent(g.theme);
-    html+=`<button class="chip" id="${id}" onclick="selectTheme('${g.theme.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}',this)">${em} <span>${tit}</span><span class="chip-count">${g.items.length}</span></button>`;
+  var wrap=document.getElementById('cat-chips');
+  var total=ALL_ITEMS.length;
+  var html='<button class="chip active" id="chip-all" onclick="selectTheme(null,this)"><span>전체</span><span class="chip-count">'+total+'</span></button>';
+  RAW.forEach(function(g){
+    var em=g.theme.split(' ')[0];
+    var tit=g.theme.slice(em.length).trim();
+    var sid=encodeURIComponent(g.theme);
+    var th=escHtml(g.theme);
+    html+='<button class="chip" data-theme="'+th+'" onclick="selectThemeByEl(this)">'+em+' <span>'+tit+'</span><span class="chip-count">'+g.items.length+'</span></button>';
   });
   wrap.innerHTML=html;
 }
-
+function selectThemeByEl(btn){
+  var theme=btn.getAttribute('data-theme');
+  selectTheme(theme, btn);
+}
 function selectTheme(theme, btn){
   activeTheme=theme;
-  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('active');});
   if(theme){
-    const id='chip-'+encodeURIComponent(theme);
-    const el=document.getElementById(id);
-    if(el)el.classList.add('active');
+    if(btn){ btn.classList.add('active'); }
+    else {
+      document.querySelectorAll('.chip').forEach(function(c){
+        if(c.getAttribute('data-theme')===theme) c.classList.add('active');
+      });
+    }
     og.clear(); og.add(theme);
   } else {
     document.getElementById('chip-all').classList.add('active');
@@ -350,153 +342,183 @@ function selectTheme(theme, btn){
 
 /* ── 카테고리 검색 드롭다운 ── */
 function onCatSearch(){
-  const q=document.getElementById('cat-search').value.toLowerCase().trim();
-  const drop=document.getElementById('cat-drop');
-  if(!q){drop.style.display='none';return;}
-  const matches=RAW.filter(g=>g.theme.toLowerCase().includes(q)||g.items.some(it=>it.cat.toLowerCase().includes(q)));
-  if(!matches.length){drop.innerHTML='<div class="cd-item" style="color:var(--text3);cursor:default">결과 없음</div>';drop.style.display='block';return;}
-  drop.innerHTML=matches.map(g=>{
-    const em=g.theme.split(' ')[0];
-    const tit=g.theme.slice(em.length).trim();
-    const isA=activeTheme===g.theme;
-    return `<div class="cd-item${isA?' active':''}" onmousedown="selectTheme('${g.theme.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}',null)">${em} ${tit}<span class="cd-cnt">${g.items.length}</span></div>`;
+  var q=document.getElementById('cat-search').value.toLowerCase().trim();
+  var drop=document.getElementById('cat-drop');
+  if(!q){ drop.style.display='none'; return; }
+  var matches=RAW.filter(function(g){
+    return g.theme.toLowerCase().indexOf(q)>=0 || g.items.some(function(it){ return it.cat.toLowerCase().indexOf(q)>=0; });
+  });
+  if(!matches.length){
+    drop.innerHTML='<div class="cd-item" style="color:var(--text3);cursor:default">결과 없음</div>';
+    drop.style.display='block'; return;
+  }
+  drop.innerHTML=matches.map(function(g){
+    var em=g.theme.split(' ')[0];
+    var tit=g.theme.slice(em.length).trim();
+    var isA=activeTheme===g.theme;
+    var th=escHtml(g.theme);
+    return '<div class="cd-item'+(isA?' sel':'')+'" data-theme="'+th+'" onmousedown="selectThemeFromDrop(this)">'+em+' '+tit+'<span class="cd-cnt">'+g.items.length+'</span></div>';
   }).join('');
   drop.style.display='block';
 }
-function showCatDrop(){if(document.getElementById('cat-search').value)onCatSearch();}
-function hideCatDrop(){setTimeout(()=>{document.getElementById('cat-drop').style.display='none';},160);}
+function selectThemeFromDrop(el){
+  selectTheme(el.getAttribute('data-theme'), null);
+}
+function showCatDrop(){ if(document.getElementById('cat-search').value) onCatSearch(); }
+function hideCatDrop(){ setTimeout(function(){ document.getElementById('cat-drop').style.display='none'; }, 160); }
 
 /* ── 보이는 그룹 ── */
 function getVisibleGroups(){
-  return RAW.filter(g=>{
-    if(activeTheme&&g.theme!==activeTheme)return false;
+  return RAW.filter(function(g){
+    if(activeTheme && g.theme!==activeTheme) return false;
     return fi(g.items).length>0;
   });
 }
 
 /* ── 메인 렌더 ── */
 function render(){
-  const q=document.getElementById('search').value;
-  const visGroups=getVisibleGroups();
-  let tg=0,ti=0,html='';
-  visGroups.forEach(g=>{
-    const items=fi(g.items);
-    if(!items.length)return;
-    tg++;ti+=items.length;
-    const isOpen=og.has(g.theme)||q.length>0||(activeTheme===g.theme);
-    const em=g.theme.split(' ')[0];
-    const tit=g.theme.slice(em.length).trim();
-    html+=`<div class="gc"><div class="gh" onclick="toggleGroup('${g.theme.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')"><span class="ge">${em}</span><span class="gt">${tit}</span><span class="gbg">${items.length}</span><svg class="chev${isOpen?' open':''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></div><div class="gbody${isOpen?' open':''}"><div class="ch"><span>인도네시아어</span><span>한글 발음</span><span>해석</span><span>언어</span></div>`;
-    const bc={};items.forEach(it=>{(bc[it.cat]||(bc[it.cat]=[])).push(it)});
-    Object.entries(bc).forEach(([cat,ci])=>{
-      if(Object.keys(bc).length>1)html+=`<div class="sl">${cat}</div>`;
-      ci.forEach(it=>{
-        const pr=gp(it.indo);
-        html+=`<div class="ir"><div class="cell id">${hl(it.indo,q)}</div><div class="cell pr">${pr?hl(pr,q):'—'}</div><div class="cell mn">${hl(it.meaning,q)}</div><div class="cell lc"><span class="lp ${glc(it.lang)}">${gll(it.lang)}</span></div></div>`;
+  var q=document.getElementById('search').value;
+  var visGroups=getVisibleGroups();
+  var tg=0, ti=0, html='';
+  visGroups.forEach(function(g){
+    var items=fi(g.items);
+    if(!items.length) return;
+    tg++; ti+=items.length;
+    var isOpen=og.has(g.theme)||q.length>0||(activeTheme===g.theme);
+    var em=g.theme.split(' ')[0];
+    var tit=g.theme.slice(em.length).trim();
+    var thEsc=escHtml(g.theme);
+    html+='<div class="gc" data-theme="'+thEsc+'">';
+    html+='<div class="gh" onclick="toggleGroup(this.parentElement.dataset.theme)">';
+    html+='<span class="ge">'+em+'</span><span class="gt">'+tit+'</span><span class="gbg">'+items.length+'</span>';
+    html+='<svg class="chev'+(isOpen?' open':'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>';
+    html+='</div>';
+    html+='<div class="gbody'+(isOpen?' open':'')+'">';
+    html+='<div class="ch"><span>인도네시아어</span><span>한글 발음</span><span>해석</span><span>언어</span></div>';
+    var bc={};
+    items.forEach(function(it){ if(!bc[it.cat]) bc[it.cat]=[]; bc[it.cat].push(it); });
+    var catKeys=Object.keys(bc);
+    catKeys.forEach(function(cat){
+      if(catKeys.length>1) html+='<div class="sl">'+escHtml(cat)+'</div>';
+      bc[cat].forEach(function(it){
+        var pr=gp(it.indo);
+        html+='<div class="ir">';
+        html+='<div class="cell id">'+hl(it.indo,q)+'</div>';
+        html+='<div class="cell pr">'+(pr?hl(pr,q):'—')+'</div>';
+        html+='<div class="cell mn">'+hl(it.meaning,q)+'</div>';
+        html+='<div class="cell lc"><span class="lp '+glc(it.lang)+'">'+gll(it.lang)+'</span></div>';
+        html+='</div>';
       });
     });
-    html+=`</div></div>`;
+    html+='</div></div>';
   });
-  if(!html)html='<div class="empty">🔍 검색 결과가 없습니다.</div>';
+  if(!html) html='<div class="empty">🔍 검색 결과가 없습니다.</div>';
   document.getElementById('groups').innerHTML=html;
 
-  // 통계
-  const total=ALL_ITEMS.length;
-  let st=`<span>카테고리 <span class="sv">${tg}</span>개</span>`;
-  st+=`<span>표현 <span class="sv clickable" onclick="openModal()" title="클릭하면 전체 표현 목록 열기">${ti}</span> / <span class="sv clickable" onclick="openModal()" title="클릭하면 전체 표현 목록 열기">${total}</span>개</span>`;
-  if(activeTheme) st+=`<span class="atag">${activeTheme}<button onclick="selectTheme(null,document.getElementById('chip-all'))">✕</button></span>`;
-  st+=`<span style="margin-left:auto">${lf==='all'?'전체 언어':lf==='mix'?'혼합 항목만':'인도네시아어만'}</span>`;
+  var total=ALL_ITEMS.length;
+  var st='<span>카테고리 <span class="sv">'+tg+'</span>개</span>';
+  st+='<span>표현 <span class="sv-link" onclick="openModal()">'+ti+'</span> / <span class="sv-link" onclick="openModal()">'+total+'</span>개</span>';
+  if(activeTheme) st+='<span class="atag">'+escHtml(activeTheme)+'<button onclick="selectTheme(null,null)">&#10005;</button></span>';
+  st+='<span style="margin-left:auto">'+(lf==='all'?'전체 언어':lf==='mix'?'혼합 항목만':'인도네시아어만')+'</span>';
   document.getElementById('stats').innerHTML=st;
 }
 
-/* ══════════════════════════════
-   전체 표현 모달
-══════════════════════════════ */
+/* ── 모달 열기/닫기 ── */
 function openModal(){
   document.getElementById('modal-overlay').classList.remove('hidden');
   document.getElementById('modal-search').value='';
   document.getElementById('modal-sort').value='default';
   modalLf='all';
-  document.querySelectorAll('.mfb').forEach((b,i)=>b.classList.toggle('active',i===0));
+  document.querySelectorAll('.mfb').forEach(function(b,i){ b.classList.toggle('active', i===0); });
   renderModal();
-  setTimeout(()=>document.getElementById('modal-search').focus(),80);
-  // 모바일 Back 버튼 대응: history 스택에 modal 상태 추가
-  history.pushState({modal:true},'','');
+  setTimeout(function(){ document.getElementById('modal-search').focus(); }, 80);
+  // 모바일 Back 버튼: history 스택에 상태 추가
+  history.pushState({modal:true}, '');
 }
-function closeModalDirect(){
-  document.getElementById('modal-overlay').classList.add('hidden');
-  // 모바일 back 버튼 대응: history 스택에서 제거
-  if(history.state&&history.state.modal){
-    history.back();
-  }
+function closeModal(){
+  var overlay=document.getElementById('modal-overlay');
+  if(overlay.classList.contains('hidden')) return;
+  overlay.classList.add('hidden');
 }
-function closeModal(e){
-  if(e.target===document.getElementById('modal-overlay')) closeModalDirect();
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalDirect();});
-// 모바일 Back 버튼 → popstate 감지 → 모달 닫기
-window.addEventListener('popstate',e=>{
-  const overlay=document.getElementById('modal-overlay');
-  if(!overlay.classList.contains('hidden')){
-    overlay.classList.add('hidden');
-  }
+
+// 바깥 클릭으로 닫기
+document.getElementById('modal-overlay').addEventListener('click', function(e){
+  if(e.target===this) closeModal();
+});
+// ✕ 버튼
+document.getElementById('modal-close-btn').addEventListener('click', function(){
+  closeModal();
+  // history.back()으로 pushState 되돌리기
+  if(history.state && history.state.modal) history.back();
+});
+// ESC 키
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') { closeModal(); if(history.state&&history.state.modal) history.back(); } });
+// 모바일 Back 버튼 (popstate)
+window.addEventListener('popstate', function(e){
+  closeModal();
 });
 
 function setModalLang(btn,val){
   modalLf=val;
-  document.querySelectorAll('.mfb').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.mfb').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   renderModal();
 }
 
 function renderModal(){
-  const q=document.getElementById('modal-search').value.toLowerCase().trim();
-  const sort=document.getElementById('modal-sort').value;
-
-  let items=[...ALL_ITEMS].filter(it=>{
-    const lok=modalLf==='all'||(modalLf==='id'&&it.lang==='인도네시아어')||(modalLf==='mix'&&it.lang.includes('혼합'));
-    const pr=gp(it.indo).toLowerCase();
-    const tok=!q||it.indo.toLowerCase().includes(q)||it.meaning.toLowerCase().includes(q)||pr.includes(q)||it.cat.toLowerCase().includes(q)||it.theme.toLowerCase().includes(q);
+  var q=document.getElementById('modal-search').value.toLowerCase().trim();
+  var sort=document.getElementById('modal-sort').value;
+  var items=ALL_ITEMS.filter(function(it){
+    var lok=modalLf==='all'||(modalLf==='id'&&it.lang==='인도네시아어')||(modalLf==='mix'&&it.lang.indexOf('혼합')>=0);
+    var pr=gp(it.indo).toLowerCase();
+    var tok=!q||it.indo.toLowerCase().indexOf(q)>=0||it.meaning.toLowerCase().indexOf(q)>=0||pr.indexOf(q)>=0||it.cat.toLowerCase().indexOf(q)>=0||it.theme.toLowerCase().indexOf(q)>=0;
     return lok&&tok;
   });
+  if(sort==='alpha') items.sort(function(a,b){ return a.meaning.localeCompare(b.meaning,'ko'); });
+  else if(sort==='cat') items.sort(function(a,b){ return a.cat.localeCompare(b.cat,'ko'); });
 
-  if(sort==='alpha') items.sort((a,b)=>a.meaning.localeCompare(b.meaning,'ko'));
-  else if(sort==='cat') items.sort((a,b)=>a.cat.localeCompare(b.cat,'ko'));
-
-  const tbody=document.getElementById('modal-tbody');
-  const empty=document.getElementById('modal-empty');
-
+  var tbody=document.getElementById('modal-tbody');
+  var empty=document.getElementById('modal-empty');
   if(!items.length){
     tbody.innerHTML='';
     empty.style.display='block';
-    document.getElementById('modal-count').textContent='';
+    document.getElementById('modal-foot').textContent='';
     document.getElementById('modal-sub').textContent='검색 결과 없음';
     return;
   }
   empty.style.display='none';
-  tbody.innerHTML=items.map(it=>{
-    const pr=gp(it.indo);
-    return `<tr onclick="goToTheme('${it.theme.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">
-      <td class="td-indo" title="${it.indo}">${hl(it.indo,q)}</td>
-      <td class="td-pron" title="${pr||''}">${pr?hl(pr,q):'—'}</td>
-      <td title="${it.meaning}">${hl(it.meaning,q)}</td>
-      <td class="td-cat" title="${it.cat}">${hl(it.cat,q)}</td>
-      <td class="td-lang"><span class="lp ${glc(it.lang)}">${gll(it.lang)}</span></td>
-    </tr>`;
-  }).join('');
-  }).join('');
-
-  document.getElementById('modal-count').textContent=`${items.length}개 표시 중`;
-  document.getElementById('modal-sub').textContent=`${items.length} / ${ALL_ITEMS.length}개 표현`;
+  var rows='';
+  items.forEach(function(it){
+    var pr=gp(it.indo);
+    var thEsc=escHtml(it.theme);
+    rows+='<tr data-theme="'+thEsc+'" onclick="goToTheme(this)">';
+    rows+='<td class="td-id" title="'+escHtml(it.indo)+'">'+hl(it.indo,q)+'</td>';
+    rows+='<td class="td-pr" title="'+escHtml(pr)+'">'+(pr?hl(pr,q):'—')+'</td>';
+    rows+='<td title="'+escHtml(it.meaning)+'">'+hl(it.meaning,q)+'</td>';
+    rows+='<td class="td-cat" title="'+escHtml(it.cat)+'">'+hl(it.cat,q)+'</td>';
+    rows+='<td><span class="lp '+glc(it.lang)+'">'+gll(it.lang)+'</span></td>';
+    rows+='</tr>';
+  });
+  tbody.innerHTML=rows;
+  document.getElementById('modal-foot').textContent=items.length+'개 표시 중';
+  document.getElementById('modal-sub').textContent=items.length+' / '+ALL_ITEMS.length+'개';
 }
 
-function goToTheme(theme){
-  closeModalDirect();
+function goToTheme(tr){
+  var theme=tr.getAttribute('data-theme');
+  closeModal();
+  if(history.state&&history.state.modal) history.back();
   selectTheme(theme, null);
-  setTimeout(()=>{
-    const el=document.querySelector('.gc');
-    if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
-  },100);
+  setTimeout(function(){
+    var el=document.querySelector('.gc');
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  }, 120);
+}
+
+/* ── toggleGroup: data-theme 기반으로 수정 ── */
+function toggleGroup(theme){
+  og.has(theme) ? og.delete(theme) : og.add(theme);
+  render();
 }
 
 buildChips();
