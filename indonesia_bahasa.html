@@ -87,14 +87,14 @@ main{max-width:980px;margin:0 auto;padding:20px 24px}
 .msort{height:28px;padding:0 8px;font-family:inherit;font-size:12px;border:1px solid var(--border2);border-radius:var(--rs);background:var(--surface);color:var(--text2);cursor:pointer;outline:none}
 .modal-body{overflow-y:auto;max-height:58vh}
 .mtable{width:100%;border-collapse:collapse;table-layout:fixed}
-.mtable thead th{padding:7px 10px;font-size:11px;font-weight:600;color:var(--text3);text-align:left;background:var(--surface2);border-bottom:1px solid var(--border);letter-spacing:.05em;text-transform:uppercase;position:sticky;top:0;white-space:nowrap;overflow:hidden}
+.mtable thead th{padding:7px 10px;font-size:11px;font-weight:600;color:var(--text3);text-align:left;background:var(--surface2);border-bottom:1px solid var(--border);letter-spacing:.05em;text-transform:uppercase;position:sticky;top:0}
 .mtable tbody tr{border-bottom:1px solid var(--border);transition:background .1s;cursor:pointer}
 .mtable tbody tr:last-child{border-bottom:none}
 .mtable tbody tr:hover{background:var(--surface2)}
-.mtable td{padding:7px 10px;font-size:12.5px;vertical-align:middle;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.mtable td{padding:7px 10px;font-size:12.5px;vertical-align:top;word-break:break-word}
 .td-id{font-family:'IBM Plex Mono',monospace;font-weight:500;color:#1a3560;font-size:12px}
 .td-pr{color:var(--pron);font-size:12px;background:var(--pron-bg)}
-.td-cat{font-size:11px;color:var(--text3)}
+.td-cat{font-size:11px;color:var(--text3);word-break:break-word}
 .lp{font-size:10px;font-weight:700;padding:2px 6px;border-radius:20px;white-space:nowrap}
 .lid{background:var(--id-bg);color:var(--id-text)}
 .lmix{background:var(--mix-bg);color:var(--mix-text)}
@@ -139,6 +139,22 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
   .modal{border-radius:0;min-height:100vh;display:flex;flex-direction:column}
   .modal-body{max-height:none;flex:1}
 }
+
+/* ── 종료 확인 다이얼로그 ── */
+.exit-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px}
+.exit-overlay.hidden{display:none}
+.exit-dialog{background:var(--surface);border-radius:var(--r);width:100%;max-width:320px;box-shadow:0 8px 32px rgba(0,0,0,.22);overflow:hidden;animation:fadeUp .18s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.exit-head{padding:20px 20px 8px;text-align:center}
+.exit-icon{font-size:32px;margin-bottom:8px}
+.exit-title{font-size:16px;font-weight:600;color:var(--text)}
+.exit-body{padding:8px 20px 20px;text-align:center;font-size:13px;color:var(--text2);line-height:1.6}
+.exit-btns{display:flex;border-top:1px solid var(--border)}
+.exit-btn{flex:1;height:48px;border:none;background:none;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:background .15s}
+.exit-btn:first-child{border-right:1px solid var(--border);color:var(--text2)}
+.exit-btn:first-child:hover{background:var(--surface2)}
+.exit-btn.danger{color:#c0392b;font-weight:600}
+.exit-btn.danger:hover{background:#fef0f0}
 </style>
 </head>
 <body>
@@ -180,6 +196,21 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
   <div id="groups"></div>
 </main>
 <footer>인도네시아 Theo 일상 회화 기록 &#183; 한글 발음 포함 &#183; 318개 표현</footer>
+
+<!-- 종료 확인 다이얼로그 -->
+<div class="exit-overlay hidden" id="exit-overlay">
+  <div class="exit-dialog">
+    <div class="exit-head">
+      <div class="exit-icon">🚪</div>
+      <div class="exit-title">종료하시겠습니까?</div>
+    </div>
+    <div class="exit-body">Theo의 인도네시아어 회화 사전을<br>종료하고 이전 페이지로 이동합니다.</div>
+    <div class="exit-btns">
+      <button class="exit-btn" onclick="cancelExit()">아니오</button>
+      <button class="exit-btn danger" onclick="confirmExit()">예, 종료</button>
+    </div>
+  </div>
+</div>
 
 <!-- 전체 표현 모달 -->
 <div class="modal-overlay hidden" id="modal-overlay">
@@ -453,9 +484,39 @@ document.getElementById('modal-close-btn').addEventListener('click', function(){
 });
 // ESC 키
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') { closeModal(); if(history.state&&history.state.modal) history.back(); } });
-// 모바일 Back 버튼 (popstate)
+// ── 모바일 Back 버튼 / 종료 확인 ──
+// 페이지 진입시 기준 스택 하나 추가
+history.pushState({page:'dict'}, '');
+
 window.addEventListener('popstate', function(e){
-  closeModal();
+  // 모달이 열려있으면 모달 닫기
+  var overlay = document.getElementById('modal-overlay');
+  if(!overlay.classList.contains('hidden')){
+    closeModal();
+    // 기준 스택 복원
+    history.pushState({page:'dict'}, '');
+    return;
+  }
+  // 모달 없음 → 종료 확인 팝업
+  showExitDialog();
+});
+
+function showExitDialog(){
+  document.getElementById('exit-overlay').classList.remove('hidden');
+}
+function cancelExit(){
+  document.getElementById('exit-overlay').classList.add('hidden');
+  // 뒤로가기로 소비된 스택 복원
+  history.pushState({page:'dict'}, '');
+}
+function confirmExit(){
+  document.getElementById('exit-overlay').classList.add('hidden');
+  // 실제로 뒤로가기 실행
+  history.back();
+}
+// 바깥 클릭으로 취소
+document.getElementById('exit-overlay').addEventListener('click', function(e){
+  if(e.target === this) cancelExit();
 });
 
 function setModalLang(btn,val){
@@ -492,10 +553,10 @@ function renderModal(){
     var pr=gp(it.indo);
     var thEsc=escHtml(it.theme);
     rows+='<tr data-theme="'+thEsc+'" onclick="goToTheme(this)">';
-    rows+='<td class="td-id" title="'+escHtml(it.indo)+'">'+hl(it.indo,q)+'</td>';
-    rows+='<td class="td-pr" title="'+escHtml(pr)+'">'+(pr?hl(pr,q):'—')+'</td>';
-    rows+='<td title="'+escHtml(it.meaning)+'">'+hl(it.meaning,q)+'</td>';
-    rows+='<td class="td-cat" title="'+escHtml(it.cat)+'">'+hl(it.cat,q)+'</td>';
+    rows+='<td class="td-id">'+hl(it.indo,q)+'</td>';
+    rows+='<td class="td-pr">'+(pr?hl(pr,q):'—')+'</td>';
+    rows+='<td>'+hl(it.meaning,q)+'</td>';
+    rows+='<td class="td-cat">'+hl(it.cat,q)+'</td>';
     rows+='<td><span class="lp '+glc(it.lang)+'">'+gll(it.lang)+'</span></td>';
     rows+='</tr>';
   });
@@ -506,13 +567,15 @@ function renderModal(){
 
 function goToTheme(tr){
   var theme=tr.getAttribute('data-theme');
-  closeModal();
-  if(history.state&&history.state.modal) history.back();
+  // 모달 닫기 + 카테고리 이동
+  document.getElementById('modal-overlay').classList.add('hidden');
   selectTheme(theme, null);
+  // history 정리 (모달 pushState 되돌리기)
+  if(history.state&&history.state.modal) history.back();
   setTimeout(function(){
-    var el=document.querySelector('.gc');
+    var el=document.querySelector('.gc[data-theme]');
     if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-  }, 120);
+  }, 150);
 }
 
 /* ── toggleGroup: data-theme 기반으로 수정 ── */
