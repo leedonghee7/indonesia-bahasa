@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>인도네시아어 회화 사전</title>
+<title>인도네시아어 Theo 회화 사전</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -91,15 +91,15 @@ main{max-width:980px;margin:0 auto;padding:20px 24px}
 .mfb.active{background:var(--accent-bg);border-color:var(--accent);color:var(--accent-text);font-weight:600}
 .modal-sort{height:28px;padding:0 8px;font-family:inherit;font-size:12px;border:1px solid var(--border2);border-radius:var(--rs);background:var(--surface);color:var(--text2);cursor:pointer;outline:none}
 .modal-body{overflow-y:auto;max-height:60vh}
-.modal-table{width:100%;border-collapse:collapse}
-.modal-table thead th{padding:8px 14px;font-size:11px;font-weight:600;color:var(--text3);text-align:left;background:var(--surface2);border-bottom:1px solid var(--border);letter-spacing:.05em;text-transform:uppercase;position:sticky;top:0}
+.modal-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.modal-table thead th{padding:7px 12px;font-size:11px;font-weight:600;color:var(--text3);text-align:left;background:var(--surface2);border-bottom:1px solid var(--border);letter-spacing:.05em;text-transform:uppercase;position:sticky;top:0;overflow:hidden;white-space:nowrap}
 .modal-table tbody tr{border-bottom:1px solid var(--border);transition:background .1s;cursor:pointer}
 .modal-table tbody tr:last-child{border-bottom:none}
 .modal-table tbody tr:hover{background:var(--surface2)}
-.modal-table td{padding:8px 14px;font-size:12.5px;vertical-align:middle}
+.modal-table td{padding:7px 12px;font-size:12.5px;vertical-align:middle;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .td-indo{font-family:'IBM Plex Mono',monospace;font-weight:500;color:#1a3560;font-size:12px}
 .td-pron{color:var(--pron);font-size:12px;background:var(--pron-bg)}
-.td-cat{font-size:11px;color:var(--text3)}
+.td-cat{font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .td-lang .lp{font-size:10px;font-weight:700;padding:2px 6px;border-radius:20px;white-space:nowrap}
 .modal-empty{padding:32px;text-align:center;color:var(--text3);font-size:13px}
 .modal-count{font-size:12px;color:var(--text3);padding:8px 20px;border-top:1px solid var(--border);text-align:right}
@@ -154,7 +154,7 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
   <div class="hi">
     <div class="logo">
       <span class="logo-flag">🇮🇩</span>
-      <span>인도네시아어 회화 사전</span>
+      <span>인도네시아어 Theo 회화 사전</span>
     </div>
     <div class="sw">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -191,7 +191,7 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
   <div class="stats" id="stats"></div>
   <div id="groups"></div>
 </main>
-<footer>인도네시아 일상 회화 기록 · 한글 발음 포함 · 318개 표현</footer>
+<footer>인도네시아 Theo 일상 회화 기록 · 한글 발음 포함 · 318개 표현</footer>
 
 <!-- 전체 표현 모달 -->
 <div class="modal-overlay hidden" id="modal-overlay" onclick="closeModal(event)">
@@ -223,10 +223,10 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
       <table class="modal-table">
         <thead>
           <tr>
-            <th style="width:28%">인도네시아어</th>
-            <th style="width:20%">한글 발음</th>
-            <th style="width:28%">해석</th>
-            <th style="width:16%">카테고리</th>
+            <th style="width:24%">인도네시아어</th>
+            <th style="width:18%">한글 발음</th>
+            <th style="width:24%">해석</th>
+            <th style="width:26%">카테고리</th>
             <th style="width:8%">언어</th>
           </tr>
         </thead>
@@ -420,14 +420,27 @@ function openModal(){
   document.querySelectorAll('.mfb').forEach((b,i)=>b.classList.toggle('active',i===0));
   renderModal();
   setTimeout(()=>document.getElementById('modal-search').focus(),80);
+  // 모바일 Back 버튼 대응: history 스택에 modal 상태 추가
+  history.pushState({modal:true},'','');
 }
 function closeModalDirect(){
   document.getElementById('modal-overlay').classList.add('hidden');
+  // 모바일 back 버튼 대응: history 스택에서 제거
+  if(history.state&&history.state.modal){
+    history.back();
+  }
 }
 function closeModal(e){
   if(e.target===document.getElementById('modal-overlay')) closeModalDirect();
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalDirect();});
+// 모바일 Back 버튼 → popstate 감지 → 모달 닫기
+window.addEventListener('popstate',e=>{
+  const overlay=document.getElementById('modal-overlay');
+  if(!overlay.classList.contains('hidden')){
+    overlay.classList.add('hidden');
+  }
+});
 
 function setModalLang(btn,val){
   modalLf=val;
@@ -464,12 +477,13 @@ function renderModal(){
   tbody.innerHTML=items.map(it=>{
     const pr=gp(it.indo);
     return `<tr onclick="goToTheme('${it.theme.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">
-      <td class="td-indo">${hl(it.indo,q)}</td>
-      <td class="td-pron">${pr?hl(pr,q):'—'}</td>
-      <td>${hl(it.meaning,q)}</td>
-      <td class="td-cat">${hl(it.cat,q)}</td>
+      <td class="td-indo" title="${it.indo}">${hl(it.indo,q)}</td>
+      <td class="td-pron" title="${pr||''}">${pr?hl(pr,q):'—'}</td>
+      <td title="${it.meaning}">${hl(it.meaning,q)}</td>
+      <td class="td-cat" title="${it.cat}">${hl(it.cat,q)}</td>
       <td class="td-lang"><span class="lp ${glc(it.lang)}">${gll(it.lang)}</span></td>
     </tr>`;
+  }).join('');
   }).join('');
 
   document.getElementById('modal-count').textContent=`${items.length}개 표시 중`;
