@@ -157,6 +157,28 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
 .exit-btn:first-child:hover{background:var(--surface2)}
 .exit-btn.danger{color:#c0392b;font-weight:600}
 .exit-btn.danger:hover{background:#fef0f0}
+
+/* ── 스크롤 TOP 버튼 ── */
+#scroll-top{
+  position:fixed;right:20px;bottom:24px;
+  width:46px;height:46px;
+  background:var(--accent);color:#fff;
+  border:none;border-radius:50%;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.22);
+  opacity:0;transform:translateY(12px);
+  transition:opacity .25s,transform .25s;
+  z-index:150;
+  pointer-events:none;
+}
+#scroll-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+#scroll-top:hover{background:#155c32;box-shadow:0 6px 18px rgba(0,0,0,.28)}
+#scroll-top:active{transform:scale(.93)}
+#scroll-top svg{width:20px;height:20px}
+@media(max-width:640px){
+  #scroll-top{right:14px;bottom:18px;width:42px;height:42px}
+}
 </style>
 </head>
 <body>
@@ -198,6 +220,13 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
   <div id="groups"></div>
 </main>
 <footer>Theo의 인도네시아어 회화 사전 &#183; 한글 발음 포함 &#183; 318개 표현</footer>
+
+<!-- 스크롤 TOP 버튼 -->
+<button id="scroll-top" aria-label="맨 위로 이동" onclick="scrollToTop()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
 
 <!-- 종료 확인 다이얼로그 -->
 <div class="exit-overlay hidden" id="exit-overlay">
@@ -629,6 +658,22 @@ function toggleGroup(theme){
   render();
 }
 
+
+/* ── 스크롤 TOP 버튼 ── */
+function scrollToTop(){
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+(function(){
+  var btn=document.getElementById('scroll-top');
+  var threshold=300;
+  window.addEventListener('scroll', function(){
+    if(window.scrollY>threshold){
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  }, {passive:true});
+})();
 buildChips();
 render();
 </script>
