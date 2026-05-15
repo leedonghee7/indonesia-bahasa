@@ -240,6 +240,71 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
 .pw-hint{font-size:11px;color:#c8c5c0;margin-top:8px}
 @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
 .shake{animation:shake .4s ease}
+
+
+.tts-idx{font-size:11px;color:var(--text3);flex-shrink:0}
+
+/* ── TTS ── */
+.ir{cursor:pointer;transition:background .15s}
+.ir:hover{background:#f6fdf8}
+.ir.tts-on{background:#e8f5ee !important;border-left:3px solid #1a6b3c}
+.ir.tts-on .cell{background:transparent}
+.play-btn{
+  display:none;width:26px;height:26px;border-radius:50%;
+  border:none;background:#1a6b3c;color:#fff;
+  font-size:11px;cursor:pointer;flex-shrink:0;
+  align-items:center;justify-content:center;
+  transition:transform .1s,opacity .15s;
+}
+.play-btn:hover{transform:scale(1.12)}
+.ir:hover .play-btn{display:flex}
+.ir.tts-on .play-btn{display:flex;background:#c0392b}
+.cell.lc{display:flex;align-items:center;gap:6px;padding:6px 10px}
+.cat-play-btn{
+  display:flex;align-items:center;gap:4px;
+  height:26px;padding:0 10px;margin-right:6px;
+  border:1.5px solid #1a6b3c;border-radius:20px;
+  background:#e8f5ee;color:#0d4527;
+  font-family:inherit;font-size:11px;font-weight:700;
+  cursor:pointer;flex-shrink:0;transition:all .15s;
+}
+.cat-play-btn:hover{background:#c8ecd8}
+.cat-play-btn.on{background:#1a6b3c;color:#fff;border-color:#1a6b3c}
+.cat-play-btn svg{width:10px;height:10px;flex-shrink:0}
+.tts-bar{
+  display:none;align-items:center;gap:8px;
+  padding:7px 14px;background:#e8f5ee;
+  border-top:1px solid #b5ddc5;font-size:12px;color:#0d4527;
+}
+.tts-bar.on{display:flex}
+.tts-bar-txt{flex:1;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tts-bar-cnt{font-size:11px;color:#3a7d5a;flex-shrink:0;font-family:monospace}
+.tts-stop{
+  height:22px;padding:0 8px;border:1.5px solid #c0392b;border-radius:12px;
+  background:#fff;color:#c0392b;font-family:inherit;
+  font-size:11px;font-weight:700;cursor:pointer;flex-shrink:0;
+}
+.tts-stop:hover{background:#fee2e2}
+
+/* ── 고정 TTS 정지 버튼 ── */
+#tts-fixed-stop{
+  position:fixed;right:72px;bottom:24px;
+  width:46px;height:46px;
+  background:#c0392b;color:#fff;
+  border:none;border-radius:50%;
+  cursor:pointer;
+  display:none;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.22);
+  z-index:150;
+  transition:opacity .25s,transform .25s;
+  font-size:18px;
+}
+#tts-fixed-stop.visible{display:flex}
+#tts-fixed-stop:hover{background:#a93226;box-shadow:0 6px 18px rgba(0,0,0,.28)}
+#tts-fixed-stop:active{transform:scale(.93)}
+@media(max-width:640px){
+  #tts-fixed-stop{right:62px;bottom:18px;width:42px;height:42px;font-size:16px}
+}
 </style>
 </head>
 <body>
@@ -301,6 +366,10 @@ footer{text-align:center;padding:24px;font-size:12px;color:var(--text3);border-t
 </main>
 <footer>Theo의 인도네시아어 회화 사전 &#183; 한글 발음 포함 &#183; 318개 표현</footer>
 
+<!-- 고정 TTS 정지 버튼 -->
+<button id="tts-fixed-stop" aria-label="재생 정지" onclick="TTS.stop()" title="재생 정지">
+  &#9632;
+</button>
 <!-- 스크롤 TOP 버튼 -->
 <button id="scroll-top" aria-label="맨 위로 이동" onclick="scrollToTop()">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -533,8 +602,10 @@ function render(){
     html+='<div class="gc" data-theme="'+thEsc+'">';
     html+='<div class="gh" onclick="toggleGroup(this.parentElement.dataset.theme)">';
     html+='<span class="ge">'+em+'</span><span class="gt">'+tit+'</span><span class="gbg">'+items.length+'</span>';
+    html+='<button class="cat-play-btn" id="cpb_'+thEsc+'" data-theme="'+thEsc+'" onclick="event.stopPropagation();TTS.cat(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>재생</button>';
     html+='<svg class="chev'+(isOpen?' open':'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>';
     html+='</div>';
+    html+='<div class="tts-bar" id="tbar_'+thEsc+'"><span class="tts-bar-txt" id="ttxt_'+thEsc+'">♪</span><span class="tts-bar-cnt" id="tcnt_'+thEsc+'" ></span><button class="tts-stop" onclick="TTS.stop()">&#9632; 정지</button></div>';
     html+='<div class="gbody'+(isOpen?' open':'')+'">';
     html+='<div class="ch"><span>인도네시아어</span><span>한글 발음</span><span>해석</span><span>언어</span></div>';
     var bc={};
@@ -544,11 +615,15 @@ function render(){
       if(catKeys.length>1) html+='<div class="sl">'+escHtml(cat)+'</div>';
       bc[cat].forEach(function(it){
         var pr=gp(it.indo);
-        html+='<div class="ir">';
+        var pronText=pr?pr:it.indo;
+        html+='<div class="ir" data-pron="'+escHtml(pronText)+'" onclick="TTS.row(this)">';
         html+='<div class="cell id">'+hl(it.indo,q)+'</div>';
         html+='<div class="cell pr">'+(pr?hl(pr,q):'—')+'</div>';
         html+='<div class="cell mn">'+hl(it.meaning,q)+'</div>';
-        html+='<div class="cell lc"><span class="lp '+glc(it.lang)+'">'+gll(it.lang)+'</span></div>';
+        html+='<div class="cell lc">';
+        html+='<span class="lp '+glc(it.lang)+'">'+gll(it.lang)+'</span>';
+        html+='<button class="play-btn" onclick="event.stopPropagation();TTS.row(this.closest(\'.ir\'))">▶</button>';
+        html+='</div>';
         html+='</div>';
       });
     });
@@ -757,7 +832,7 @@ function scrollToTop(){
 
 /* ── 비밀번호 잠금 ── */
 (function(){
-  var CORRECT = '1405';
+  var CORRECT = '인니';
   var SESSION_KEY = 'theo_dict_auth';
 
   function unlock(){
@@ -800,6 +875,209 @@ function scrollToTop(){
     var inp = document.getElementById('pw-input');
     inp.type = inp.type === 'password' ? 'text' : 'password';
   };
+})();
+
+
+
+
+/* ══════════════════
+   TTS 객체
+══════════════════ */
+var TTS = (function(){
+  var sy = window.speechSynthesis;
+  var _playing = false;
+  var _timer   = null;
+  var _catBtn  = null;
+  var _barId   = null;
+  var _activeRow = null;
+
+  /* 음성 초기화 - voices가 비동기로 로드되므로 캐시 */
+  var _voice = null;
+  function loadVoice(cb){
+    var voices = sy.getVoices();
+    if(voices.length){
+      _voice = pickVoice(voices);
+      if(cb) cb();
+      return;
+    }
+    sy.addEventListener('voiceschanged', function onVC(){
+      sy.removeEventListener('voiceschanged', onVC);
+      _voice = pickVoice(sy.getVoices());
+      if(cb) cb();
+    });
+  }
+  function pickVoice(voices){
+    /* 1순위: 한국어 남성 이름 포함 */
+    var f = voices.find(function(v){
+      return v.lang.indexOf('ko')===0 &&
+             /male|man|junho|minjun|남성|철수|jiho/i.test(v.name);
+    });
+    /* 2순위: 한국어 (남성 제외 female 필터링) */
+    if(!f) f = voices.find(function(v){
+      return v.lang==='ko-KR' && !/female|woman|heami|yuna|sora|지은|수진/i.test(v.name);
+    });
+    /* 3순위: 한국어 아무 음성 */
+    if(!f) f = voices.find(function(v){ return v.lang==='ko-KR'; });
+    if(!f) f = voices.find(function(v){ return v.lang.indexOf('ko')===0; });
+    return f||null;
+  }
+
+  /* 단일 발음 재생 (Promise 반환) */
+  function speak(text, onDone){
+    sy.cancel();
+    if(!text||!text.trim()){ if(onDone) onDone(); return; }
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang  = 'ko-KR';
+    u.rate  = 1.20;
+    u.pitch = 1.0;
+    if(_voice) u.voice = _voice;
+    u.onend   = function(){ if(onDone) onDone(); };
+    u.onerror = function(e){
+      /* 음성 오류시 짧게 대기 후 다음으로 */
+      console.warn('TTS error', e.error, text);
+      if(onDone) setTimeout(onDone, 200);
+    };
+    /* Chrome 버그 방지: cancel 후 약간 지연 */
+    setTimeout(function(){ sy.speak(u); }, 50);
+  }
+
+  /* ── 행 단일 재생 ── */
+  function row(el){
+    var pron = el.getAttribute('data-pron')||'';
+    if(!pron) return;
+    if(el.classList.contains('tts-on')){
+      stop(); return;
+    }
+    stop();
+    _activeRow = el;
+    el.classList.add('tts-on');
+    var btn = el.querySelector('.play-btn');
+    if(btn){ btn.textContent='■'; }
+
+    loadVoice(function(){
+      speak(pron, function(){
+        if(_activeRow===el){
+          el.classList.remove('tts-on');
+          if(btn) btn.textContent='▶';
+          _activeRow = null;
+        }
+      });
+    });
+  }
+
+  /* ── 카테고리 순차 재생 ── */
+  function cat(btn){
+    if(btn.classList.contains('on')){ stop(); return; }
+    stop();
+
+    var theme = btn.getAttribute('data-theme');
+    var gc = btn.parentElement.parentElement; /* gh → gc */
+
+    /* 그룹 펼치기 */
+    var gbody = gc.querySelector('.gbody');
+    if(gbody && !gbody.classList.contains('open')){
+      gbody.classList.add('open');
+      var chev = gc.querySelector('.chev');
+      if(chev) chev.classList.add('open');
+    }
+
+    var rows = gc.querySelectorAll('.ir');
+    if(!rows.length) return;
+
+    /* 진행바 표시 */
+    var barEl = document.getElementById('tbar_'+theme);
+    var txtEl = document.getElementById('ttxt_'+theme);
+    var cntEl = document.getElementById('tcnt_'+theme);
+    if(barEl) barEl.classList.add('on');
+
+    /* 버튼 상태 */
+    _catBtn = btn;
+    _barId  = theme;
+    _playing = true;
+    btn.classList.add('on');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></svg>정지';
+    /* 고정 정지버튼 표시 */
+    var fsb=document.getElementById('tts-fixed-stop');
+    if(fsb) fsb.classList.add('visible');
+
+    var idx = 0;
+    function next(){
+      if(!_playing || idx >= rows.length){ finish(); return; }
+      /* 이전 행 해제 */
+      rows.forEach(function(r){ r.classList.remove('tts-on'); });
+      var r = rows[idx];
+      var pron = r.getAttribute('data-pron')||'';
+
+      /* 행 강조 */
+      r.classList.add('tts-on');
+      r.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+      /* 진행바 텍스트 */
+      if(txtEl) txtEl.textContent = '♪  ' + (pron||'—');
+      if(cntEl) cntEl.textContent = (idx+1)+' / '+rows.length;
+
+      idx++;
+
+      if(!pron){
+        /* 발음 없으면 0.5초 후 다음 */
+        _timer = setTimeout(function(){ if(_playing) next(); }, 500);
+        return;
+      }
+
+      loadVoice(function(){
+        if(!_playing) return;
+        speak(pron, function(){
+          if(!_playing) return;
+          /* 단어 간 간격 1.2초 */
+          _timer = setTimeout(function(){ if(_playing) next(); }, 1000);
+        });
+      });
+    }
+
+    next();
+  }
+
+  function finish(){
+    _playing = false;
+    if(_catBtn){
+      _catBtn.classList.remove('on');
+      _catBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>재생';
+    }
+    if(_barId){
+      var b=document.getElementById('tbar_'+_barId);
+      if(b) b.classList.remove('on');
+      var t=document.getElementById('ttxt_'+_barId);
+      if(t) t.textContent='♪';
+      var c=document.getElementById('tcnt_'+_barId);
+      if(c) c.textContent='';
+    }
+    document.querySelectorAll('.ir.tts-on').forEach(function(r){ r.classList.remove('tts-on'); });
+    _catBtn=null; _barId=null;
+    /* 고정 정지버튼 숨김 */
+    var fsb=document.getElementById('tts-fixed-stop');
+    if(fsb) fsb.classList.remove('visible');
+  }
+
+  function stop(){
+    _playing=false;
+    if(_timer){ clearTimeout(_timer); _timer=null; }
+    sy.cancel();
+    if(_activeRow){
+      _activeRow.classList.remove('tts-on');
+      var b=_activeRow.querySelector('.play-btn');
+      if(b) b.textContent='▶';
+      _activeRow=null;
+    }
+    finish();
+  }
+
+  /* 페이지 이탈 시 정지 */
+  window.addEventListener('pagehide', function(){ sy.cancel(); });
+
+  /* 음성 미리 로드 */
+  loadVoice(null);
+
+  return { row:row, cat:cat, stop:stop };
 })();
 
 buildChips();
